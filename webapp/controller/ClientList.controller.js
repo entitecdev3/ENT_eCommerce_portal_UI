@@ -74,6 +74,7 @@ sap.ui.define([
 					objectId: oEvent.getParameter("listItem").getBindingContext("appView").getObject().CardCode,
 				}
 			  );
+			this.getView().byId("idClientlist").removeSelections();
 		},
 		
 	});
