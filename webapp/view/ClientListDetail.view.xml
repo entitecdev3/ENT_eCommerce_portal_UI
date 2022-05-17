@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.ClientListDetail"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page>
+		<headerContent>
+			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
+		</headerContent>
+		<content>
+			<ObjectHeader titleLevel="Auto"  title="{i18n>Businessname} : {appView>/ClientDetails/CardName}" backgroundDesign="Transparent"
+				intro="{i18n>Clientcode} {appView>/ClientDetails/CardCode}" fullScreenOptimized="true">
+				<!-- <ObjectIdentifier/> -->
+				<attributes>
+					<!-- <ObjectAttribute title="Richidente" text="{RequesterName}" /> -->
+					<!-- <ObjectAttribute  title="{i18n>CodiceCliente}" text="{appView>/ClientDetails/CardCode}" /> -->
+					<ObjectAttribute title="{i18n>Piva}"  text="{path:'appView>/ClientDetails/FederalTaxID'}"  />
+					<!-- <ObjectAttribute id="idReqDate" title="Codice Fiscale" text="{path:'appView>/ClientDetails/AdditionalID'}" /> -->
+				</attributes>
+				<statuses>
+					<!-- <firstStatus> -->
+						<!-- <ObjectStatus title="{i18n>P.iva}" state="None" text="{path:'appView>/ClientDetails/FederalTaxID'}" /> -->
+						<ObjectStatus title="{i18n>TaxIDcode}" state="None" text="{path:'appView>/ClientDetails/AdditionalID'}" />
+						
+					<!-- </firstStatus> -->
+					</statuses>
+			</ObjectHeader>
+			<IconTabBar >
+				<items>
+					<IconTabFilter key="info" text="{i18n>General}">
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.GeneralClientList" type="XML" />
+					</IconTabFilter> 
+					<IconTabFilter key="Contact Employees" text="{i18n>ContactEmployees}" >
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ContactClientList" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter key="notes" text="{i18n>Address}" >
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AddressClientList" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter key="people" text="{i18n>Accounting}">
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AccountingClientList" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter key="people" text="{i18n>Properties}">
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.PropertiesClientList" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter key="people" text="{i18n>Activities}">
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientList" type="XML" />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

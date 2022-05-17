@@ -1,0 +1,83 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    xmlns:layout="sap.ui.layout"
+>
+  <Dialog class="tableRowItemContent" title="{i18n>detailArticle}" id="tableRowItemDialog" afterClose="onAfterClose">
+    <content width="100%">
+      <VBox>
+        <Text text="{i18n>code}: {/itemData/ItemCode}" class="itemDialogProp" />
+        <Text text="{i18n>description}: {/itemData/ItemName}" class="itemDialogProp" />
+        <Text text="" class="itemDialogProp" />
+        <Text text="{i18n>qtyDetailbyCom}" class="itemDialogDesc" />
+        <Text text="" class="itemDialogProp" />
+        <!-- tableItemDetails -->
+        <Table id="rowItemTable" class="" items="{path: '/itemData/tableData'}" inset="false" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" >
+          <headerToolbar>
+          </headerToolbar>
+          <columns>
+            <Column width="auto" hAlign="Center" vAlign="Middle" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>company}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>warehouse}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>atTheWarehouse}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>avail}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>ordered}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <ObjectIdentifier
+                  title="{CompanyName}"
+                  titleActive="false"/>
+                <Text
+                  text="{Warehouse}" />
+                <Text
+                  text="{
+                    path: 'OnHand',
+                    formatter: 'tableDataFormatter.precisionFormatter'}" />
+                <Text
+                  text="{
+                    path: 'Libero',
+                    formatter: 'tableDataFormatter.precisionFormatter'}" />
+                <Text
+                  text="{
+                    path: 'OnOrder',
+                    formatter: 'tableDataFormatter.precisionFormatter'}" />
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </VBox>
+    </content>
+
+    <buttons>
+      <Button text="{i18n>openArticle}" width="7rem" type="Accept" press="onItemDialogForward" class="sapUiMediumMarginEnd" />
+      <Button text="{i18n>close}" type="Ghost" press="onItemDialogClose" class="pannelTableClose" />
+    </buttons>
+  </Dialog>
+</core:FragmentDefinition>

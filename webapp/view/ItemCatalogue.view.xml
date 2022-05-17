@@ -1,0 +1,74 @@
+<mvc:View controllerName="ent.ui.ecommerce.controller.ItemCatalogue"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:tnt="sap.tnt"
+	displayBlock="true"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout">
+  <Page enableScrolling="true">
+    <headerContent>
+      <core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
+    </headerContent>
+    <subHeader>
+      <Bar class="contentSubHeader" design="Header">
+        <contentLeft >
+          <SearchField
+              id="keyWordSearchField"
+              class="keyWordSearchField sapUiContentPadding"
+              placeholder="{i18n>searchByArticleName}"
+              search="onKeyWordSearch">
+          </SearchField>
+          <ToggleButton class="sapUiContentPadding" id="keyWordMethodBtn" text="{/keyWordMethod}" enabled="true" pressed="true" width="auto" press="onKeyWordMethodToggle" visible="true" />
+        </contentLeft>
+      </Bar>
+    </subHeader>
+    <l:Grid class="initialPannelContainer">
+      <l:content>
+        <Tree
+          id="tree"
+          items="{path: '/treeData'}"
+          mode="SingleSelectMaster"
+          selectionChange="onTreeSelectionChange"
+          class="treeSelection"
+          noDataText="{i18n>withoutData}"
+        >
+        <!-- <headerToolbar>
+            <OverflowToolbar>
+                <Title
+                    text="" />
+                <ToolbarSpacer />
+            
+            </OverflowToolbar>
+        </headerToolbar> -->
+          <StandardTreeItem title="{text}"/>
+          <layoutData>
+            <l:GridData span="XL4 L4 M4 S12"/>
+          </layoutData>
+        </Tree>
+
+        <VBox id="groupsContainer" justifyContent="Start">
+          <HBox class="groupsContainerHeader" width="100%" justifyContent="SpaceBetween">
+            <Text id="selectedItemPath" class="selectedItemPath" text="{i18n>path}:  {/selectedTreeItem}" />
+          </HBox>
+
+          <VBox id="groupsLinesContainer">
+          </VBox>
+
+          <layoutData>
+            <l:GridData span="XL8 L8 M8 S12"/>
+          </layoutData>
+        </VBox>
+
+      </l:content>
+    </l:Grid>
+    <footer>
+      <OverflowToolbar>
+        <HBox id="p2footer" width="100%" justifyContent="End">
+          <Button text="{i18n>reset}" class="p2btn p2btnFirst" type="Reject" press="onInputsReset" />
+          <Button text="{i18n>search}" class="p2btn p2btnSecond" type="Ghost" press="onInputGroupsSearch" />
+        </HBox>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

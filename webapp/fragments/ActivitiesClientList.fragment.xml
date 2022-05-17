@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Table id="idActivitiesClientList"
+  
+    items="{
+        path: 'appView>/ClientListActivites'
+    }">
+
+    <columns>
+        <Column>
+            <Text text="ID" />
+        </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="Data inizio" />
+        </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="Data fine" />
+        </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="Commenti" />
+        </Column>
+       
+        <!-- <Column>
+            <Text text="Email" />
+        </Column> -->
+    </columns>
+    <items>
+        <ColumnListItem vAlign="Middle">
+            <cells>
+                <ObjectIdentifier
+                    text="{path:'appView>Action',formatter:'.formatter.actionFormatter'}"/>
+                <Text
+                    text="{path:'appView>Recontact',formatter:'.formatter.conDateFormatter'} {path:'appView>BeginTime',formatter:'.formatter.conTimeFormatter'}" />
+                <Text
+                    text="{path:'appView>endDate',formatter:'.formatter.conDateFormatter'} {path:'appView>ENDTime',formatter:'.formatter.conTimeFormatter'}" />
+                <Text
+                    text="{appView>Notes}" />
+               
+              
+               
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</core:FragmentDefinition>

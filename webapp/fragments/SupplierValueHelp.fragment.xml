@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog id="SupplierDialog" title="{i18n>suppliers}" items="{ path: '/BusinessPartners'}" search="_handleValueHelpSearch"
+         confirm="_handleValueHelpClose" cancel="_handleValueHelpClose">
+        <ObjectListItem title="{CardCode}" type="Active" icon="sap-icon://supplier">
+            <ObjectAttribute text="{CardName}" />
+        </ObjectListItem>
+    </SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,248 @@
+@media only screen and (min-width: 780px) {
+    .btnText .sapMBtnInner {
+        font-size: x-large;
+        font-weight: bolder;    
+    }
+}
+@media screen and (max-width: 780px) {
+    .btnText .sapMBtnInner {
+        font-size: small;
+        font-weight: bolder;
+    }
+}
+ /* .sapUiMedia-Std-Phone .btnText .sapMBtnInner {
+    background: transparent;
+    border-color: transparent;
+    font-weight: bolder;
+    font-size: small;
+};*/
+/* .btnBold .sapMBtnInner {
+    background: transparent;
+    border-color: transparent;
+    font-weight: bolder;
+};   */
+.txtbld {
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+/* Enter your custom styles here */
+/** Bonomi Pattini */
+.buttonLogin > span > span {
+    font-size: 1.25rem;
+  }
+  
+  .font-size-adjust {
+    font-size: 1.25rem;
+  }
+  
+  .tableItemDetails table tbody tr:last-child {
+    background-color: #e6f4ff;
+  }
+  
+  .keyWordSearchField {
+    width: calc(100% - 4.5rem) !important;
+  }
+  
+  .pannelTableClose {
+    width: 6rem !important;
+    margin-left: auto;
+    margin-right: 1rem;
+    flex: unset !important;
+    min-width: unset !important;
+    margin-left: auto !important;
+    margin-right: 1rem;
+  }
+  
+  .sapMBarContainer {
+    padding: 0;
+  }
+  
+  .itemDialogLeftBtn {
+    margin-right: 1.5rem !important;
+  }
+  
+  .tableRowItemContent section {
+    padding: 0.5rem;
+  }
+  
+  .itemDialogDesc {
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    padding-left: 1rem;
+  }
+  
+  .itemDialogProp {
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+    padding-left: 1.15rem;
+  }
+  
+  .sapMObjectAttributeText {
+    font-weight: bold;
+    color: #666 !important;
+  }
+  
+  .inputGroupFragmentContainer {
+    background-color: unset !important;
+    border: none !important;
+    height: 6rem;
+  }
+  
+  .thirdPanelPage > section > div {
+    margin: 0 !important;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  
+  .thirdPanelPage section div div:first-child {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  
+  .thirdPanelPage section div div:first-child div {
+    padding-left: 0 !important;
+  }
+  
+  .thirdPanelPage section div:nth-child(2) {
+    max-height: 100%;
+    margin: 0 !important;
+  }
+  
+  .selectedItemHeader {
+    color: white;
+  }
+  
+  .toolHeader {
+    width: 100%;
+  }
+  
+  .groupsContainer {
+    height: 100%;
+  }
+  
+  .groupsContainerHeader {
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .selectedItemPath {
+    margin-top: 1rem;
+    color: #346187;
+    font-size: 1.15rem;
+    font-weight: bold;
+  }
+  
+  .tableItemNameCells {
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  
+  .initialPannelContainer {
+    height: calc(100% - 3rem);
+  }
+  
+  .initialPannelContainer [class^="sapUiRespGridSpan"] {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  
+  .initialPannelContainer div:nth-child(1),
+  .initialPannelContainer div:nth-child(2) {
+    margin-bottom: 0;
+  }
+  
+  .initialPannelContainer div:nth-child(2) {
+    height: 100%;
+  }
+  
+  #__xmlview1--p2footer div .p2btn:first-child {
+    margin-right: 1rem;
+  }
+  
+  #__xmlview1--p2footer div .p2btn {
+    width: 7rem;
+  }
+  
+  #__xmlview1--p2footer div .p2btn span {
+    font-size: 1.65rem !important;
+  }
+  
+  #__xmlview1--p2footer {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 0.1rem;
+  }
+  
+  #__xmlview1--groupsContainer {
+    height: 100%;
+  }
+  
+  #__xmlview1--groupsContainer div:first-child {
+    height: 3rem;
+  }
+  
+  #__xmlview1--groupsLinesContainer div {
+    height: 3rem;
+  }
+  
+  [id^="__field"],
+  [id^="__input"] {
+    height: 2.5rem !important;
+  }
+  
+  .inputGroupContainer {
+    width: 100%;
+  }
+  
+  .p2Label {
+    margin-right: 2rem;
+    margin-top: 0.85rem;
+  }
+  
+  .p2Label span bdi {
+    /* color: #333333 !important; */
+  }
+  
+  .p2spacer {
+    margin-bottom: 2rem;
+  }
+  
+  .inputGroupContainer div:first-child {
+    width: 15rem !important;
+  }
+  
+  .p2btn {
+    width: 8.5rem;
+  }
+  
+  .p2btn span span bdi {
+    font-size: 1.5rem !important;
+  }
+  
+  .p2btnFirst {
+    margin-right: 1rem;
+  }
+  
+  .p2btnSecond {
+    margin-right: 0.5rem;
+  }
+  
+  .thirdPanelToolbar {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+  
+  @media only screen and (max-width: 1270px) {
+    /* For mobile phones: */
+    .thirdPanelToolbar > div:first-child {
+      width: 99% !important;
+    }
+  }
+
+  .inputBackColor, .sapMInputBaseInner {
+    background-color: rgba(199, 201, 199, 0.515);
+  }

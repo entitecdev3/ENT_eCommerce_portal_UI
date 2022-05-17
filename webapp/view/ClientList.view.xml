@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.ClientList"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page>
+		<headerContent>
+			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
+		</headerContent>
+		<content>
+			<List id="idClientlist" width="auto" class="sapFDynamicPageAlignContent" items="{
+				path: 'appView>/ClientList'
+				}" busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}" 
+			mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+			 growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished" selectionChange="onClientListSelect"
+			 updateStarted="onContextMenu">
+			
+			<headerToolbar>
+				<OverflowToolbar>
+					<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search="onClientListSearch" width="auto">
+						<layoutData>
+							<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow" />
+						</layoutData>
+					</SearchField>
+					<ToolbarSpacer />
+				
+					<!-- <Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent" /> -->
+					
+				</OverflowToolbar>
+			</headerToolbar>
+			<items>
+				<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press=".onSelectionChange" title="{i18n>Clientcode}: {appView>CardCode}">
+					<firstStatus>
+						<ObjectStatus title="{i18n>Accountingbalance}" state="{= ${appView>BalanceSys} >= 0 ? 'Success' : 'Error' }" text="{path: 'appView>BalanceSys',formatter:'.formatter.conHourFormatter'}" />
+
+					</firstStatus>
+					<attributes>
+						<!-- <ObjectAttribute id="companyName" text="{RequesterName}" /> -->
+						<ObjectAttribute title="{i18n>Businessname}" text="{path:'appView>CardName'}" />
+						<ObjectAttribute title="{i18n>City}" text="{path:'appView>MailCity'}" />
+						<!-- <ObjectAttribute title="Iniziata" text="{= ${DocDate}
+								? ${ path: 'DocDate',
+									 type: 'sap.ui.model.type.Date',
+									 formatOptions: { style: 'medium' } }
+								: '' }" /> -->
+					</attributes>
+				</ObjectListItem>
+			</items>
+		</List>
+		</content>
+	</Page>
+</mvc:View>

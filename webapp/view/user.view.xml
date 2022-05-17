@@ -1,0 +1,83 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.user"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page  title="{i18n>appTitle}" id="idUser" showNavButton="true" navButtonPress="onNavBack">
+		<headerContent>
+			<Link  text="{appView>/User}" press="onUserPress"/>
+			<!-- <Text text="{appView>/User}"/> -->
+			<!-- <Button icon="sap-icon://log" type="Negative" tooltip="Logout" press="onLogOut"/> -->
+			<!-- <Switch customTextOn="Dark" customTextOff="light" tooltip="Change Theme" change="onThemeChange"  ></Switch> -->
+		</headerContent>
+		<!-- <MessageStrip text="{i18n>Apps}" type="Information" class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiMediumMarginBottom sapUiMediumMarginTop"></MessageStrip>
+		<Panel>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>UserManagement}" id="idUserManagement" subheader="" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://credit-card"/>
+				</TileContent>
+			</GenericTile>
+		
+		</Panel> -->
+		<Table id="lineItemsPLMList" sticky="ColumnHeaders" autoPopinMode="true" popinLayout="GridSmall" width="auto" items="{path:'appView>/users',templateShareable: true}"  mode="None">
+			<headerToolbar>
+				<Toolbar>
+					<Title id="lineItemsTitle" text="{i18n>users}" titleStyle="H4" level="H4" />
+					<ToolbarSpacer />
+					<!-- <Button icon="sap-icon://expand" visible="{=${PLMDetails>/ExpertMode}?false:true}" press="onExpertMode" /> -->
+					<!-- <Button icon="sap-icon://collapse" visible="{PLMDetails>/ExpertMode}" press="onExpertMode" /> -->
+					<!-- <Button icon="sap-icon://add" visible="{PLMDetails>/Editmode}" press="onStageAdd" /> -->
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column visible="true">
+					<Text text="{i18n>empID}" wrapping="true" wrappingType="Hyphenated" />
+				</Column>
+				<Column>
+					<Text text="{i18n>lastName}" wrapping="true" wrappingType="Hyphenated" />
+				</Column>
+				<Column demandPopin="true" hAlign="Center">
+					<Text text="{i18n>firstName}" wrappingType="Hyphenated" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>middleName}" wrappingType="Hyphenated" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>gender}" wrappingType="Hyphenated" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>email}" wrapping="true" wrappingType="Hyphenated" />
+				</Column>
+				<Column visible="{path:'appView>/authType',formatter:'.formatter.formatVisiblePass'}" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>password}" wrappingType="Hyphenated" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem id="favTableItemTemplatePLMDetails">
+					<cells>
+						<VBox>
+							<Text text="{appView>empID}" />
+						</VBox>
+						<VBox>
+							<Text text="{appView>lastName}" />
+						</VBox>
+						<VBox>
+							<Text text="{appView>firstName}" />
+						</VBox>
+						<VBox>
+							<Text text="{appView>middleName}" />
+						</VBox>
+						<VBox>
+							<Text text="{appView>sex}" />
+						</VBox>
+						<VBox>
+							<Text text="{appView>email}" />
+						</VBox>
+						<VBox>
+							<Button id="idMangerPasswordUpdate" text="{i18n>updatePassword}" press="onUserPasswordChange" />
+						</VBox>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+
+		
+	</Page>
+</mvc:View>

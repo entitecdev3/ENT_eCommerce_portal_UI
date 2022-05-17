@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    
+>
+  
+  <tnt:ToolHeader class="inputGroupFragmentContainer">
+     <Text text="{data>/id}" visible="false" />
+    <HBox alignContent="SpaceAround" class="inputGroupContainer sapUiSmallMargin " width="100%">
+      <!-- <Text text="{data>/id}" visible="false" /> -->
+      <Label design="Bold" text="{data>/label}" class="p2Label" vAlign="Middle" />
+      <Input  value="{data>/ui_field_input}" class="inputBackColor" visible="{= !${data>/searchFeatures/searchEnabled}}" />
+      <SearchField value="{data>/ui_field_input}" class="inputBackColor" visible="{data>/searchFeatures/searchEnabled}" placeholder=" " search="onInputSearch" />
+    </HBox>
+  </tnt:ToolHeader>
+</core:FragmentDefinition>

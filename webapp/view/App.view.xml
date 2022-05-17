@@ -1,0 +1,27 @@
+<mvc:View
+	controllerName="ent.ui.ecommerce.controller.App"
+	displayBlock="true"
+	height="100%"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App
+		id="app"
+		busy="{appView>/busy}"
+		busyIndicatorDelay="{appView>/delay}">
+		<!-- <Page>
+			<headerContent>
+				<Button icon="sap-icon://full-screen" id="enterFullScreen" visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"></Button>
+				<Button icon="sap-icon://exit-full-screen" id="exitFullScreen" visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"></Button>
+				<Button icon="sap-icon://decline" id="closeColumn" press=".onCloseDetailPress"></Button>
+				<Button icon="sap-icon://log" type="Emphasized" press="onLogOut" />
+			</headerContent> -->
+	
+		<f:FlexibleColumnLayout
+			id="layout"
+			layout="{appView>/layout}"
+			backgroundDesign="Translucent">
+		</f:FlexibleColumnLayout>
+	<!-- </Page> -->
+	</App>
+</mvc:View>

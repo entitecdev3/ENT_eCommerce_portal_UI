@@ -1,0 +1,137 @@
+<mvc:View controllerName="ent.ui.ecommerce.controller.Items"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout">
+  <Page class="thirdPanelPage" enableScrolling="false">
+    <headerContent>
+      <core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
+    </headerContent>
+    <Table id="thirdPannelTable" sticky="HeaderToolbar,ColumnHeaders" items="{path: '/tableData'}" select="rowPress" inset="false" noDataText="Nessun articolo trovato con i criteri scelti" mode="MultiSelect" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="false" class="sapUiResponsiveMargin" >
+      <headerToolbar>
+        <OverflowToolbar class="thirdPanelToolbar">
+            <content>
+              <SearchField
+                id="tableSearchField"
+                class="tableSearchFilter"
+                width="70%"
+                placeholder="{i18n>filterSearchbyAN}"
+                liveChange="onTableFilterPress">
+                <layoutData>
+                  <OverflowToolbarLayoutData
+                    priority="NeverOverflow"/>
+                </layoutData>
+              </SearchField>
+              <RadioButtonGroup id="rbg3" columns="3" class="sapUiMediumMarginBottom" select="onRadioFilterSelect">
+                <RadioButton id="RB3-1" text="{i18n>all}" />
+                <RadioButton id="RB3-2" text="{i18n>thisSoc}" />
+                <RadioButton id="RB3-3" text="{i18n>allSoc}" />
+            </RadioButtonGroup>
+            </content>
+        </OverflowToolbar>
+      </headerToolbar>
+      <columns>
+        <Column id="lotColumn" width="12rem" hAlign="Left" vAlign="Top" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>item}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+        <Column width="4rem" hAlign="Center" vAlign="Top" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>clusterRot}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+        <Column width="8rem" hAlign="Left" vAlign="Top" minScreenWidth="40rem" demandPopin="true" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>salesData}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+        <Column width="6rem" hAlign="Left" vAlign="Top" minScreenWidth="46rem" demandPopin="true" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>umMag}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+        <Column width="7rem" hAlign="Left" vAlign="Top" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>qtyWarehouse}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+        <Column width="8rem" hAlign="Left" vAlign="Top" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>qtaAllSoc}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <ObjectIdentifier
+              title="{ItemName}"
+              text="{ItemCode}"
+              titleActive="true"
+              titlePress="rowItemPress"/>
+            <Text
+              text="{ClusterRotazione}" />
+            <VBox>
+              <ObjectAttribute title="UM Vendita " text="{SalUnitMsr}" active="true" />
+              <ObjectAttribute title="Prz Lordo Vend " text="{
+                  path: 'Prz',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }" active="true" />
+            </VBox>
+            <Text
+              text="{InvntryUom}" />
+            <VBox>
+              <ObjectAttribute title="Al Mag "
+                text="{
+                  path: 'B_OnHand',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }"
+                active="true" />
+              <ObjectAttribute title="Disponibile "
+                text="{
+                  path: 'B_Libero',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }"
+                active="true" />
+              <ObjectAttribute title="Ordinato "
+                text="{
+                  path: 'B_OnOrder',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }"
+                active="true" />
+            </VBox>
+            <VBox>
+              <ObjectAttribute title="Al Mag "
+                text="{
+                  path: 'X_OnHand',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }"
+                active="true" />
+              <ObjectAttribute title="Disponibile "
+                text="{
+                  path: 'X_Libero',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }"
+                active="true" />
+              <ObjectAttribute title="Ordinato "
+                text="{
+                  path: 'X_OnOrder',
+                  formatter: 'tableDataFormatter.precisionFormatter'
+                }"
+                active="true" />
+            </VBox>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+  </Page>
+</mvc:View>

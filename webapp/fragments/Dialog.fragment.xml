@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="mySelectDialog"
+		noDataText="{i18n>noProductsFound}"
+		title="{i18n>selectProduct}"
+		multiSelect = "true"
+		search=".onSearch"
+		confirm=".onDialogClose"
+		cancel=".onDialogClose"
+		items="{
+			path: '/Items'
+		}">
+		<!-- <StandardListItem
+			title="{ItemCode}"
+			description="{ItemName}"
+			icon="sap-icon://product"
+			iconDensityAware="false"
+			iconInset="false"
+			type="Active" /> -->
+	<!-- </SelectDialog> -->
+	<ObjectListItem
+	title="{ItemCode}"
+	type="Active"
+	icon="sap-icon://product"
+	>
+	<!-- <firstStatus>
+		<ObjectStatus
+			text="{Status}"
+			state="{
+				path: 'Status',
+				formatter: 'sap.m.sample.ObjectListItem.Formatter.status'
+			}" />
+	</firstStatus> -->
+	<ObjectAttribute text="{ItemName}" />
+	<!-- <ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
+</ObjectListItem>
+</SelectDialog>
+</core:FragmentDefinition>

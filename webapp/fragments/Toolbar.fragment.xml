@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+>
+    <tnt:ToolHeader class="toolHeader">
+        <Button id="navBackBtn" text="" type="Default" press="onNavBack" icon="sap-icon://nav-back">
+            <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+        </Button>
+        <Button id="navLeftBtn" icon="sap-icon://nav-back" type="Default" press="onNavLeft">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button>
+        <ToolbarSpacer />
+        <Title id="toolbarTitle" text="{/toolbarTitle}">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="Disappear" />
+            </layoutData>
+        </Title>
+
+        <Title id="selectedItemHeader" text="{/selectedTreeItem}">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Title>
+
+        <ToolbarSpacer />
+        <Title id="totalItemsHeader" text="{/totalItems}">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Title>
+        <!-- <Button text="{op>/loggedUserName}" type="Transparent">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button> -->
+        <!-- <Button icon="sap-icon://visits" press="onUserPress"></Button> -->
+        <Link text="{appView>/User}"  press="onUserPress">
+            <!-- <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData> -->
+        </Link>
+    </tnt:ToolHeader>
+</core:FragmentDefinition>

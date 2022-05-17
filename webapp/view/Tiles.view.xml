@@ -1,0 +1,29 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.Tiles"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>appTitle}" id="idTile">
+		<headerContent>
+			<Link text="{appView>/User}" press="onUserPress"/>
+			<!-- <Button icon="sap-icon://log" type="Negative" tooltip="Logout" press="onLogOut"/> -->
+			<!-- <Switch customTextOn="Dark" customTextOff="light" tooltip="Change Theme" change="onThemeChange"  ></Switch> -->
+		</headerContent>
+		<MessageStrip text="{i18n>apps}" type="Information" class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiMediumMarginBottom sapUiMediumMarginTop"></MessageStrip>
+		<Panel>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>userManagement}" id="idUserManagement" subheader="" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://credit-card"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>itemCatalogue}" id="idItemCatalogue" subheader="" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://cart-3"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>clientList}" id="idClientList" subheader="" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://customer"/>
+				</TileContent>
+			</GenericTile>
+		</Panel>
+		
+	</Page>
+</mvc:View>
