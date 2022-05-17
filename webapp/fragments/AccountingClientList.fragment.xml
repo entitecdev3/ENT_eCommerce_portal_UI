@@ -6,9 +6,9 @@
                     <Label text="{i18n>paymentCondition}" />
                    <Text text="{parts:[{path:'appView>/ClientDetails/PeymentMethodCode'},{path:'appView>/ClientDetails/PayTermsGrpCode'}],formatter:'.formatPayTerm'}"/>
                     <Label text="{i18n>insuredCredit}"/>
-                    <Text text="{path:'appView>/ClientDetails/U_AC_Fido_Assic'}"/>
+                    <Text text="{path:'appView>/ClientDetails/U_AC_Fido_Assic',formatter:'.formatter.conHourFormatter'}"/>
                     <Label text="{i18n>internalTrust}"/>
-                    <Text text="{path:'appView>/ClientDetails/U_Fido_Interno'}"/>
+                    <Text text="{path:'appView>/ClientDetails/U_Fido_Interno',formatter:'.formatter.conHourFormatter'}"/>
                 </f:content>
             </f:SimpleForm>
 </core:FragmentDefinition>
