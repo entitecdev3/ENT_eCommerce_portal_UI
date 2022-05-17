@@ -488,8 +488,8 @@ sap.ui.define([
 					if (element2.GroupNum.toString() === value2.toString()) {
 						for (let j = 0; j < oData1.length; j++) {
 							const element1 = oData1[j];
-							if (element1.GroupCode.toString() === value1.toString()) {
-								let str=element1.GroupName+" - "+element2.PymntGroup;
+							if (element1.PayMethCod.toString() === value1.toString()) {
+								let str=element1.PayMethCod+" - "+element1.Descript+" - "+element2.PymntGroup;
 								return str;
 							}
 							
