@@ -7,28 +7,28 @@
 
     <columns>
         <Column>
-            <Text text="id" />
+            <Text text="{i18n>id}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="Nome" />
+            <Text text="{i18n>name}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="Cognome" />
+            <Text text="{i18n>lastName}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="Telefono" />
+            <Text text="{i18n>phone}" />
         </Column>
         <Column>
-            <Text text="Cellulare" />
+            <Text text="{i18n>cellPhone}" />
         </Column>
         <Column>
-            <Text text="Email" />
+            <Text text="{i18n>email}" />
         </Column>
     </columns>
     <items>

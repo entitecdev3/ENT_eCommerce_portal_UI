@@ -7,25 +7,25 @@
 
     <columns>
         <Column>
-            <Text text="id" />
+            <Text text="{i18n>id}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="Descrizioe" />
+            <Text text="{i18n>description}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="Tipo Camion" />
+            <Text text="{i18n>truckType}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="Tipo Scarico" />
+            <Text text="{i18n>exhaustType}" />
         </Column>
         <Column>
-            <Text text="Preavviso" />
+            <Text text="{i18n>forewarning}" />
         </Column>
         <!-- <Column>
             <Text text="Email" />

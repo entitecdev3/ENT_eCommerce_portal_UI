@@ -3,11 +3,11 @@
             adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" 
             columnsL="2" columnsM="2" singleContainerFullSize="false" >
                 <f:content>
-                    <Label text="Condizione pagamento" />
-                    <Text text="{parts:[{path:'appView>/ClientDetails/GroupCode'},{path:'appView>/ClientDetails/PayTermsGrpCode'}],formatter:'.formatPayTerm'}"/>
-                    <Label text="Fido Assicurato"/>
+                    <Label text="{i18n>paymentCondition}" />
+                   <Text text="{parts:[{path:'appView>/ClientDetails/PeymentMethodCode'},{path:'appView>/ClientDetails/PayTermsGrpCode'}],formatter:'.formatPayTerm'}"/>
+                    <Label text="{i18n>insuredCredit}"/>
                     <Text text="{path:'appView>/ClientDetails/U_AC_Fido_Assic'}"/>
-                    <Label text="Fido Interno"/>
+                    <Label text="{i18n>internalTrust}"/>
                     <Text text="{path:'appView>/ClientDetails/U_Fido_Interno'}"/>
                 </f:content>
             </f:SimpleForm>

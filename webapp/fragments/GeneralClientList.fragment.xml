@@ -3,13 +3,13 @@
             adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" 
             columnsL="2" columnsM="2" singleContainerFullSize="false" >
                 <f:content>
-                    <Label text="Venditore" />
+                    <Label text="{i18n>salesperson}" />
                     <Text text="{path:'appView>/ClientDetails/SalesPersonCode',formatter:'.formatSalesPerson'}"/>
-                    <Label text="Referente Front Office"/>
+                    <Label text="{i18n>fOContact}"/>
                     <Text text="{path:'appView>/ClientDetails/U_front_office',formatter:'.formatFrontOffice'}"/>
-                    <Label text="Titolare"/>
+                    <Label text="{i18n>holder}"/>
                     <Text text="{path:'appView>/ClientDetails/OwnerCode',formatter:'.formatOwnerCode'}"/>
-                    <Label text="Settore"/>
+                    <Label text="{i18n>sector}"/>
                     <Text text="{path:'appView>/ClientDetails/Industry',formatter:'.formatIndustry'}"/>
                 </f:content>
             </f:SimpleForm>
