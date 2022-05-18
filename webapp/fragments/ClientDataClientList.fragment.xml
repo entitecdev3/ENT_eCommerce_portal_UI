@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <VBox >
+        <!-- <Text text="Country: {/clientDetails/Country}" class="itemDialogProp" />
+        <Text text="City: {/clientDetails/City}" class="itemDialogProp" />
+        <Text text="Address: {path: '/clientDetails/Address'}" class="itemDialogProp" />
+        <Text text="ZipCode: {/clientDetails/ZipCode}" class="itemDialogProp" /> -->
+
+
+        <Table id="rowItemTable" class="tableItemDetails" items="{path: 'appView>/clientData'}" inset="false" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" >
+          <!-- <headerToolbar>
+          <OverflowToolbar>
+            <content>
+              <SearchField
+                id="clientDetailsSearchField"
+                class="tableSearchFilter"
+                width="95%"
+                placeholder="Filtra "
+                liveChange="onClientDetailsFilterPress">
+                <layoutData>
+                  <OverflowToolbarLayoutData
+                    priority="NeverOverflow"/>
+                </layoutData>
+              </SearchField>
+            </content>
+          </OverflowToolbar>
+        </headerToolbar> -->
+          <columns>
+            <Column  hAlign="Center" vAlign="Middle"  mergeDuplicates="false">
+              <header>
+                <Text text="Gruppo ART." width="auto" maxLines="1"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" 
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="Sc.1 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle"
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="Sc.2 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="Sc.3 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="Sc.4 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text
+                  text="{appView>U_nomegrart}" />
+                <Text
+                  text="{appView>U_sc1}" />
+                <Text
+                  text="{
+                    path: 'appView>U_sc2'}" />
+                <Text
+                  text="{
+                    path: 'appView>U_sc3'}" />
+                <Text
+                  text="{
+                    path: 'appView>U_sc4'}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </VBox>
+</core:FragmentDefinition>

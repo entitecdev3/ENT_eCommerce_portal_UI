@@ -8,7 +8,7 @@
 			<List id="idClientlist" width="auto" class="sapFDynamicPageAlignContent" items="{
 				path: 'appView>/ClientList'
 				}" busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}" 
-			mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+			mode="SingleSelectMaster"
 			 growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished" selectionChange="onClientListSelect"
 			 updateStarted="onContextMenu">
 			

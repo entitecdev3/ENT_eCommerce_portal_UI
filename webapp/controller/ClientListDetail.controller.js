@@ -31,6 +31,7 @@ sap.ui.define([
 			this.cardCode=oEvent.getParameter("arguments").objectId;	
 			this.getClientDetails();	
 			this.getClientProperties();
+			this.getClientData();
 		},
 		getClientDetails:function(){
 			var that =this;
@@ -95,6 +96,40 @@ sap.ui.define([
 			.catch(function (jqXhr, textStatus, errorMessage) {
 				that.middleWare.errorHandler(jqXhr, that);  
 			});
+		},
+		getClientData:function(){
+			var that =this;
+			this.getClientActivities();
+			this.middleWare.callMiddleWare("/ClientData?ClientId="+this.cardCode, "GET", {})
+			.then(function (data, status, xhr) {
+				const clientDetails = data.map(el => {
+					return {
+					  ...el,
+					  U_sc1: that.formatNumberValue(el.U_sc1, 'notnr'),
+					  U_sc2: that.formatNumberValue(el.U_sc2, 'notnr'),
+					  U_sc3: that.formatNumberValue(el.U_sc3, 'notnr'),
+					  U_sc4: that.formatNumberValue(el.U_sc4, 'notnr')
+					}
+				  });
+				that.getModel("appView").setProperty("/clientData",clientDetails);
+				that.getView().getModel("appView").updateBindings();
+			})
+			.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+			});
+		},
+		formatNumberValue: function(value, uom, id, lineid) {
+			const decimals = 2;// parseInt(this.appParams.MES_UOM_NONPZ_DECIMALI);
+			if (uom !== 'NR') {
+			  const stringValue = value.toString();
+			  const matchExp = new RegExp('^-?\\d+(?:\.\\d{0,' + decimals + '})?');
+			  const stringWithDecimals = stringValue.match(matchExp);
+			  const decimalValue = parseFloat(stringWithDecimals[0]);
+			  // if (id === 95 && lineid === 2) debugger
+			  return decimalValue;
+			} else {
+			  return parseInt(value);
+			}
 		},
 	});
 });

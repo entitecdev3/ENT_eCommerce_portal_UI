@@ -24,8 +24,8 @@
 			</ObjectHeader>
 			<IconTabBar >
 				<items>
-					<IconTabFilter key="info" text="{i18n>General}">
-						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.GeneralClientList" type="XML" />
+					<IconTabFilter key="info" text="{i18n>General}" >
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.GeneralClientList" type="XML"  />
 					</IconTabFilter> 
 					<IconTabFilter key="Contact Employees" text="{i18n>ContactEmployees}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ContactClientList" type="XML" />
@@ -41,6 +41,9 @@
 					</IconTabFilter>
 					<IconTabFilter key="people" text="{i18n>Activities}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientList" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter key="people" text="{i18n>ClientData}">
+						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ClientDataClientList" type="XML" />
 					</IconTabFilter>
 				</items>
 			</IconTabBar>
