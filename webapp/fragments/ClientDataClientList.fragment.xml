@@ -27,35 +27,35 @@
           <columns>
             <Column  hAlign="Center" vAlign="Middle"  mergeDuplicates="false">
               <header>
-                <Text text="Gruppo ART." width="auto" maxLines="1"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>itemGrp}" width="auto" maxLines="1"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
             <Column width="auto" hAlign="Center" vAlign="Middle" 
             demandPopin="true" mergeDuplicates="false">
               <header>
-                <Text text="Sc.1 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>dis1}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
             <Column width="auto" hAlign="Center" vAlign="Middle"
             demandPopin="true" mergeDuplicates="false">
               <header>
-                <Text text="Sc.2 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>dis2}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
             <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
             demandPopin="true" mergeDuplicates="false">
               <header>
-                <Text text="Sc.3 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>dis3}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
             <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
             demandPopin="true" mergeDuplicates="false">
               <header>
-                <Text text="Sc.4 %" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>dis4}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
