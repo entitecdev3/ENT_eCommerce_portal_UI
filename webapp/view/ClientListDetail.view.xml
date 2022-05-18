@@ -42,7 +42,7 @@
 					<IconTabFilter key="people" text="{i18n>Activities}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientList" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="people" text="{i18n>lientData}">
+					<IconTabFilter key="people" text="{i18n>clientData}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ClientDataClientList" type="XML" />
 					</IconTabFilter>
 				</items>
