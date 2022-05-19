@@ -179,6 +179,9 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
     conTimeFormatter: function (oDate) {
       if (oDate) {
         let value=oDate.toString();
+        if(value.length===3){
+          value='0'+value;
+        }
         let fValue=value[0]+value[1]+":"+value[2]+value[3];
         return fValue;
       }
