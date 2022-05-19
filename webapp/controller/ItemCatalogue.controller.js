@@ -13,7 +13,7 @@ sap.ui.define(
       return BaseController.extend("App.Dashboard.Dashboard.controller.App", {
         onInit: function(evt) {
           const itemChange = this.getRouter().getRoute("ItemCatalogue");
-          this.getView().byId('navLeftBtn').setVisible(false);
+          this.getView().byId('navBackBtn').setVisible(false);
           this.formDialog = null;
   
           this.keyWordMethod = 'AND';
@@ -22,9 +22,12 @@ sap.ui.define(
           this.getView().byId('keyWordMethodBtn').updateBindings();
           itemChange.attachPatternMatched(this._onObjectMatched, this);
         },
+        onNavLeft: function() {
+          this.getRouter().navTo("tiles", {});
+        },
         _onObjectMatched: function() {
           // header title
-          this.getView().byId('navBackBtn').setVisible(true);
+          this.getView().byId('navBackBtn').setVisible(false);
           const selectedTreeItem = 'Parametri di ricerca';
           const headerTitle = new JSONModel({ selectedTreeItem });
           this.getView().byId('selectedItemHeader').setModel(headerTitle);

@@ -51,7 +51,7 @@ sap.ui.define([
 			
 		},
 		onClientListSearch: function (oEvent) {
-			var sValue = oEvent.getParameter("query");
+			var sValue = oEvent.getParameter("newValue");
 			var oFilter = new Filter({
 			  filters: [
 				new Filter("CardCode", FilterOperator.Contains, sValue),

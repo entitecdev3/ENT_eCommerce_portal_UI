@@ -9,6 +9,7 @@ sap.ui.define([
         open: function(that, data) {
           if (!that.itemDialog) {
             that.itemDialog = sap.ui.xmlfragment("tableRowItemDialog", "ent.ui.ecommerce.fragments.TableRowItem", that);
+            that.getView().addDependent(that.itemDialog)
           }
   
           const { itemId } = data;

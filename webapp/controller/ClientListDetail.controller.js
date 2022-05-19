@@ -32,6 +32,7 @@ sap.ui.define([
 			this.getClientDetails();	
 			this.getClientProperties();
 			this.getClientData();
+			this.getView().getModel("appView").setProperty("/EditMode",false);
 		},
 		getClientDetails:function(){
 			var that =this;
@@ -63,15 +64,17 @@ sap.ui.define([
 			.then(function (data, status, xhr) {
 				
 				that.getModel("appView").setProperty("/ClientListPropertiesField",data);
-				var oSimpleForm=that.getView().byId("idPropertiesClientList");
+				var oSimpleForm=that.getView().byId("idProperty--idPropertiesClientList");
+				var oSimpleForm1=that.getView().byId("idPropertyEdit--idPropertiesClientList");
 				oSimpleForm.destroyContent();
+				oSimpleForm1.destroyContent();
 				
 				for (let index = 0; index < data.length; index++) {
 					const element = data[index];
-					let oLabel =new sap.m.Label();
+					var oLabel =new sap.m.Label();
 					// let oText=new sap.m.Text();
-					let oBindProp="appView>/ClientDetails/Properties"+element.GroupCode
-					let oText =new sap.m.CheckBox({
+					var oBindProp="appView>/ClientDetails/Properties"+element.GroupCode
+					var oText =new sap.m.CheckBox({
 						selected:{
 							path:oBindProp,
 							formatter:function(oValue){	
@@ -86,11 +89,16 @@ sap.ui.define([
 						editable:false
 					});
 					oLabel.setText(element.GroupName);
-					oSimpleForm.addContent(oLabel);
+					let oLabel1=oLabel;
+					let oText1=oText;
+					oSimpleForm1.addContent(oLabel);
+					oSimpleForm1.addContent(oText);	
+					oSimpleForm.addContent(oLabel1);
+					oSimpleForm.addContent(oText1);		
 					// oText.bindProperty("text","appView>/ClientDetails/Properties"+element.GroupCode);
 					// oText.bindProperty("selected","path:'appView>/ClientDetails/Properties"+element.GroupCode);
 					// oText.bindProperty("editable",'false');
-					oSimpleForm.addContent(oText);	
+					
 				}
 			})
 			.catch(function (jqXhr, textStatus, errorMessage) {
@@ -130,6 +138,25 @@ sap.ui.define([
 			} else {
 			  return parseInt(value);
 			}
+		},
+		onEditModePress:function(){
+			this.getView().getModel("appView").setProperty("/EditMode",true);
+		},
+		onEditModeCancel:function(){
+			this.getView().getModel("appView").setProperty("/EditMode",false);
+		},
+		onClientDetailsFilterPress:function(oEvent){
+			 debugger;
+			 var oQuery=oEvent.getParameter("newValue");
+			 var oTable=oEvent.getSource().getParent().getParent();
+			 var oFilter = new Filter({
+				filters: [
+				  new Filter("U_nomegrart", FilterOperator.Contains, oQuery),
+				],
+				and: false,
+			  });
+			var oBinding=oTable.getBinding("items");
+			oBinding.filter(oFilter);
 		},
 	});
 });

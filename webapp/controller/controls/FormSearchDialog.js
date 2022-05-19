@@ -85,6 +85,7 @@ sap.ui.define([
           }
           if (!that.formDialog) {
             that.formDialog = sap.ui.xmlfragment("formSearchDialog", "ent.ui.ecommerce.fragments.FormSearch", that);
+            that.getView().addDependent(that.formDialog)
           }
           const formTable = sap.ui.core.Fragment.byId("formSearchDialog", "formSearchTableContent");
           that.formTable = formTable;

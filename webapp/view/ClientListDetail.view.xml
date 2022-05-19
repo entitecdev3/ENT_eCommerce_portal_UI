@@ -37,7 +37,7 @@
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AccountingClientList" type="XML" />
 					</IconTabFilter>
 					<IconTabFilter  key="people" text="{i18n>Properties}">
-						<core:Fragment  fragmentName="ent.ui.ecommerce.fragments.PropertiesClientList" type="XML" />
+						<core:Fragment  id="idProperty" fragmentName="ent.ui.ecommerce.fragments.PropertiesClientList" type="XML" />
 					</IconTabFilter>
 					<IconTabFilter key="people" text="{i18n>Activities}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientList" type="XML" />
@@ -47,8 +47,8 @@
 					</IconTabFilter>
 				</items>
 			</IconTabBar>
-			<!-- <IconTabBar visible="{appView>/EditMode}">
-				<items> -->
+			<IconTabBar visible="{appView>/EditMode}">
+				<items>
 					<!-- <IconTabFilter key="info" text="{i18n>General}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.GeneralClientListEdit" type="XML"  />
 					</IconTabFilter> 
@@ -61,17 +61,17 @@
 					<IconTabFilter key="people" text="{i18n>Accounting}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AccountingClientListEdit" type="XML" />
 					</IconTabFilter> -->
-					<!-- <IconTabFilter key="people" text="{i18n>Properties}">
+					<IconTabFilter key="people" text="{i18n>Properties}">
 						<core:Fragment id="idPropertyEdit" fragmentName="ent.ui.ecommerce.fragments.PropertiesClientList" type="XML" />
-					</IconTabFilter> -->
+					</IconTabFilter>
 					<!-- <IconTabFilter key="people" text="{i18n>Activities}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientListEdit" type="XML" />
 					</IconTabFilter>
 					<IconTabFilter key="people" text="{i18n>ClientData}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ClientDataClientListEdit" type="XML" />
 					</IconTabFilter> -->
-				<!-- </items>
-			</IconTabBar> -->
+				</items>
+			</IconTabBar>
 		</content>
 		<!-- <footer>
 			<OverflowToolbar>

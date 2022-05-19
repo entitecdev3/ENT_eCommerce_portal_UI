@@ -36,9 +36,9 @@
     font-size: 1.25rem;
   }
   
-  .tableItemDetails table tbody tr:last-child {
+  /* .tableItemDetails table tbody tr:last-child {
     background-color: #e6f4ff;
-  }
+  } */
   
   .keyWordSearchField {
     width: calc(100% - 4.5rem) !important;

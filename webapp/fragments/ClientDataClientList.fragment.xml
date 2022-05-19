@@ -7,14 +7,14 @@
 
 
         <Table id="rowItemTable" class="tableItemDetails" items="{path: 'appView>/clientData'}" inset="false" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" >
-          <!-- <headerToolbar>
+          <headerToolbar>
           <OverflowToolbar>
             <content>
               <SearchField
                 id="clientDetailsSearchField"
                 class="tableSearchFilter"
                 width="95%"
-                placeholder="Filtra "
+                placeholder="{i18n>search}"
                 liveChange="onClientDetailsFilterPress">
                 <layoutData>
                   <OverflowToolbarLayoutData
@@ -23,7 +23,7 @@
               </SearchField>
             </content>
           </OverflowToolbar>
-        </headerToolbar> -->
+        </headerToolbar>
           <columns>
             <Column  hAlign="Center" vAlign="Middle"  mergeDuplicates="false">
               <header>

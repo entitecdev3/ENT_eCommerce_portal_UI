@@ -215,6 +215,7 @@ sap.ui.define([
 						MessageBox.error(jqr.responseText);
 						break;
 					}
+					MessageBox.error(jqr.toString());
 					break;
 				default:
 					MessageBox.error(jqr.toString());

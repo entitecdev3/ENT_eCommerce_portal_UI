@@ -36,12 +36,12 @@
 				<Column demandPopin="true" hAlign="Center">
 					<Text text="{i18n>firstName}" wrappingType="Hyphenated" />
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 					<Text text="{i18n>middleName}" wrappingType="Hyphenated" />
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 					<Text text="{i18n>gender}" wrappingType="Hyphenated" />
-				</Column>
+				</Column> -->
 				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 					<Text text="{i18n>email}" wrapping="true" wrappingType="Hyphenated" />
 				</Column>
@@ -61,12 +61,12 @@
 						<VBox>
 							<Text text="{appView>firstName}" />
 						</VBox>
-						<VBox>
+						<!-- <VBox>
 							<Text text="{appView>middleName}" />
 						</VBox>
 						<VBox>
 							<Text text="{appView>sex}" />
-						</VBox>
+						</VBox> -->
 						<VBox>
 							<Text text="{appView>email}" />
 						</VBox>

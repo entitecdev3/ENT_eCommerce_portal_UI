@@ -44,8 +44,8 @@
         </Table>
     </content>
     <buttons class="formGroupBtns">
-      <Button text="{i18n>close}" type="Reject" press="onFormDialogClose" class="itemDialogLeftBtn" />
-      <Button text="{i18n>confirmation}" type="Accept" press="onFormDialogConfirm" />
+      <Button text="{i18n>Close}" type="Reject" press="onFormDialogClose" class="itemDialogLeftBtn" />
+      <Button text="{i18n>Confirmation}" type="Accept" press="onFormDialogConfirm" />
     </buttons>
   </Dialog>
 </core:FragmentDefinition>

@@ -14,7 +14,7 @@
 			
 			<headerToolbar>
 				<OverflowToolbar>
-					<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search="onClientListSearch" width="auto">
+					<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" liveChange="onClientListSearch" width="auto">
 						<layoutData>
 							<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow" />
 						</layoutData>
