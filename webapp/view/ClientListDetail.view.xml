@@ -22,58 +22,58 @@
 					<!-- </firstStatus> -->
 					</statuses>
 			</ObjectHeader>
-			<IconTabBar visible="{=${appView>/EditMode}?false:true}">
+			<IconTabBar selectedKey="{appView>/iconKey}" visible="{=${appView>/EditMode}?false:true}" select="onIconTabSelect">
 				<items>
-					<IconTabFilter key="info" text="{i18n>General}" >
+					<IconTabFilter key="0" text="{i18n>General}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.GeneralClientList" type="XML"  />
 					</IconTabFilter> 
-					<IconTabFilter key="Contact Employees" text="{i18n>ContactEmployees}" >
+					<IconTabFilter key="1" text="{i18n>ContactEmployees}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ContactClientList" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="notes" text="{i18n>Address}" >
+					<IconTabFilter key="2" text="{i18n>Address}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AddressClientList" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="people" text="{i18n>Accounting}">
+					<IconTabFilter key="3" text="{i18n>Accounting}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AccountingClientList" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter  key="people" text="{i18n>Properties}">
+					<IconTabFilter  key="4" text="{i18n>Properties}">
 						<core:Fragment  id="idProperty" fragmentName="ent.ui.ecommerce.fragments.PropertiesClientList" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="people" text="{i18n>Activities}">
+					<IconTabFilter key="5" text="{i18n>Activities}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientList" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="people" text="{i18n>clientData}">
+					<IconTabFilter key="6" text="{i18n>clientData}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ClientDataClientList" type="XML" />
 					</IconTabFilter>
 				</items>
 			</IconTabBar>
-			<IconTabBar visible="{appView>/EditMode}">
+			<IconTabBar selectedKey="{appView>/iconKey}" visible="{appView>/EditMode}" select="onIconTabSelect">
 				<items>
-					<!-- <IconTabFilter key="info" text="{i18n>General}" >
+					<IconTabFilter key="0" text="{i18n>General}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.GeneralClientListEdit" type="XML"  />
 					</IconTabFilter> 
-					<IconTabFilter key="Contact Employees" text="{i18n>ContactEmployees}" >
+					<IconTabFilter key="1" text="{i18n>ContactEmployees}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ContactClientListEdit" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="notes" text="{i18n>Address}" >
+					<IconTabFilter key="2" text="{i18n>Address}" >
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AddressClientListEdit" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="people" text="{i18n>Accounting}">
+					<IconTabFilter key="3" text="{i18n>Accounting}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.AccountingClientListEdit" type="XML" />
-					</IconTabFilter> -->
-					<IconTabFilter key="people" text="{i18n>Properties}">
-						<core:Fragment id="idPropertyEdit" fragmentName="ent.ui.ecommerce.fragments.PropertiesClientList" type="XML" />
 					</IconTabFilter>
-					<!-- <IconTabFilter key="people" text="{i18n>Activities}">
+					<IconTabFilter key="4" text="{i18n>Properties}">
+						<core:Fragment id="idPropertyEdit" fragmentName="ent.ui.ecommerce.fragments.PropertiesClientListEdit" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter key="5" text="{i18n>Activities}">
 						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ActivitiesClientListEdit" type="XML" />
 					</IconTabFilter>
-					<IconTabFilter key="people" text="{i18n>ClientData}">
-						<core:Fragment fragmentName="ent.ui.ecommerce.fragments.ClientDataClientListEdit" type="XML" />
-					</IconTabFilter> -->
+					<IconTabFilter key="6" text="{i18n>clientData}">
+						<core:Fragment id="idClientDatalistEdit" fragmentName="ent.ui.ecommerce.fragments.ClientDataClientListEdit" type="XML" />
+					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</content>
-		<!-- <footer>
+		<footer>
 			<OverflowToolbar>
 			  <HBox id="p2footer" width="100%" justifyContent="End">
 				<Button text="{i18n>Edit}" class="p2btn p2btnFirst" visible="{=${appView>/EditMode}?false:true}" type="Emphasized" press="onEditModePress" />
@@ -81,6 +81,6 @@
 				<Button text="{i18n>Cancel}" class="p2btn p2btnSecond" type="Ghost" visible="{appView>/EditMode}" press="onEditModeCancel" />
 			  </HBox>
 			</OverflowToolbar>
-		  </footer> -->
+		  </footer>
 	</Page>
 </mvc:View>

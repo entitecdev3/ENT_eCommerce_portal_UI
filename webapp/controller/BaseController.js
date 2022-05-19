@@ -262,6 +262,13 @@ sap.ui.define([
 				oInput.setValueHelpIconSrc("sap-icon://show");
 			}
 		},
+		callClientValueHelps:function(){
+			this.getVH_SalesPerson();
+			this.getVH_OHEM();
+			this.getVH_Industry();
+			this.getVH_Groups();
+			this.getVH_PayTermsGrpCode();
+		},
 		getVH_SalesPerson:function(){
 			return new Promise(function(resolve){
 				this.middleWare.callMiddleWare("/VH_salesPerson", "GET", {})

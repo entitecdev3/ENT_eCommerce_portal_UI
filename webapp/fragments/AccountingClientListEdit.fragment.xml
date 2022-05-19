@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+            <f:SimpleForm layout="ColumnLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" 
+            adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" 
+            columnsL="2" columnsM="2" singleContainerFullSize="false" >
+                <f:content>
+                    <Label text="{i18n>paymentCondition}" />
+                   <Text text="{parts:[{path:'appView>/ClientDetails/PeymentMethodCode'},{path:'appView>/ClientDetails/PayTermsGrpCode'}],formatter:'.formatPayTerm'}"/>
+                    <Label text="{i18n>insuredCredit}"/>
+                    <Text text="{path:'appView>/ClientDetails/U_AC_Fido_Assic',formatter:'.formatter.conHourFormatter'}"/>
+                    <Label text="{i18n>internalTrust}"/>
+                    <Text text="{path:'appView>/ClientDetails/U_Fido_Interno',formatter:'.formatter.conHourFormatter'}"/>
+                </f:content>
+            </f:SimpleForm>
+</core:FragmentDefinition>

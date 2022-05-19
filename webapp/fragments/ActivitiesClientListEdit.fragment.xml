@@ -1,0 +1,89 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Table 
+  
+    items="{
+        path: 'appView>/ClientListActivites'
+    }">
+
+    <columns>
+        <Column>
+            <Text text="{i18n>id}" />
+        </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="{i18n>startDate}" />
+        </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="{i18n>endDate}" />
+        </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="{i18n>comments}" />
+        </Column>
+       
+        <!-- <Column>
+            <Text text="Email" />
+        </Column> -->
+    </columns>
+    <items>
+        <ColumnListItem vAlign="Middle">
+            <cells>
+                <!-- <ObjectIdentifier
+                    text="{path:'appView>Action',formatter:'.formatter.actionFormatter'}"/> -->
+                    <Select  selectedKey="{appView>Action}">
+                        <core:ListItem key="" text=""  />
+                        <core:ListItem key="C" text="Phone Call"  />
+                        <core:ListItem key="M" text="Meeting"  />
+                        <core:ListItem key="T" text="Task"  />
+                        <core:ListItem key="E" text="Note"  />
+                        <core:ListItem key="P" text="Campaign"  />
+                        <core:ListItem key="N" text="Other"  />
+                    </Select>
+                    <HBox >
+                        <!-- <DatePicker
+                        placeholder="Enter Date"
+                        change="handleChange"
+                        class="sapUiTinyMarginEnd"/>
+                        <Button icon="sap-icon://time-entry-request" class="sapUiTinyMarginBegin"/> -->
+                        <Link id="idstartlink" text="{path:'appView>Recontact',formatter:'.formatter.conDateFormatter'} {path:'appView>BeginTime',formatter:'.formatter.conTimeFormatter'}"
+                            press="onDateChange"/>
+                        <!-- <TimePickerSliders
+                        id="TPS2"
+                        
+                        support2400="true"
+                        change="handleChange"
+                        height="400px"/> -->
+                    </HBox>
+                    <!-- <HBox > -->
+                        <!-- <DatePicker
+                        placeholder="Enter Date"
+                        change="handleChange"
+                        class="sapUiTinyMarginEnd"/>
+                        <Button icon="sap-icon://time-entry-request" class="sapUiTinyMarginBegin"/> -->
+                        <!-- <TimePickerSliders
+                        id="TPS2"
+                        
+                        support2400="true"
+                        change="handleChange"
+                        height="400px"/> -->
+                    <!-- </HBox> -->
+                <!-- <Text
+                    text="{path:'appView>Recontact',formatter:'.formatter.conDateFormatter'} {path:'appView>BeginTime',formatter:'.formatter.conTimeFormatter'}" /> -->
+                <Link id="idEndLink"
+                    text="{path:'appView>endDate',formatter:'.formatter.conDateFormatter'} {path:'appView>ENDTime',formatter:'.formatter.conTimeFormatter'}" 
+                    press="onDateChange"/>
+                <!-- <Text
+                    text="{appView>Notes}" /> -->
+                <Input value="{appView>Notes}"></Input>
+               
+              
+               
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</core:FragmentDefinition>

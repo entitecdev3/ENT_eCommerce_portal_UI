@@ -38,12 +38,12 @@
                     text="{appView>AddressName}"/>
                 <Text
                     text="{appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} " />
-                <Text
-                    text="{appView>LastName}" />
-                <Text
-                    text="{appView>Phone1}" />
-                <Text
-                    text="{appView>MobilePhone}" />
+                <Input
+                value="{appView>d}" />
+                <Input
+                value="{appView>d}" />
+                <Input
+                value="{appView>d}" />
               
                
             </cells>

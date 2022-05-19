@@ -3,11 +3,13 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+	"sap/ui/core/Fragment"
 ], function(
 	BaseController,
 	JSONModel,
 	Filter,
-	FilterOperator
+	FilterOperator,
+	Fragment
 ) {
 	"use strict";
 
@@ -24,6 +26,7 @@ sap.ui.define([
 			const headerTitle = new JSONModel({ selectedTreeItem });
 			this.getView().byId('selectedItemHeader').setModel(headerTitle);
 			this.getView().byId('selectedItemHeader').updateBindings();
+			// this.callValueHelps();
 		},
 		_matchedHandler:function(oEvent){
 			this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
@@ -34,6 +37,7 @@ sap.ui.define([
 			this.getClientData();
 			this.getView().getModel("appView").setProperty("/EditMode",false);
 		},
+	
 		getClientDetails:function(){
 			var that =this;
 			this.getClientActivities();
@@ -48,7 +52,7 @@ sap.ui.define([
 		},
 		getClientActivities:function(){
 			var that=this;
-			if(!that.getModel("appView").getProperty("/ClientListActivites")){
+			// if(!that.getModel("appView").getProperty("/ClientListActivites")){
 				this.middleWare.callMiddleWare("/ClientListActivities?CardCode="+this.cardCode, "GET", {})
 				.then(function (data, status, xhr) {
 					that.getModel("appView").setProperty("/ClientListActivites",data);
@@ -56,27 +60,26 @@ sap.ui.define([
 				.catch(function (jqXhr, textStatus, errorMessage) {
 				that.middleWare.errorHandler(jqXhr, that);  
 				});
-			}
+			// }
 		},
 		getClientProperties:function(){
 			var that=this;
 			this.middleWare.callMiddleWare("/ClientListPropertiesField", "GET", {})
 			.then(function (data, status, xhr) {
-				
 				that.getModel("appView").setProperty("/ClientListPropertiesField",data);
 				var oSimpleForm=that.getView().byId("idProperty--idPropertiesClientList");
 				var oSimpleForm1=that.getView().byId("idPropertyEdit--idPropertiesClientList");
 				oSimpleForm.destroyContent();
 				oSimpleForm1.destroyContent();
-				
-				for (let index = 0; index < data.length; index++) {
-					const element = data[index];
-					var oLabel =new sap.m.Label();
-					// let oText=new sap.m.Text();
-					var oBindProp="appView>/ClientDetails/Properties"+element.GroupCode
-					var oText =new sap.m.CheckBox({
+				const oLabel=function(oText){
+					return new sap.m.Label({
+						text: oText
+					});
+				};
+				const oCheckBox=function(oPath){
+					return new sap.m.CheckBox({
 						selected:{
-							path:oBindProp,
+							path:oPath,
 							formatter:function(oValue){	
 								if(oValue){
 								  if(oValue.includes("Y")){
@@ -88,17 +91,14 @@ sap.ui.define([
 						},
 						editable:false
 					});
-					oLabel.setText(element.GroupName);
-					let oLabel1=oLabel;
-					let oText1=oText;
-					oSimpleForm1.addContent(oLabel);
-					oSimpleForm1.addContent(oText);	
-					oSimpleForm.addContent(oLabel1);
-					oSimpleForm.addContent(oText1);		
-					// oText.bindProperty("text","appView>/ClientDetails/Properties"+element.GroupCode);
-					// oText.bindProperty("selected","path:'appView>/ClientDetails/Properties"+element.GroupCode);
-					// oText.bindProperty("editable",'false');
-					
+				};
+				for (let index = 0; index < data.length; index++) {
+					const element = data[index];
+					var oBindProp="appView>/ClientDetails/Properties"+element.GroupCode
+					oSimpleForm.addContent(oLabel(element.GroupName));
+					oSimpleForm.addContent(oCheckBox(oBindProp));		
+					oSimpleForm1.addContent(oLabel(element.GroupName));
+					oSimpleForm1.addContent(oCheckBox(oBindProp));
 				}
 			})
 			.catch(function (jqXhr, textStatus, errorMessage) {
@@ -141,9 +141,11 @@ sap.ui.define([
 		},
 		onEditModePress:function(){
 			this.getView().getModel("appView").setProperty("/EditMode",true);
+			this.getView().getModel("appView").updateBindings();
 		},
 		onEditModeCancel:function(){
 			this.getView().getModel("appView").setProperty("/EditMode",false);
+			this.getView().getModel("appView").updateBindings();
 		},
 		onClientDetailsFilterPress:function(oEvent){
 			 debugger;
@@ -157,6 +159,56 @@ sap.ui.define([
 			  });
 			var oBinding=oTable.getBinding("items");
 			oBinding.filter(oFilter);
+		},
+		onIconTabSelect:function(oEvent){
+			debugger;
+			var oKey=oEvent.getParameter("selectedKey");
+			this.getView().getModel("appView").setProperty("/iconKey",oKey);
+		},
+		onDateChange:function(oEvent){
+			var oView = this.getView();
+			debugger;	
+			this.oStartChange=true;
+			this.oSelctActivityPath=oEvent.getSource().getParent().getBindingContext("appView").getPath();
+			var oData=this.getView().getModel("appView").getProperty(this.oSelctActivityPath);
+			if(oEvent.getSource().getId().includes("start")){
+				this.getView().getModel("appView").setProperty("/oTime",oData.BeginTime);
+				this.getView().getModel("appView").setProperty("/oDate",new Date(oData.Recontact)); 
+			}
+			else{
+				this.oStartChange=false;
+				this.getView().getModel("appView").setProperty("/oTime",oData.ENDTime);
+				this.getView().getModel("appView").setProperty("/oDate",new Date(oData.endDate));
+			}
+			// create popover
+			if (!this._pDialog) {
+				this._pDialog = Fragment.load({
+					id: oView.getId(),
+					name: "ent.ui.ecommerce.fragments.DateTimePicker",
+					controller: this
+				}).then(function(oDialog){
+					oView.addDependent(oDialog);
+
+					oDialog.attachAfterOpen(function () {
+						debugger;
+					}.bind(this));
+					return oDialog;
+				}.bind(this));
+			}
+			this._pDialog.then(function(oDialog) {
+				oDialog.open();
+			});
+		},
+		handleCancelDTP:function(oEvent){
+			this._pDialog.then(function(oDialog) {
+				oDialog.close();
+			});
+		},
+		handleOKPressDTP:function(){
+			debugger;
+			this._pDialog.then(function(oDialog) {
+				oDialog.close();
+			});	
 		},
 	});
 });

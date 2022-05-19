@@ -2,7 +2,7 @@
     <Table
   
     items="{
-        path: 'appView>/ClientDetails/BPAddresses'
+        path: 'appView>/ClientDetails/ContactEmployees'
     }">
 
     <columns>
@@ -12,39 +12,40 @@
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="{i18n>description}" />
+            <Text text="{i18n>name}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="{i18n>truckType}" />
+            <Text text="{i18n>lastName}" />
         </Column>
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
-            <Text text="{i18n>exhaustType}" />
+            <Text text="{i18n>phone}" />
         </Column>
         <Column>
-            <Text text="{i18n>forewarning}" />
+            <Text text="{i18n>cellPhone}" />
         </Column>
-        <!-- <Column>
-            <Text text="Email" />
-        </Column> -->
+        <Column>
+            <Text text="{i18n>email}" />
+        </Column>
     </columns>
     <items>
         <ColumnListItem vAlign="Middle">
             <cells>
                 <ObjectIdentifier
-                    text="{appView>AddressName}"/>
-                <Text
-                    text="{appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} " />
-                <Text
-                    text="{appView>LastName}" />
-                <Text
-                    text="{appView>Phone1}" />
-                <Text
-                    text="{appView>MobilePhone}" />
-              
+                    text="{appView>Name}"/>
+                <Input
+                    value="{appView>FirstName}" />
+                <Input
+                value="{appView>LastName}" />
+                <Input
+                value="{appView>Phone1}" />
+                <Input
+                value="{appView>MobilePhone}" />
+                <Input
+                value="{appView>E_Mail}" />
                
             </cells>
         </ColumnListItem>

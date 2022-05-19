@@ -29,8 +29,8 @@ sap.ui.define([
 			const headerTitle = new JSONModel({ selectedTreeItem });
 			this.getView().byId('selectedItemHeader').setModel(headerTitle);
 			this.getView().byId('selectedItemHeader').updateBindings();
+			this.callClientValueHelps();
 			this.getClientList();
-			debugger;
 		},
 		_matchedHandler:function(){
 			this.getModel("appView").setProperty("/layout", "OneColumn");

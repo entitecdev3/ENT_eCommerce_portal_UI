@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Select Date and Time" contentHeight="auto" contentWidth="auto">
+        <DatePicker
+        dateValue="{appView>/oDate}"
+        displayFormat="dd/MM/yyyy"
+        change="handleChange"
+        width="auto"
+        class="sapUiTinyMargin"/>
+		<!-- <TimePickerSliders
+			id="TPS2"
+            support2400="true"
+            height="auto"
+            width="auto"
+            valueFormat="hh:mm"
+			displayFormat="hh:mm"
+			/> -->
+            <TimePicker
+            id="TP1"
+            value="{path:'appView>/oTime',formatter:'.formatter.conTimeFormatter'}"
+            valueFormat="HH:mm"
+            displayFormat="HH:mm"
+            change="handleChange"
+            maskMode="Off"
+            width="auto"
+            placeholder=""
+            class="sapUiTinyMargin" />
+		<buttons>
+			<Button
+				text="{i18n>ok}"
+				press="handleOKPressDTP"
+				type="Emphasized"/>
+			<Button
+				text="{i18n>cancel}"
+				press="handleCancelDTP"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
