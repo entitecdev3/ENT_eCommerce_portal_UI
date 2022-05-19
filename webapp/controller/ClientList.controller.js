@@ -20,8 +20,11 @@ sap.ui.define([
 			
 			
 		},
+		onNavLeft: function() {
+			this.getRouter().navTo("tiles", {});
+		  },
 		onAfterRendering:function(){
-			this.getView().byId('navLeftBtn').setVisible(false);
+			this.getView().byId('navBackBtn').setVisible(false);
 			const selectedTreeItem = 'Client List';
 			const headerTitle = new JSONModel({ selectedTreeItem });
 			this.getView().byId('selectedItemHeader').setModel(headerTitle);
