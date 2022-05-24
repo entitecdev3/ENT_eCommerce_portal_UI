@@ -21,10 +21,14 @@ sap.ui.define([
 		getUsersData:function(){
 			var that=this;
 			this.getView().setBusy(true);
+			that.getModel("appView").setProperty("/userTileVisibility",true);
 			this.middleWare.callMiddleWare("/users", "GET", {})
 			.then(function (data, status, xhr) {
 				that.getView().setBusy(false);
 				that.getModel("appView").setProperty("/users",data);
+				if(data.length===0){
+					that.getModel("appView").setProperty("/userTileVisibility",false);
+				}
 							// that.getModel("config").updateBindings();
 			
 			})

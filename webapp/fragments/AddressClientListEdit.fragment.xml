@@ -1,14 +1,29 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
     <Table
-  
     items="{
-        path: 'appView>/ClientDetails/BPAddresses'
+        path: 'appView>/ClientDetails/BPAddresses',
+        sorter: {
+            path: 'appView>AddressType',
+            descending: false
+        }
     }">
-
+    <headerToolbar>
+        <OverflowToolbar>
+          <content>
+            <ToolbarSpacer />
+            <Button icon="sap-icon://add" press="onAddAddress"></Button>
+            <!-- <Button icon="sap-icon://less"></Button> -->
+          </content>
+        </OverflowToolbar>
+      </headerToolbar>
     <columns>
-        <Column>
+        <Column width="6.9%"  hAlign="Begin"  mergeDuplicates="true">
+            <Text text="Type" />
+        </Column>
+        <Column mergeDuplicates="true">
             <Text text="{i18n>id}" />
         </Column>
+      
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
@@ -27,24 +42,37 @@
         <Column>
             <Text text="{i18n>forewarning}" />
         </Column>
-        <!-- <Column>
-            <Text text="Email" />
-        </Column> -->
+        <Column width="10%">
+            <Text text="" />
+        </Column>
     </columns>
     <items>
         <ColumnListItem vAlign="Middle">
             <cells>
-                <ObjectIdentifier
-                    text="{appView>AddressName}"/>
+                <Label design="Bold"
+                   text="{path:'appView>AddressType',formatter:'.formatter.formatAddressType'}"/>
                 <Text
-                    text="{appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} " />
+                text="{appView>AddressName}" />    
+                <Link 
+                    text="{parts:[{path:'appView>Street'},
+                    {path:'appView>City'},
+                    {path:'appView>ZipCode'},
+                    {path:'appView>County'},
+                    {path:'appView>State'},
+                    {path:'appView>Country'},
+                    {path:'appView>StreetNo'}],formatter:'.formatAddress'}"
+                    wrapping="true" press="onAddressEditPopup" enabled="{=${appView>AddressType}==='bo_BillTo'?false:true}" />
+                <!-- <Link 
+                    text="{appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} "
+                    wrapping="true" press="onAddressEditPopup" enabled="{=${appView>AddressType}==='bo_BillTo'?false:true}" /> -->
                 <Input
-                value="{appView>d}" />
+                value="{appView>d}"  enabled="{=${appView>AddressType}==='bo_BillTo'?false:true}" />
                 <Input
-                value="{appView>d}" />
+                value="{appView>d}"  enabled="{=${appView>AddressType}==='bo_BillTo'?false:true}" />
                 <Input
-                value="{appView>d}" />
-              
+                value="{appView>d}"  enabled="{=${appView>AddressType}==='bo_BillTo'?false:true}" />
+                <Button icon="sap-icon://delete" press="onAddressDelete"
+                visible="{=${appView>AddressType}==='bo_BillTo'?false:${appView>AddressName}===${appView>/ClientDetails/ShipToDefault}?false:true}" />
                
             </cells>
         </ColumnListItem>

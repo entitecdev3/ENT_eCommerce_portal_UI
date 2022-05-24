@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Select Address" contentHeight="auto" contentWidth="auto">
+        <VBox class="sapUiSmallMargin">
+            <Label text="{i18n>id}" />
+            <Input ></Input>
+        </VBox>
+		<buttons>
+			<Button
+				text="{i18n>ok}"
+				press="handleOKPressAddress"
+				type="Emphasized"/>
+			<Button
+				text="{i18n>cancel}"
+				press="handleCancelAddress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

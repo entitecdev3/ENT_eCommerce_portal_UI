@@ -2,13 +2,21 @@
     <Table
   
     items="{
-        path: 'appView>/ClientDetails/BPAddresses'
+        path: 'appView>/ClientDetails/BPAddresses',
+        sorter: {
+            path: 'appView>AddressType',
+            descending: false
+        }
     }">
 
     <columns>
-        <Column>
+        <Column width="6.9%"  hAlign="Begin"  mergeDuplicates="true">
+            <Text text="Type" />
+        </Column>
+        <Column >
             <Text text="{i18n>id}" />
         </Column>
+       
         <Column
             minScreenWidth="Tablet"
             demandPopin="true">
@@ -34,10 +42,21 @@
     <items>
         <ColumnListItem vAlign="Middle">
             <cells>
+                <Label design="Bold"
+                     text="{path:'appView>AddressType',formatter:'.formatter.formatAddressType'}"/>
                 <ObjectIdentifier
-                    text="{appView>AddressName}"/>
+                    text="{appView>AddressName}" />
+              
                 <Text
-                    text="{appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} " />
+                    text="{parts:[{path:'appView>Street'},
+                    {path:'appView>City'},
+                    {path:'appView>ZipCode'},
+                    {path:'appView>County'},
+                    {path:'appView>State'},
+                    {path:'appView>Country'},
+                    {path:'appView>StreetNo'}],formatter:'.formatAddress'}" wrapping="true"/>
+                <!-- <Text
+                    text="{appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} " /> -->
                 <Text
                     text="{appView>LastName}" />
                 <Text

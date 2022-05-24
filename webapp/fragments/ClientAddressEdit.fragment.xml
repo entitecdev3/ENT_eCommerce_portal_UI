@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Address" >
+        <VBox class="sapUiSmallMargin">
+        <!-- {appView>Street} {appView>City} {appView>ZipCode} {appView>County} {appView>State} {appView>Country} {appView>StreetNo} -->
+        <Label text="{i18n>Street}"/>
+        <Input value="{path:'appView>Street'}"/>
+        <Label text="{i18n>City}"/>
+        <Input value="{path:'appView>City'}"/>
+        <Label text="{i18n>ZipCode}"/>
+        <Input value="{path:'appView>ZipCode'}"/>
+        <Label text="{i18n>County}"/>
+        <Input value="{path:'appView>County'}"/>
+        <Label text="{i18n>State}"/>
+        <!-- <Input value="{path:'appView>State'}"/> -->
+        <VBox>
+        <Input value="{path:'appView>State'}" maxLength="3" visible="false"/>
+        <ComboBox items="{ path: 'appView>/VH_State' }" width="100%" selectedKey="{appView>State}" >
+            <core:ListItem key="{appView>Code}" text="{appView>Code}-{appView>Name}"  />
+        </ComboBox>
+        </VBox>
+        <Label text="{i18n>Country}"/>
+        <!-- <Input value="{path:'appView>Country'}"/> -->
+        <Select items="{ path: 'appView>/VH_Country' }" change="onCountryChange" selectedKey="{appView>Country}">
+            <core:ListItem key="{appView>Code}" text="{appView>Code}-{appView>Name}"  />
+        </Select>
+        <Label text="{i18n>StreetNo}"/>
+        <Input value="{path:'appView>StreetNo'}"/>
+            </VBox>
+		<buttons>
+			<Button
+				text="{i18n>ok}"
+				press="handleOKPressAdressChange"
+				type="Emphasized"/>
+			<!-- <Button
+				text="{i18n>cancel}"
+				press="handleOKPressAdressChange"/> -->
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

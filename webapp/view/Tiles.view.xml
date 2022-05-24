@@ -8,7 +8,7 @@
 		</headerContent>
 		<MessageStrip text="{i18n>apps}" type="Information" class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiMediumMarginBottom sapUiMediumMarginTop"></MessageStrip>
 		<Panel>
-			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>userManagement}" id="idUserManagement" subheader="" press="press">
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>userManagement}" id="idUserManagement" visible="{appView>/userTileVisibility}" subheader="" press="press">
 				<TileContent>
 					<ImageContent src="sap-icon://credit-card"/>
 				</TileContent>

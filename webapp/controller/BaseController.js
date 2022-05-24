@@ -268,6 +268,8 @@ sap.ui.define([
 			this.getVH_Industry();
 			this.getVH_Groups();
 			this.getVH_PayTermsGrpCode();
+			this.getVH_Country();
+			this.getVH_State();
 		},
 		getVH_SalesPerson:function(){
 			return new Promise(function(resolve){
@@ -328,6 +330,35 @@ sap.ui.define([
 				this.middleWare.callMiddleWare("/VH_PayTermsGrpCode", "GET", {})
 				.then(function (data, status, xhr) {
 					this.getModel("appView").setProperty("/VH_PayTermsGrpCode",data);
+					resolve(data);
+				}.bind(this))
+				.catch(function (jqXhr, textStatus, errorMessage) {
+					this.middleWare.errorHandler(jqXhr, this);
+					return;  
+				}.bind(this));
+			}.bind(this));
+			
+		},
+		getVH_Country:function(){
+			return new Promise(function(resolve){
+				this.middleWare.callMiddleWare("/VH_Country", "GET", {})
+				.then(function (data, status, xhr) {
+					this.getModel("appView").setProperty("/VH_Country",data);
+					resolve(data);
+				}.bind(this))
+				.catch(function (jqXhr, textStatus, errorMessage) {
+					this.middleWare.errorHandler(jqXhr, this);
+					return;  
+				}.bind(this));
+			}.bind(this));
+			
+		}, 
+		getVH_State:function(oQuery){
+			return new Promise(function(resolve){
+				this.middleWare.callMiddleWare("/VH_State?Country="+oQuery, "GET", {})
+				.then(function (data, status, xhr) {
+					this.getModel("appView").setProperty("/VH_State",data);
+					this.getModel("appView").updateBindings();
 					resolve(data);
 				}.bind(this))
 				.catch(function (jqXhr, textStatus, errorMessage) {
@@ -507,7 +538,26 @@ sap.ui.define([
 				}
 			}
 		},
-
+		getUsersData:function(){
+			var that=this;
+			this.getView().setBusy(true);
+			that.getModel("appView").setProperty("/userTileVisibility",true);
+			this.middleWare.callMiddleWare("/users", "GET", {})
+			.then(function (data, status, xhr) {
+				that.getView().setBusy(false);
+				that.getModel("appView").setProperty("/users",data);
+				if(data.length===0){
+					that.getModel("appView").setProperty("/userTileVisibility",false);
+				}
+							// that.getModel("config").updateBindings();
+			
+			})
+			.catch(function (jqXhr, textStatus, errorMessage) {
+				// that.getView().setBusy(false);
+				// ofrag.setBusy(false);
+			  that.middleWare.errorHandler(jqXhr, that);  
+			});
+		}
 		
 	});
 });

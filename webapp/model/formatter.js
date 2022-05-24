@@ -221,6 +221,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         var oFloatFormat = sap.ui.core.format.NumberFormat.getFloatInstance(oFormatOptions);
         return oFloatFormat.format(data.toFixed(2));
       }
+      return 0.0
     },
     conHourFormatterInp: function (data) {
       if (data) {
@@ -354,6 +355,16 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         }
       }
       return false
+    },
+    formatAddressType:function(value){
+      if(value){
+        if(value.includes("Bill")){
+          return this.getModel("i18n").getProperty("billTo");
+        }
+        else{
+          return this.getModel("i18n").getProperty("shipTo");
+        }
+      }
     },
   };
 });

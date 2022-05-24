@@ -24,6 +24,7 @@ sap.ui.define([
 				logOut:false
 			});
 			this.setModel(oViewModel, "appView");
+			this.getModel("appView").setSizeLimit(5000);
 
 			fnSetAppNotBusy = function () {
 				oViewModel.setProperty("/busy", false);

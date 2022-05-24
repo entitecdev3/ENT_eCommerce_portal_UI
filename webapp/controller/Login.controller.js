@@ -58,6 +58,8 @@ sap.ui.define([
 				}
 			}
 			this.getCompanies();
+			this.getView().byId("userid").setValue(sessionStorage.userName);
+			this.getView().byId("idDatabase").setSelectedKey(sessionStorage.database);
 		},
 		onLanguageSelect: function(oEvent) {
 			var selectedlaunguage = this.getView().byId("languageSelect").getSelectedKey();
@@ -151,6 +153,7 @@ sap.ui.define([
 					sessionStorage.session_id = session_id;
 					sessionStorage.authType = data.authType;
 					sessionStorage.userName = data.userName;
+					sessionStorage.database = payload.database;
 					that.getModel("appView").setProperty("/customData", data.customAttributes);
 					that.getModel("appView").setProperty("/User", sessionStorage.userName);
 					that.getModel("appView").setProperty("/authType", sessionStorage.authType);

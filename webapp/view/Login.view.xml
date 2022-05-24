@@ -35,12 +35,12 @@
 												<Label text="" design="Bold" width="100%" required="false" textAlign="Center" textDirection="Inherit" visible="true" />
 											</form:label>
 											<form:fields>
-												<Select wrapItemsText="true" width="100%" forceSelection="false" id="idDatabase" items="{
+												<ComboBox placeholder="{i18n>chooseCompany}" wrapItemsText="true" width="100%" forceSelection="false" id="idDatabase" items="{
 									path: 'appView>/companies',
 									sorter: { path: 'CompanyFullName' }
 									}">
 													<core:Item text="{appView>CompanyFullName}" key="{appView>dbName}" />
-												</Select>
+												</ComboBox>
 											</form:fields>
 										</form:FormElement>
 										<form:FormElement visible="true">

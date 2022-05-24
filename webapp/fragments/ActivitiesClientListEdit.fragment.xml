@@ -3,8 +3,16 @@
   
     items="{
         path: 'appView>/ClientListActivites'
-    }">
-
+    }" mode="Delete" delete="onDeleteActivites">
+    <headerToolbar>
+        <OverflowToolbar>
+          <content>
+            <ToolbarSpacer />
+            <Button icon="sap-icon://add" press="onAddActivites"></Button>
+            <!-- <Button icon="sap-icon://less"></Button> -->
+          </content>
+        </OverflowToolbar>
+      </headerToolbar>
     <columns>
         <Column>
             <Text text="{i18n>id}" />
@@ -34,7 +42,7 @@
             <cells>
                 <!-- <ObjectIdentifier
                     text="{path:'appView>Action',formatter:'.formatter.actionFormatter'}"/> -->
-                    <Select  selectedKey="{appView>Action}">
+                    <Select  selectedKey="{appView>Action}" editable="{=${appView>status}==='E'?false:${appView>status}==='U'?false:true}" change="onActivityActionChange">
                         <core:ListItem key="" text=""  />
                         <core:ListItem key="C" text="Phone Call"  />
                         <core:ListItem key="M" text="Meeting"  />
@@ -50,7 +58,7 @@
                         class="sapUiTinyMarginEnd"/>
                         <Button icon="sap-icon://time-entry-request" class="sapUiTinyMarginBegin"/> -->
                         <Link id="idstartlink" text="{path:'appView>Recontact',formatter:'.formatter.conDateFormatter'} {path:'appView>BeginTime',formatter:'.formatter.conTimeFormatter'}"
-                            press="onDateChange"/>
+                            press="onDateChange" enabled="{=${appView>status}==='E'?false:${appView>status}==='U'?false:true}"/>
                         <!-- <TimePickerSliders
                         id="TPS2"
                         
@@ -78,7 +86,7 @@
                     press="onDateChange"/>
                 <!-- <Text
                     text="{appView>Notes}" /> -->
-                <Input value="{appView>Notes}"></Input>
+                <Input value="{appView>Notes}" change="onActivityNotesChange"></Input>
                
               
                
