@@ -9,17 +9,30 @@ sap.ui.define([
         init: function(that) {
           that.pannelContainer = that.getView().byId('groupsLinesContainer');
           const searchFieldsUrl = this.buildSerachFieldUrl(that);
-  
+          that.inputGroups=[];
           that.pannelContainer.removeAllItems();
           // that.callFunctionServiceLayer("GET", this.getSearchFields, searchFieldsUrl, that, { other: this }, null, this.getSearchFieldsError);
           that.middleWare.callMiddleWare(searchFieldsUrl, "GET", {})
           .then(function(data){
             var args={ other: this };
+            debugger;
+            for (let index = 0; index < data.length; index++) {
+              const element = data[index];
+              if(element.id.includes('unita')||element.id.includes('spessore')){
+                  element.HBoxVisible=true;
+              }
+              else{
+                element.HBoxVisible=false;
+              }
+            }
             this.getSearchFields(data,that,args);
           }.bind(this))
           .catch(function (jqXhr, textStatus, errorMessage) {
             that.middleWare.errorHandler(jqXhr, that);  
         });
+        },
+        clearInput:function(that){
+          that.inputGroups=null;
         },
         getSearchFields: function(inputGroupsData, that, args) {
           const { other } = args;

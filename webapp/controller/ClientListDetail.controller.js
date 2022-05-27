@@ -520,7 +520,7 @@ sap.ui.define([
 						continue;
 					}
 					else{
-						oErr.push(element.body)
+						oErr.push(that.middleWare.b1ErrorMessage(element.body))
 					}
 				}
 				that.getView().setBusy(false);

@@ -37,7 +37,7 @@ sap.ui.define([
 				}
 				this.DirectLogin(payload);
 			}
-			this.getModel("appView").setProperty("/selectLang", navigator.language.split("-")[0].toLowerCase());
+			// this.getModel("appView").setProperty("/selectLang", navigator.language.split("-")[0].toLowerCase());
 	
 			if(sessionStorage.Header){
 				var oSess=sessionStorage.Header;
@@ -64,6 +64,7 @@ sap.ui.define([
 		onLanguageSelect: function(oEvent) {
 			var selectedlaunguage = this.getView().byId("languageSelect").getSelectedKey();
 			sap.ui.getCore().getConfiguration().setLanguage(selectedlaunguage);
+			sessionStorage.languageCode=selectedlaunguage;
 		},
 		DirectLogin:function(payload){
 			var that=this;
@@ -123,6 +124,7 @@ sap.ui.define([
 			var userName = this.getView().byId("userid").getValue();
 			var password = this.getView().byId("pwd").getValue();
 			var database = this.getView().byId("idDatabase").getSelectedKey();
+			var selectedlanguage = this.getView().byId("languageSelect").getSelectedKey();
 			that.getModel("appView").setProperty("/User", userName);
 			// if (userName == "") {
 			// 	this.getView().byId("userid").setValueState('Error');
@@ -143,7 +145,8 @@ sap.ui.define([
 			var payload = {
 				"username": userName,
 				"password": password,
-				"database": database
+				"database": database,
+				"language": selectedlanguage
 			}
 			// this.getView().setBusy(true);
 			this.middleWare.callMiddleWare("/Login", "POST", payload)

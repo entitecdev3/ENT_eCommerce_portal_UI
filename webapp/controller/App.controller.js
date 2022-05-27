@@ -49,6 +49,10 @@ sap.ui.define([
 			// this.getCustomData();	
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.getModel("appView").setProperty("/authType", sessionStorage.authType);
+			if(sessionStorage.languageCode){
+				this.getModel("appView").setProperty("/selectLang", sessionStorage.languageCode);
+				sap.ui.getCore().getConfiguration().setLanguage(sessionStorage.languageCode);
+			}
 		}
 
 	});

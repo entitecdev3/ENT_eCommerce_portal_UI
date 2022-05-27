@@ -222,6 +222,49 @@ sap.ui.define([
 					break;
 			}
 		},
+		b1ErrorMessage:function(jqr){
+			var type = typeof (jqr);
+			switch (type) {
+				case 'string':
+					try {
+						const text = JSON.parse(JSON.parse(jqr).text).error.message;
+						if (text.value) {
+							return text.value;
+						}
+						else {
+							return text;
+						}
+
+					} catch (error) {
+						
+						return jqr;
+					}
+
+					break;
+				case 'object':
+					if(jqr.responseText){
+						return jqr.responseText;
+					}
+					if(jqr.error){
+						if(jqr.error.message && jqr.error.message.value ){
+							return jqr.error.message.value;
+						}
+						else if(jqr.error.message){
+							let oMsg=jqr.error.message.toString();
+							return oMsg;
+						}
+						let omsg=jqr.error.toString();
+						return omsg;
+					}
+					let text=jqr.toString();
+					return text;
+					break;
+				default:
+					let otext=jqr.toString();
+					return otext;
+					break;
+			}
+		},
 		onTimeZone: function (d) {
 			if (d.getTimezoneOffset() > 0) {
 				d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
