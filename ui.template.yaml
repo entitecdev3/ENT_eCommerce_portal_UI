@@ -1,6 +1,6 @@
 specVersion: '2.5'
 metadata:
-  name: 'ent_timesheet_ui'
+  name: 'ent_eCom_ui'
 type: application
 builder:
   componentPreload:

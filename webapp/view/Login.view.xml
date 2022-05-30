@@ -1,8 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.Login" xmlns:html="http://www.w3.org/1999/xhtml">
-	<App id="idAppCon">
-		<Page title="{i18n>appTitle}"	>
-			<headerContent>
-				<Text text="{i18n>version}" />
+	<!-- <App id="idAppCon"> -->
+		<Page title="{i18n>appTitle}" enableScrolling="false" class="sapUiTinyMargin" >
+			<headerContent >
+				<Text text="{i18n>version}" class="sapUiSmallMarginEnd" />
 			</headerContent>
 			<content>
 				<!-- <tnt:ToolHeader>
@@ -64,10 +64,10 @@
 												<Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
 											</form:label>
 											<form:fields>
-												<Select width="auto" id="languageSelect" forceSelection="false" selectedKey="{path: 'appView>/selectLang'}" change="onLanguageSelect">
+												<ComboBox placeholder="{i18n>chooseLanguage}" width="auto" id="languageSelect" forceSelection="false" selectedKey="{path: 'appView>/selectLang'}" change="onLanguageSelect">
 														<core:Item key="en" id="EN" text="{i18n>English}" />
 														<core:Item key="it" id="IT" text="{i18n>Italian}" />
-													</Select>
+													</ComboBox>
 												</form:fields>
 											<form:fields>
 												<Button id="idLoginButton" text="{i18n>login}" press="Login" type="Emphasized" icon="sap-icon://feeder-arrow" iconFirst="false" width="auto" iconDensityAware="false" />
@@ -88,5 +88,5 @@
 			</content>
 			<footer></footer>
 		</Page>
-	</App>
+	<!-- </App> -->
 </mvc:View>
