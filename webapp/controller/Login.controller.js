@@ -155,7 +155,7 @@ sap.ui.define([
 					var session_id = data.entSessionId;
 					sessionStorage.session_id = session_id;
 					sessionStorage.authType = data.authType;
-					sessionStorage.userName =data.customAttributes.EmpID+" - "+data.userName;
+					sessionStorage.userName =data.customAttributes.U_Code+" - "+data.customAttributes.U_Name;
 					sessionStorage.userNameIn =data.userName;
 					sessionStorage.database = payload.database;
 					that.getModel("appView").setProperty("/customData", data.customAttributes);
