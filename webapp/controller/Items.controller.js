@@ -223,7 +223,10 @@ var tableDataFormatter = {
               break;
             }
           }
-        }
+        },
+        onAddToCart:function(oEvent){
+          var oSelectedObject=oEvent.getSource().getParent().getParent().getBindingContext().getObject();
+        },
       });
     }
   );

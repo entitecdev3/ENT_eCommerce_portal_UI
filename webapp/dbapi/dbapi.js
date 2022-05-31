@@ -19,11 +19,12 @@ sap.ui.define([
 
 
 					// });
+			
 
 				if (!(sUrl && sMethod)) {
 					reject("Invalid parameters passed");
 				}
-				sap.ui.core.BusyIndicator.show();
+				// sap.ui.core.BusyIndicator.show();
 				switch (sMethod.toUpperCase()) {
 					case "GET":
 						$.ajax("/api" + sUrl, {
@@ -32,11 +33,12 @@ sap.ui.define([
 							contentType: "application/json",
 							// data: JSON.stringify(oPayload), // data to submit
 							success: function (data, status, xhr) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								resolve(data);
 							},
 							//everytime time call goes it first came to before Send Method
 								// beforeSend: function (jqXHR, options) { //
+								// 	debugger;
 								// 	// var key = options.url;
 								// 	// if (!pendingRequests[key]) {
 								// 	// 	pendingRequests[key] = jqXHR;
@@ -53,10 +55,11 @@ sap.ui.define([
 								// 	// }
 								// },
 								// complete: function() {
-								// 	$(this).data('requestRunning', false);
+								// 	debugger;
+								// 	// $(this).data('requestRunning', false);
 								// },
 							error: function (jqXhr, textStatus, errorMessage) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								reject(jqXhr.responseText || errorMessage);
 							}
 						});
@@ -68,11 +71,11 @@ sap.ui.define([
 							contentType: "application/json",
 							data: JSON.stringify(oPayload), // data to submit
 							success: function (data, status, xhr) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								resolve(data);
 							},
 							error: function (jqXhr, textStatus, errorMessage) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								reject(jqXhr.responseText || errorMessage);
 							}
 						});
@@ -84,11 +87,11 @@ sap.ui.define([
 							contentType: "multipart/form-data; boundary=AttachmentBoundary",
 							data: oPayload, // data to submit
 							success: function (data, status, xhr) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								resolve(data);
 							},
 							error: function (jqXhr, textStatus, errorMessage) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								reject(jqXhr.responseText || errorMessage);
 							}
 						});
@@ -104,11 +107,11 @@ sap.ui.define([
 							contentType: "application/json",
 							data: JSON.stringify(oPayload), // data to submit
 							success: function (data, status, xhr) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								resolve(data);
 							},
 							error: function (jqXhr, textStatus, errorMessage) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								reject(jqXhr.responseText || errorMessage);
 							}
 						});
@@ -124,11 +127,11 @@ sap.ui.define([
 							contentType: "application/json",
 							data: JSON.stringify(oPayload), // data to submit
 							success: function (data, status, xhr) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								resolve(data);
 							},
 							error: function (jqXhr, textStatus, errorMessage) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								reject(jqXhr.responseText || errorMessage);
 							}
 						});
@@ -142,11 +145,11 @@ sap.ui.define([
 								'Content-Type': 'application/json'
 							},
 							success: function (data, status, xhr) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								resolve(data);
 							},
 							error: function (jqXhr, textStatus, errorMessage) {
-								sap.ui.core.BusyIndicator.hide();
+								// sap.ui.core.BusyIndicator.hide();
 								reject(jqXhr.responseText || errorMessage);
 							}
 						});

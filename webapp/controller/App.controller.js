@@ -53,6 +53,12 @@ sap.ui.define([
 				this.getModel("appView").setProperty("/selectLang", sessionStorage.languageCode);
 				sap.ui.getCore().getConfiguration().setLanguage(sessionStorage.languageCode);
 			}
+			$(document).ajaxStart(function(x,y,z){
+				sap.ui.core.BusyIndicator.show();
+			});
+			$(document).ajaxStop(function(x,y,z){
+				sap.ui.core.BusyIndicator.hide();
+			});
 		}
 
 	});

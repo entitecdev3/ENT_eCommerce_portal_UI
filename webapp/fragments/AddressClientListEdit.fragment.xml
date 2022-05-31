@@ -3,7 +3,7 @@
     items="{
         path: 'appView>/ClientDetails/BPAddresses',
         sorter: {
-            path: 'appView>AddressType',
+            path: 'AddressType',
             descending: false
         }
     }">
@@ -18,7 +18,7 @@
       </headerToolbar>
     <columns>
         <Column width="6.9%"  hAlign="Begin"  mergeDuplicates="true">
-            <Text text="Type" />
+            <Text text="{i18n>Type}" />
         </Column>
         <Column mergeDuplicates="true">
             <Text text="{i18n>id}" />

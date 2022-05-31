@@ -25,17 +25,18 @@
         <Select items="{ path: 'appView>/VH_Country' }" change="onCountryChange" selectedKey="{appView>Country}">
             <core:ListItem key="{appView>Code}" text="{appView>Code}-{appView>Name}"  />
         </Select>
-        <Label text="{i18n>StreetNo}"/>
-        <Input value="{path:'appView>StreetNo'}"/>
+        <Label text="{i18n>StreetNo}" visible="false"/>
+        <Input value="{path:'appView>StreetNo'}" visible="false"/>
             </VBox>
 		<buttons>
 			<Button
 				text="{i18n>ok}"
 				press="handleOKPressAdressChange"
 				type="Emphasized"/>
-			<!-- <Button
+			<Button
 				text="{i18n>cancel}"
-				press="handleOKPressAdressChange"/> -->
+				press="handleCancelPressAdressChange"
+                type="Reject"/>
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>

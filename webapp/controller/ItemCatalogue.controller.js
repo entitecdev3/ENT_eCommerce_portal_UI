@@ -32,7 +32,7 @@ sap.ui.define(
           const headerTitle = new JSONModel({ selectedTreeItem });
           this.getView().byId('selectedItemHeader').setModel(headerTitle);
           this.getView().byId('selectedItemHeader').updateBindings();
-          inputGroupsController.clearInput(this);
+          // inputGroupsController.clearInput(this);
         },
         onAfterRendering: function(evt) {
           const groupContainers = Array.from(document.querySelectorAll('[id*="--groupsContainer"]'));

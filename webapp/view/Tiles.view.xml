@@ -1,8 +1,8 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.Tiles"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<Page title="{i18n>appTitle}" id="idTile">
+	<Page title="{i18n>appTitle}" id="idTile" class="sapUiTinyMargin">
 		<headerContent>
-			<Link text="{appView>/User}" press="onUserPress"/>
+			<Link text="{appView>/User}" press="onUserPress" class="sapUiSmallMarginEnd"/>
 			<!-- <Button icon="sap-icon://log" type="Negative" tooltip="Logout" press="onLogOut"/> -->
 			<!-- <Switch customTextOn="Dark" customTextOff="light" tooltip="Change Theme" change="onThemeChange"  ></Switch> -->
 		</headerContent>

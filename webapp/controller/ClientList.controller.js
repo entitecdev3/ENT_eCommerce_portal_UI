@@ -30,7 +30,9 @@ sap.ui.define([
 			this.getView().byId('selectedItemHeader').setModel(headerTitle);
 			this.getView().byId('selectedItemHeader').updateBindings();
 			this.callClientValueHelps();
-			this.getClientList();
+			this.getModel("appView").setProperty("/ClientListVisTotal",0);
+			this.getModel("appView").setProperty("/ClientListLength",0);
+			// this.getClientList();
 		},
 		_matchedHandler:function(){
 			this.getModel("appView").setProperty("/layout", "OneColumn");
@@ -40,19 +42,20 @@ sap.ui.define([
 			// this.getUsersData();
 			// this.getCustomData();			
 		},
-		getClientList:function(){
-			var that=this;
-			if(!that.getModel("appView").getProperty("/ClientList")){
-				this.middleWare.callMiddleWare("/ClientList", "GET", {})
-				.then(function (data, status, xhr) {
-					that.getModel("appView").setProperty("/ClientList",data);
-				})
-				.catch(function (jqXhr, textStatus, errorMessage) {
-				that.middleWare.errorHandler(jqXhr, that);  
-				});
-			}
+		// getClientList:function(){
+		// 	var that=this;
+		// 	if(!that.getModel("appView").getProperty("/ClientList")){
+		// 		this.middleWare.callMiddleWare("/ClientList", "GET", {})
+		// 		.then(function (data, status, xhr) {
+		// 			that.getModel("appView").setProperty("/ClientListLength",data.length);
+		// 			that.getModel("appView").setProperty("/ClientList",data);
+		// 		})
+		// 		.catch(function (jqXhr, textStatus, errorMessage) {
+		// 		that.middleWare.errorHandler(jqXhr, that);  
+		// 		});
+		// 	}
 			
-		},
+		// },
 		onClientListSearch: function (oEvent) {
 			var sValue = oEvent.getParameter("newValue");
 			var oFilter = new Filter({
@@ -69,7 +72,6 @@ sap.ui.define([
 		},
 		onClientListSelect:function(oEvent){
 			// oItem.getBindingContext().getProperty("DocEntry")
-			debugger;
 			// var bReplace = !Device.system.phone;
 			this.getRouter().navTo(
 				"ClientsListDetail",
@@ -79,6 +81,9 @@ sap.ui.define([
 			  );
 			this.getView().byId("idClientlist").removeSelections();
 		},
-		
+		onClientListUpdate:function(oEvent){
+			var oTotal=oEvent.getParameter("total");
+			this.getModel("appView").setProperty("/ClientListVisTotal",oTotal);
+		},
 	});
 });

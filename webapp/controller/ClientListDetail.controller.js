@@ -38,6 +38,7 @@ sap.ui.define([
 			this.cardCode=oEvent.getParameter("arguments").objectId;	
 			this.getClientDetails();	
 			this.getClientProperties();
+			this.getClientList();
 			this.getClientData();
 			this.getView().getModel("appView").setProperty("/EditMode",false);
 		},
@@ -142,7 +143,7 @@ sap.ui.define([
 			  const matchExp = new RegExp('^-?\\d+(?:\.\\d{0,' + decimals + '})?');
 			  const stringWithDecimals = stringValue.match(matchExp);
 			  const decimalValue = parseFloat(stringWithDecimals[0]);
-			  // if (id === 95 && lineid === 2) debugger
+			  // if (id === 95 && lineid === 2)
 			  return decimalValue;
 			} else {
 			  return parseInt(value);
@@ -157,7 +158,6 @@ sap.ui.define([
 			this.getView().getModel("appView").updateBindings();
 		},
 		onClientDetailsFilterPress:function(oEvent){
-			 debugger;
 			 var oQuery=oEvent.getParameter("newValue");
 			 var oTable=oEvent.getSource().getParent().getParent();
 			 var oFilter = new Filter({
@@ -170,7 +170,6 @@ sap.ui.define([
 			oBinding.filter(oFilter);
 		},
 		onIconTabSelect:function(oEvent){
-			debugger;
 			var oKey=oEvent.getParameter("selectedKey");
 			this.getView().getModel("appView").setProperty("/iconKey",oKey);
 		},
@@ -203,7 +202,6 @@ sap.ui.define([
 					oView.addDependent(oDialog);
 
 					oDialog.attachAfterOpen(function () {
-						debugger;
 					}.bind(this));
 					return oDialog;
 				}.bind(this));
@@ -218,10 +216,7 @@ sap.ui.define([
 			});
 		},
 		handleOKPressDTP:function(){
-			// debugger;
-			
 			this._pDialog.then(function(oDialog) {
-				// debugger;
 				var oDate=oDialog.getContent()[0].getDateValue();
 				var oTime=oDialog.getContent()[1].getValue();
 				oTime=oTime.split(":")[0]+oTime.split(":")[1];
@@ -235,18 +230,16 @@ sap.ui.define([
 					oData.ENDTime=oTime;
 				}
 				this.getView().getModel("appView").updateBindings();
-				debugger;
 				oDialog.close();
 			}.bind(this));	
 		},
 		onAddressEditPopup:function(oEvent){
-			debugger;
 			var oView = this.getView();
-			debugger;	
-		
 			var oBinding=oEvent.getSource().getParent().getBindingContext("appView").getPath();
-			
-			// create popover
+			this.oAddEditBinding=oBinding;
+			var oData=this.getView().getModel("appView").getProperty(oBinding);
+			this.getView().getModel("appView").setProperty("/ClientAddressEdit",JSON.parse(JSON.stringify(oData)));
+			console.log(oData)
 			if (!this.addressDialog) {
 				this.addressDialog = Fragment.load({
 					id: oView.getId(),
@@ -258,11 +251,18 @@ sap.ui.define([
 				}.bind(this));
 			}
 			this.addressDialog.then(function(oDialog) {
-				oDialog.bindElement("appView>"+oBinding);
+				oDialog.bindElement("appView>/ClientAddressEdit");
 				oDialog.open();
 			});
 		},
 		handleOKPressAdressChange:function(){
+			var oData=this.getView().getModel("appView").getProperty("/ClientAddressEdit");
+			this.getView().getModel("appView").setProperty(this.oAddEditBinding,JSON.parse(JSON.stringify(oData)));
+			this.addressDialog.then(function(oDialog) {
+				oDialog.close();
+			});
+		},
+		handleCancelPressAdressChange:function(){
 			this.addressDialog.then(function(oDialog) {
 				oDialog.close();
 			});
@@ -283,9 +283,7 @@ sap.ui.define([
 					controller: this
 				}).then(function(oDialog){
 					oView.addDependent(oDialog);
-
 					// oDialog.attachAfterOpen(function () {
-					// 	debugger;
 					// }.bind(this));
 					return oDialog;
 				}.bind(this));
@@ -397,7 +395,7 @@ sap.ui.define([
 			// this.activityBatch();
 			// return;
 			var oData=this.getView().getModel("appView").getProperty("/ClientDetails");
-			this.getView().setBusy(true);
+			// this.getView().setBusy(true);
 			this.middleWare.callMiddleWare("/resource/BusinessPartners('"+this.cardCode+"')", "PATCH", oData)
 			.then(function (data, status, xhr) {
 				// this.getView().setBusy(false);
@@ -407,7 +405,7 @@ sap.ui.define([
 				this.activityBatch();
 			}.bind(this))
 			.catch(function (jqXhr, textStatus, errorMessage) {
-				this.getView().setBusy(false);
+				// this.getView().setBusy(false);
 				this.middleWare.errorHandler(jqXhr, this);  
 			}.bind(this));
 		},
@@ -419,7 +417,6 @@ sap.ui.define([
 			this.getView().getModel("appView").updateBindings();
 		},
 		onActivityActionChange:function(oEvent){
-			debugger;
 			var oPath=oEvent.getSource().getBindingContext("appView").getPath();
 			var oData=this.getView().getModel("appView").getProperty(oPath);
 			oData.status=oData.status==='N'?"N":'U';
@@ -490,7 +487,6 @@ sap.ui.define([
 			// var oDelete=that.getRecord("D","DELETE","DocEntry");
 		},
 		activityBatch:function(){
-			debugger;
 			var oNew=this.getRecord("N","POST");
 			var oUpdate=this.getRecord("U","PATCH","ActivityCode");	
 			var oDelete=this.getRecord("D","DELETE","ActivityCode");
@@ -498,19 +494,19 @@ sap.ui.define([
 			var oMessage=this.getModel("i18n").getProperty("updateSuccess");
 			if(!oArr){
 				MessageToast.show(oMessage);
-				this.getView().setBusy(false);
+				// this.getView().setBusy(false);
 				this.getClientDetails();
 				return;
 			}
 			if(oArr.length===0){
 				MessageToast.show(oMessage);
-				this.getView().setBusy(false);
+				// this.getView().setBusy(false);
 				this.getClientDetails();
 				return;
 			}
 			let oPayload={"requests":oArr};
 			var that=this;
-			that.getView().setBusy(true);
+			// that.getView().setBusy(true);
 			that.middleWare.callMiddleWare("/batchCall", "POST", oPayload)
 			.then(function (data, status, xhr) {
 				var oErr=[];
@@ -523,7 +519,7 @@ sap.ui.define([
 						oErr.push(that.middleWare.b1ErrorMessage(element.body))
 					}
 				}
-				that.getView().setBusy(false);
+				// that.getView().setBusy(false);
 				if(oErr.length>0){
 					MessageBox.error("Error:Activity-\n"+JSON.stringify(oErr));
 					return;
@@ -534,7 +530,7 @@ sap.ui.define([
 				
 			})
 			.catch(function (jqXhr, textStatus, errorMessage) {
-				that.getView().setBusy(false);
+				// that.getView().setBusy(false);
 				that.middleWare.errorHandler(jqXhr,that);
 			});
 		},

@@ -96,22 +96,10 @@ sap.ui.define([
 			that.getRouter().navTo("tiles");
 		},
 		onThemeChange: function (oEvent) {
-			debugger;
-			// var dark = oEvent.getSource().getId();
-			// if (dark.includes("idDark")) {
-				// sap.ui.getCore().applyTheme('sap_fiori_3_dark');
-			// } else {
-				sap.ui.getCore().applyTheme('sap_horizon')
-			// }
+			sap.ui.getCore().applyTheme('sap_horizon')
 		},
 		onThemeChangeDark: function (oEvent) {
-			// debugger;
-			// var dark = oEvent.getSource().getId();
-			// if (dark.includes("idDark")) {
-				sap.ui.getCore().applyTheme('sap_fiori_3_dark');
-			// } else {
-			// 	sap.ui.getCore().applyTheme('sap_horizon')
-			// }
+			sap.ui.getCore().applyTheme('sap_fiori_3_dark');
 		},
 		convertFileToUrl: function(vContent) {
 			var regex = /data:(\w.*);base64,/gm;
@@ -196,7 +184,6 @@ sap.ui.define([
 			}
 			this.passwordFrag.then(function (oPopover) {
 				var oJson= new JSONModel({ "password":"","confirmPassword":""});
-					debugger;
 				oPopover.setModel(oJson);
 				oPopover.open();
 			});
@@ -213,11 +200,10 @@ sap.ui.define([
 				"password": oData.password
 			}
 			var that=this;
-			that.getView().setBusy(true);
+			// that.getView().setBusy(true);
 			this.middleWare.callMiddleWare("/changePassword", "POST", oPaylaod)
 					.then(function (data, status, xhr) {
-						debugger;
-						that.getView().setBusy(false);
+						// that.getView().setBusy(false);
 						MessageToast.show("Password Updated Successfully");
 						that.passwordFrag.then(function (oPopover) {
 							oPopover.close();
@@ -231,12 +217,6 @@ sap.ui.define([
 						// that.getRouter().navTo("tiles");
 					})
 					.catch(function (jqXhr, textStatus, errorMessage) {
-						debugger;
-						
-						// that.getView().setBusy(false);
-						// that.getView().byId("userid").setValueState('Error');
-						// that.getView().byId("pwd").setValueState('Error');
-						// MessageBox.error(jqXhr.responseText);
 						that.middleWare.errorHandler(jqXhr,that);
 					});
 				
@@ -540,11 +520,11 @@ sap.ui.define([
 		},
 		getUsersData:function(){
 			var that=this;
-			this.getView().setBusy(true);
+			// this.getView().setBusy(true);
 			that.getModel("appView").setProperty("/userTileVisibility",true);
 			this.middleWare.callMiddleWare("/users", "GET", {})
 			.then(function (data, status, xhr) {
-				that.getView().setBusy(false);
+				// that.getView().setBusy(false);
 				that.getModel("appView").setProperty("/users",data);
 				if(data.length===0){
 					that.getModel("appView").setProperty("/userTileVisibility",false);
@@ -557,7 +537,21 @@ sap.ui.define([
 				// ofrag.setBusy(false);
 			  that.middleWare.errorHandler(jqXhr, that);  
 			});
-		}
+		},
+		getClientList:function(){
+			var that=this;
+			if(!that.getModel("appView").getProperty("/ClientList")){
+				this.middleWare.callMiddleWare("/ClientList", "GET", {})
+				.then(function (data, status, xhr) {
+					that.getModel("appView").setProperty("/ClientListLength",data.length);
+					that.getModel("appView").setProperty("/ClientList",data);
+				})
+				.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+				});
+			}
+			
+		},
 		
 	});
 });

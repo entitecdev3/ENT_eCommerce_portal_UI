@@ -7,7 +7,6 @@ sap.ui.define([
 
 	return BaseController.extend("ent.ui.ecommerce.controller.Tiles", {
         onInit: function onInit(oEvent) {
-			debugger;
 			this._oRouter = this.getRouter();
 			this.getRouter()
             .getRoute("tiles")

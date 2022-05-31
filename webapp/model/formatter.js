@@ -17,7 +17,6 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
       return parseFloat(sValue).toFixed(2);
     },
     formatVisiblePass:function(value){
-      // debugger;
       if(value){
         if(value.includes("basic")){
           return true;
@@ -348,7 +347,6 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
       }
     },
     formatYN:function(oValue){
-      debugger;
       if(oValue){
         if(oValue.includes("Y")){
           return true;

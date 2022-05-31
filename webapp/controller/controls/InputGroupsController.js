@@ -15,7 +15,6 @@ sap.ui.define([
           that.middleWare.callMiddleWare(searchFieldsUrl, "GET", {})
           .then(function(data){
             var args={ other: this };
-            debugger;
             for (let index = 0; index < data.length; index++) {
               const element = data[index];
               if(element.id.includes('unita')||element.id.includes('spessore')){
@@ -32,7 +31,7 @@ sap.ui.define([
         });
         },
         clearInput:function(that){
-          that.inputGroups=null;
+          // that.inputGroups=null;
         },
         getSearchFields: function(inputGroupsData, that, args) {
           const { other } = args;

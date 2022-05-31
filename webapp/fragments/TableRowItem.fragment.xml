@@ -76,7 +76,7 @@
     </content>
 
     <buttons>
-      <Button text="{i18n>openArticle}" width="7rem" type="Accept" press="onItemDialogForward" class="sapUiMediumMarginEnd" />
+      <Button text="{i18n>openArticle}" width="7rem" type="Accept" press="onItemDialogForward" visible="false" class="sapUiMediumMarginEnd" />
       <Button text="{i18n>close}" type="Ghost" press="onItemDialogClose" class="pannelTableClose" />
     </buttons>
   </Dialog>

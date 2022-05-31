@@ -37,7 +37,15 @@ sap.ui.define([
 				}
 				this.DirectLogin(payload);
 			}
-			// this.getModel("appView").setProperty("/selectLang", navigator.language.split("-")[0].toLowerCase());
+			if(sessionStorage.selectedlanguage){
+				this.getModel("appView").setProperty("/selectLang",sessionStorage.selectedlanguage);
+				sap.ui.getCore().getConfiguration().setLanguage(sessionStorage.selectedlanguage);
+			}
+			else{
+				this.getModel("appView").setProperty("/selectLang", navigator.language.split("-")[0].toLowerCase());
+				sap.ui.getCore().getConfiguration().setLanguage(navigator.language.split("-")[0].toLowerCase());
+			}
+			
 	
 			if(sessionStorage.Header){
 				var oSess=sessionStorage.Header;
@@ -64,15 +72,15 @@ sap.ui.define([
 		onLanguageSelect: function(oEvent) {
 			var selectedlaunguage = this.getView().byId("languageSelect").getSelectedKey();
 			sap.ui.getCore().getConfiguration().setLanguage(selectedlaunguage);
-			sessionStorage.languageCode=selectedlaunguage;
+			sessionStorage.selectedlanguage=selectedlaunguage;
 		},
 		DirectLogin:function(payload){
 			var that=this;
 			that.getModel("appView").setProperty("/User", payload.loginEmail);
-			this.getView().setBusy(true);
+			// this.getView().setBusy(true);
 				this.middleWare.callMiddleWare("/Login", "POST", payload)
 					.then(function (data, status, xhr) {
-						that.getView().setBusy(false);
+						// that.getView().setBusy(false);
 						var session_id = data.entSessionId;
 						sessionStorage.session_id = session_id;
 						sessionStorage.userName = data.userName;
@@ -82,7 +90,7 @@ sap.ui.define([
 						that.getRouter().navTo("tiles");
 					})
 					.catch(function (jqXhr, textStatus, errorMessage) {
-						that.getView().setBusy(false);
+						// that.getView().setBusy(false);
 						that.getView().byId("userid").setValueState('Error');
 						that.getView().byId("pwd").setValueState('Error');
 						// MessageBox.error(jqXhr.responseText);
@@ -93,7 +101,6 @@ sap.ui.define([
 			var that=this;
 			this.middleWare.callMiddleWare("/getCompanies", "GET", {})
 					.then(function (data, status, xhr) {
-						debugger;
 						// that.getView().setBusy(false);
 						// var session_id = data.entSessionId;
 						// sessionStorage.session_id = session_id;
@@ -158,6 +165,7 @@ sap.ui.define([
 					sessionStorage.userName =data.customAttributes.U_Code+" - "+data.customAttributes.U_Name;
 					sessionStorage.userNameIn =data.userName;
 					sessionStorage.database = payload.database;
+					sessionStorage.selectedlanguage=selectedlanguage;
 					that.getModel("appView").setProperty("/customData", data.customAttributes);
 					that.getModel("appView").setProperty("/User", sessionStorage.userName);
 					that.getModel("appView").setProperty("/authType", sessionStorage.authType);
@@ -165,7 +173,7 @@ sap.ui.define([
 				})
 				.catch(function (jqXhr, textStatus, errorMessage) {
 					 
-					that.getView().setBusy(false);
+					// that.getView().setBusy(false);
 					that.getView().byId("userid").setValueState('Error');
 					that.getView().byId("pwd").setValueState('Error');
 					// MessageBox.error(jqXhr.responseText);

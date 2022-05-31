@@ -83,7 +83,7 @@
 			  <HBox id="p2footer" width="100%" justifyContent="End">
 				<Button text="{i18n>Edit}" class="p2btn p2btnFirst" visible="{=${appView>/EditMode}?false:true}" type="Emphasized" press="onEditModePress" />
 				<Button text="{i18n>Update}" class="p2btn p2btnSecond" type="Accept" visible="{appView>/EditMode}" press="onUpdatePress" />
-				<Button text="{i18n>Cancel}" class="p2btn p2btnSecond" type="Ghost" visible="{appView>/EditMode}" press="onEditModeCancel" />
+				<Button text="{i18n>cancel}" class="p2btn p2btnSecond" type="Ghost" visible="{appView>/EditMode}" press="onEditModeCancel" />
 			  </HBox>
 			</OverflowToolbar>
 		  </footer>

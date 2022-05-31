@@ -10,7 +10,7 @@
     <HBox alignContent="SpaceAround" class="inputGroupContainer sapUiSmallMargin " width="100%">
       <!-- <Text text="{data>/id}" visible="false" /> -->
       <Label design="Bold" text="{data>/label}" class="p2Label" vAlign="Middle" />
-      <Input placeholder="{=${data>/HBoxVisible}?'From-To':''}"  value="{data>/ui_field_input}" class="inputBackColor" visible="{=!${data>/searchFeatures/searchEnabled}}" />
+      <Input placeholder="{=${data>/HBoxVisible}?${i18n>FromTo}:''}"  value="{data>/ui_field_input}" class="inputBackColor" visible="{=!${data>/searchFeatures/searchEnabled}}" />
       <!-- <HBox alignContent="SpaceAround" class="inputGroupContainer sapUiSmallMargin "
        visible="{data>/HBoxVisible}" width="100%"> -->
         <!-- <Input placeholder="From" value="{data>/ui_field_input}" class="inputBackColor sapUiTinyMarginEnd"  visible="{data>/HBoxVisible}"  />

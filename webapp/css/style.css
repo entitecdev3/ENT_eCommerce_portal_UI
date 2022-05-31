@@ -99,7 +99,7 @@
     padding-left: 0.25rem;
     padding-right: 0.25rem;
   }
-  
+
   .thirdPanelPage section div div:first-child div {
     padding-left: 0 !important;
   }
@@ -108,7 +108,9 @@
     max-height: 100%;
     margin: 0 !important;
   }
-  
+ .sapUiSizeCompact .sapMTB.sapMTBHeader-CTX {
+    height: 5.5rem;
+  }
   .selectedItemHeader {
     color: white;
   }
@@ -167,7 +169,7 @@
   }
   
   #__xmlview1--p2footer div .p2btn span {
-    font-size: 1.65rem !important;
+    font-size: 1.6rem !important;
   }
   
   #__xmlview1--p2footer {

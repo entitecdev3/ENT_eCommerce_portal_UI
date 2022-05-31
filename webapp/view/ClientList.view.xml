@@ -9,7 +9,7 @@
 				path: 'appView>/ClientList'
 				}" busyIndicatorDelay="{masterView>/delay}" noDataText="{masterView>/noDataText}" 
 			mode="SingleSelectMaster"
-			 growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished" selectionChange="onClientListSelect"
+			 growing="true" growingScrollToLoad="true" updateFinished="onClientListUpdate" selectionChange="onClientListSelect"
 			 updateStarted="onContextMenu">
 			
 			<headerToolbar>
@@ -20,20 +20,22 @@
 						</layoutData>
 					</SearchField>
 					<ToolbarSpacer />
-				
+					<Text text="{appView>/ClientListVisTotal} / {appView>/ClientListLength} {i18n>Client}"/>
 					<!-- <Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent" /> -->
 					
 				</OverflowToolbar>
 			</headerToolbar>
 			<items>
-				<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press=".onSelectionChange" title="{i18n>Clientcode}: {appView>CardCode}">
+				<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press=".onSelectionChange"
+					 title="{i18n>Businessname}: {path:'appView>CardName'}" >
+					 <!-- highlightText="title" highlight="Indication02" -->
 					<firstStatus>
 						<ObjectStatus title="{i18n>Accountingbalance}" state="{= ${appView>BalanceSys} >= 0 ? 'Success' : 'Error' }" text="{path: 'appView>BalanceSys',formatter:'.formatter.conHourFormatter'}" />
 
 					</firstStatus>
 					<attributes>
 						<!-- <ObjectAttribute id="companyName" text="{RequesterName}" /> -->
-						<ObjectAttribute title="{i18n>Businessname}" text="{path:'appView>CardName'}" />
+						<ObjectAttribute title="{i18n>Clientcode}" text="{path:'appView>CardCode'}" />
 						<ObjectAttribute title="{i18n>City}" text="{path:'appView>MailCity'}" />
 						<!-- <ObjectAttribute title="Iniziata" text="{= ${DocDate}
 								? ${ path: 'DocDate',
