@@ -15,7 +15,7 @@ sap.ui.define(
           const itemChange = this.getRouter().getRoute("ItemCatalogue");
           this.getView().byId('navBackBtn').setVisible(false);
           this.formDialog = null;
-  
+          this.onAfterRender=false;
           this.keyWordMethod = 'AND';
           const keyWordMethodModel = new JSONModel({ keyWordMethod: this.keyWordMethod });
           this.getView().byId('keyWordMethodBtn').setModel(keyWordMethodModel);
@@ -35,12 +35,15 @@ sap.ui.define(
           // inputGroupsController.clearInput(this);
         },
         onAfterRendering: function(evt) {
-          const groupContainers = Array.from(document.querySelectorAll('[id*="--groupsContainer"]'));
-          this.currentGroupContainer = groupContainers[groupContainers.length - 1];
-          this.currentGroupContainer.style.visibility = 'hidden';
-  
-          if (evt.getParameters().id > '__xmlview0') {
-            treeController.init(this);
+          if(!this.onAfterRender){
+            this.onAfterRender=true;
+            const groupContainers = Array.from(document.querySelectorAll('[id*="--groupsContainer"]'));
+            this.currentGroupContainer = groupContainers[groupContainers.length - 1];
+            this.currentGroupContainer.style.visibility = 'hidden';
+    
+            if (evt.getParameters().id > '__xmlview0') {
+              treeController.init(this);
+            }
           }
         },
         onTreeSelectionChange: function(evt) {
