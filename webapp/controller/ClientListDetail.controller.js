@@ -326,7 +326,7 @@ sap.ui.define([
 			this.getView().getModel("appView").updateBindings();
 		},
 		formatAddress:function(oV1,oV2,oV3,oV4,oV5,oV6,oV7){
-			let str= `${oV1?oV1+" ":""}${oV2+" "?oV2:""}${oV3?oV3+" ":""}${oV4?oV4+" ":""}${oV5?oV5+" ":""}${oV6?oV6+" ":""}${oV7?oV7+" ":""}`;
+			let str= `${oV1?oV1+" ":""}${oV2?oV2+" ":""}${oV3?oV3+" ":""}${oV4?oV4+" ":""}${oV5?oV5+" ":""}${oV6?oV6+" ":""}${oV7?oV7+" ":""}`;
 			if(!str){
 				var oLang=this.getModel("i18n").getProperty("addAddress");
 				return oLang;
