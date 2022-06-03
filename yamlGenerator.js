@@ -23,6 +23,6 @@ const replacedYamlString = templateYamlString
 	.replace('${Appports}',config.Port)
 	.replace('${protocol}', protocol ? 'https' : 'http')
 	.replace('${diapiBase}',config.diapiBase ? config.diapiBase : 'localhost')
-	.replace('${AppLiveport}', " "+config.liveRelaod);
+	.replace('${AppLiveport}', " "+config.liveReload);
 
 fs.writeFileSync('ui5.yaml', replacedYamlString);
