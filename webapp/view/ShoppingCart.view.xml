@@ -63,7 +63,8 @@
 					</f:content>
 				</f:SimpleForm>
 			</VBox>
-			<Table id="idCartViewTable" autoPopinMode="true" contextualWidth="Auto" items="{path: 'appView>/CartData'}">
+			<Table id="idCartViewTable" autoPopinMode="true" contextualWidth="Auto" items="{path: 'appView>/CartData'}"
+				updateFinished="onCartTableUpdate">
 			<!-- <headerToolbar>
 				<OverflowToolbar>
 					<Title text="Products" level="H2" />

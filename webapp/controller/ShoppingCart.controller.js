@@ -28,7 +28,7 @@ sap.ui.define([
 		},
 		onAfterRendering:function(){
 			this.getView().byId('navLeftBtn').setVisible(false);
-			const selectedTreeItem = 'ShoppingCart';
+			const selectedTreeItem = this.getModel('i18n').getProperty('ShoppingCart');
 			const headerTitle = new JSONModel({ selectedTreeItem });
 			this.getView().byId('selectedItemHeader').setModel(headerTitle);
 			this.getView().byId('selectedItemHeader').updateBindings();
@@ -123,7 +123,10 @@ sap.ui.define([
 			this.getView().getModel("appView").updateBindings();
 		},
 		rowItemPress: function(evt) {
-			const itemId = evt.getSource().mProperties.text;
+			debugger;
+			// const itemId = evt.getSource().mProperties.text;
+			const itemId =evt.getSource().getBindingContext("appView").getObject().ItemCode;
+			// const price=evt.getSource().getBindingContext("appView").getObject().Prz;
 			rowItemDialog.open(this, { itemId });
 		},
 		onItemDialogForward: function() {
@@ -216,6 +219,16 @@ sap.ui.define([
 			else{
 				var oMsg=this.getModel("i18n").getProperty("CreateOrder");
 				this.getView().byId("idSalesCreate").setText(oMsg);
+			}
+		},
+		onCartTableUpdate:function(oEvent){
+			debugger;
+			var oItems=oEvent.getSource().getItems();
+			// [0].getCells()[3].setValue(0)
+			for (let index = 0; index < oItems.length; index++) {
+				const element = oItems[index];
+				element.getCells()[3].setValue(0);
+				element.getCells()[3].fireChange();	
 			}
 		},
 	});

@@ -9,7 +9,7 @@
       <VBox>
         <Text text="{i18n>code}: {/itemData/ItemCode}" class="itemDialogProp" />
         <Text text="{i18n>description}: {/itemData/ItemName}" class="itemDialogProp" />
-        <Text text="{i18n>ListPrice}: {path:'appView>Prz',formatter:'.formatter.currencyValue'}" class="itemDialogProp" />
+        <Text text="{i18n>ListPrice}: {path:'/itemData/Prz',formatter:'.formatter.currencyValue'}" class="itemDialogProp" />
         <!-- <Text text="{path:'appView>Prz',formatter:'.formatter.currencyValue'}" /> -->
         <Text text="{i18n>qtyDetailbyCom}" class="itemDialogDesc" />
         <Text text="" class="itemDialogProp" />
