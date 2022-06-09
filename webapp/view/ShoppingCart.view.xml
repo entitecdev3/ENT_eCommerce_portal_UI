@@ -113,7 +113,7 @@
 		<Toolbar height="7rem"  class="sapUiSmallMargin">
 			<HBox>
 			<Title  text="{i18n>comments}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
-			<TextArea width="18rem"  height="100%" value="{appView>/comment}"></TextArea>
+			<TextArea width="36rem"  height="100%" value="{appView>/comment}"></TextArea>
 			</HBox>	
 			<ToolbarSpacer />
 			<VBox >
