@@ -169,6 +169,7 @@ sap.ui.define([
 					that.getModel("appView").setProperty("/customData", data.customAttributes);
 					that.getModel("appView").setProperty("/User", sessionStorage.userName);
 					that.getModel("appView").setProperty("/authType", sessionStorage.authType);
+					that.getShopCartData();
 					that.getRouter().navTo("tiles");
 				})
 				.catch(function (jqXhr, textStatus, errorMessage) {

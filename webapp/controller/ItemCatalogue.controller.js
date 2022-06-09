@@ -40,7 +40,7 @@ sap.ui.define(
             const groupContainers = Array.from(document.querySelectorAll('[id*="--groupsContainer"]'));
             this.currentGroupContainer = groupContainers[groupContainers.length - 1];
             this.currentGroupContainer.style.visibility = 'hidden';
-    
+            this.getEntUserParms();
             if (evt.getParameters().id > '__xmlview0') {
               treeController.init(this);
             }

@@ -15,8 +15,9 @@ var tableDataFormatter = {
       "ent/ui/ecommerce/controller/BaseController",
       "sap/ui/model/json/JSONModel",
       "ent/ui/ecommerce/controller/controls/RowItemDialog",
+      'sap/ui/core/Fragment',
     ],
-    function(BaseController, JSONModel, rowItemDialog) {
+    function(BaseController, JSONModel, rowItemDialog,Fragment) {
       "use strict";
   
       const panelRequestQuery = '/SearchItemResults?';
@@ -26,6 +27,7 @@ var tableDataFormatter = {
         onInit: function() {
           const itemChange = this.getRouter().getRoute("Items");
           itemChange.attachPatternMatched(this._onObjectMatched, this);
+ 
         },
         getPanelSelectionData: function() {
           const selectedItemModel = this.getOwnerComponent().getModel("p1InputDataNames");
@@ -101,6 +103,7 @@ var tableDataFormatter = {
           this.getView().byId("tableSearchField").setValue(null);
           this.getView().byId('rbg3').setSelectedIndex(0);
           this.searchMethodModel = this.getView().getModel("searchMethod");
+          // this.getView().getModel("appView").setProperty("/TotalCartData",'0');
           if (!this.searchMethodModel) {
             this.getRouter().navTo("Apps", {});
             return;
@@ -112,7 +115,12 @@ var tableDataFormatter = {
           that.table = thirdPannelView;
           that.tableData = tableData;
           that.itemDialog = null;
-  
+          for (let index = 0; index < that.tableData.length; index++) {
+            const element = that.tableData[index];
+            element.B_OnHand=element.B_OnHand?parseFloat(element.B_OnHand):element.B_OnHand;
+            element.cartQunt=0;
+            
+          }
           const tableModel = new JSONModel({ tableData });
           thirdPannelView.setModel(tableModel);
   
@@ -224,9 +232,23 @@ var tableDataFormatter = {
             }
           }
         },
+        // onAddToCart:function(oEvent){
+        //   var oSelectedObject=oEvent.getSource().getParent().getParent().getBindingContext().getObject();
+        // },
         onAddToCart:function(oEvent){
-          var oSelectedObject=oEvent.getSource().getParent().getParent().getBindingContext().getObject();
+          debugger;
+          var oData=oEvent.getSource().getParent().getParent().getBindingContext().getObject();
+          var oCartdata=this.getView().getModel("appView").getProperty("/CartData");
+          if(!oCartdata){
+            oCartdata=[];
+          }
+          oCartdata.push(oData);
+          this.getView().getModel("appView").setProperty("/CartData",oCartdata);
+          this.getView().getModel("appView").setProperty("/TotalCartData",oCartdata.length.toString());
+          this.getView().getModel("appView").updateBindings();
+          this.updateShopCartData();
         },
+       
       });
     }
   );

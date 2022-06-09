@@ -11,7 +11,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
      */
     currencyValue: function (sValue) {
       if (!sValue) {
-        return "";
+        return 0;
       }
 
       return parseFloat(sValue).toFixed(2);

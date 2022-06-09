@@ -11,7 +11,7 @@ sap.ui.define([
 	return {
 		callMiddleWare: function (sUrl, sMethod, oPayload,asyncBol) {
 			return new Promise(function (resolve, reject) {
-				asyncBol = asyncBol ? asyncBol : true;
+				asyncBol = asyncBol==='F' ? false : true;
 				var currentDate = new Date();
 				//prefilter for ajax to cancel the duplicate calls
 					// $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
@@ -24,6 +24,9 @@ sap.ui.define([
 				if (!(sUrl && sMethod)) {
 					reject("Invalid parameters passed");
 				}
+				$.ajaxSetup({
+					global: asyncBol,
+				  });
 				// sap.ui.core.BusyIndicator.show();
 				switch (sMethod.toUpperCase()) {
 					case "GET":

@@ -1,10 +1,13 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.Tiles"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<Page title="{i18n>appTitle}" id="idTile" class="sapUiTinyMargin">
-		<headerContent>
-			<Link text="{appView>/User}" press="onUserPress" class="sapUiSmallMarginEnd"/>
+	<Page  id="idTile">
+		<!-- <headerContent>title="{i18n>appTitle}"
+			<Link text="{appView>/User}" press="onUserPress" class="sapUiSmallMarginEnd"/> -->
 			<!-- <Button icon="sap-icon://log" type="Negative" tooltip="Logout" press="onLogOut"/> -->
 			<!-- <Switch customTextOn="Dark" customTextOff="light" tooltip="Change Theme" change="onThemeChange"  ></Switch> -->
+		<!-- </headerContent> -->
+		<headerContent>
+			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
 		</headerContent>
 		<MessageStrip text="{i18n>apps}" type="Information" class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiMediumMarginBottom sapUiMediumMarginTop"></MessageStrip>
 		<Panel>
@@ -21,6 +24,21 @@
 			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>clientList}" id="idClientList" subheader="" press="press">
 				<TileContent>
 					<ImageContent src="sap-icon://customer"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>cart}" id="idCart" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://cart"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>SalesQuotation}" id="idSalesQuotation" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://sales-quote"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>SalesOrder}" id="idSalesOrder" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
+				<TileContent>
+					<ImageContent src="sap-icon://sales-order"/>
 				</TileContent>
 			</GenericTile>
 		</Panel>

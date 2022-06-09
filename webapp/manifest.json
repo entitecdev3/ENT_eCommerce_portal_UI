@@ -147,6 +147,11 @@
 					"pattern": "ClientList/{objectId}",
 					"name": "ClientsListDetail",
 					"target": ["ClientList","ClientListDetail"]
+				},
+				{
+					"pattern": "ShoppingCart",
+					"name": "ShoppingCart",
+					"target": ["ShoppingCart"]
 				}
 			],
 			"targets": {
@@ -185,6 +190,11 @@
 					"viewLevel": 1,
 					"viewId": "ClientListDetail",
 					"controlAggregation": "midColumnPages"
+				},
+				"ShoppingCart": {
+					"viewName": "ShoppingCart",
+					"viewLevel": 1,
+					"viewId": "ShoppingCart"
 				}
 			}
 		}

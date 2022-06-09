@@ -552,6 +552,118 @@ sap.ui.define([
 			}
 			
 		},
-		
+		getEntUserParms:function(){
+			var that=this;
+			if(!that.getModel("appView").getProperty("/U_ENT_PORTAL_PARAMS")){
+				this.middleWare.callMiddleWare("/U_ENT_PORTAL_PARAMS", "GET", {})
+				.then(function (data, status, xhr) {
+					that.getModel("appView").setProperty("/U_ENT_PORTAL_PARAMS",data);
+					// that.getModel("appView").setProperty("/ClientList",data);
+				})
+				.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+				});
+			}
+		},
+		onCartPress:function(oEvent){
+			debugger;
+			this.getShopCartData();
+			var oButton = oEvent.getSource(),
+					oView = this.getView();
+  
+			if (!this.cartPopover) {
+			  this.cartPopover = Fragment.load({
+				id: oView.getId(),
+				name: "ent.ui.ecommerce.fragments.CartPopupOver",
+				controller: this
+			  }).then(function(oPopover) {
+				oView.addDependent(oPopover);
+				// oPopover.bindElement("/ProductCollection/0");
+				return oPopover;
+			  });
+			}
+			this.cartPopover.then(function(oPopover) {
+			  oPopover.openBy(oButton);
+			});
+		},
+		onCartCloseButton:function(){
+			this.cartPopover.then(function(oPopover) {
+				oPopover.close();
+			  });
+		},
+		onCartConfirmButton:function(){
+			this.getRouter().navTo("ShoppingCart", {});
+		},
+		onCartItemDelete:function(oEvent){
+			debugger;
+			var oPath=oEvent.getParameter("listItem").getBindingContext("appView").getPath();
+			var oIndex=oPath.split("/")[oPath.split("/").length-1];
+			var oCartData=this.getView().getModel("appView").getProperty("/CartData");
+			oCartData.splice(parseInt(oIndex),1);
+			this.getView().getModel("appView").setProperty("/CartData",oCartData);
+			this.getView().getModel("appView").updateBindings();
+			this.updateShopCartData();
+			oEvent.getSource().getParent().openBy(this.getView().byId("idCartButton"));
+		},
+		getShopCartData:function(oForce){
+			var that=this;
+			if(!that.getModel("appView").getProperty("/CheckoutCart") || oForce){
+				this.middleWare.callMiddleWare("/CheckoutCart", "GET", {},'F')
+				.then(function (data, status, xhr) {
+					that.getModel("appView").setProperty("/CheckoutCart",data);
+					if(data.U_CartContent){
+						var oCart=atob(data.U_CartContent);
+						oCart=JSON.parse(oCart);
+						that.getModel("appView").setProperty("/CartData",oCart);
+						that.getModel("appView").setProperty("/TotalCartData",oCart.length.toString());
+						that.tableData = oCart;
+					}
+					// that.getModel("appView").setProperty("/ClientList",data);
+				})
+				.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+				});
+			}
+		},
+		updateShopCartData:function(){
+			var that=this;
+			if(that.getModel("appView").getProperty("/CartData")){
+				var oCartData=that.getModel("appView").getProperty("/CartData");
+				var oCartString=JSON.stringify(oCartData);
+				var oPaylaod= {
+					"cartData": btoa(oCartString)
+				};
+				// btoa(JSONStringify(oCartData));
+				console.log(oPaylaod)
+				// buf.toString('base64')
+				// Buffer.from(str, 'base64')
+				this.middleWare.callMiddleWare("/updateCart", "PUT",oPaylaod,'F')
+				.then(function (data, status, xhr) {
+					that.getShopCartData(true);
+					// that.getModel("appView").setProperty("/CheckoutCart",data);
+					// that.getModel("appView").setProperty("/ClientList",data);
+				})
+				.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+				});
+			}
+		},
+		clearShopCartData:function(){
+			var that=this;
+			if(that.getModel("appView").getProperty("/CartData")){
+				var oPaylaod= {
+					"cartData": ''
+				};
+				this.middleWare.callMiddleWare("/updateCart", "PUT",oPaylaod)
+				.then(function (data, status, xhr) {
+					that.getShopCartData(true);
+					// that.getModel("appView").setProperty("/CheckoutCart",data);
+					// that.getModel("appView").setProperty("/ClientList",data);
+				})
+				.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+				});
+			}
+		},
 	});
 });

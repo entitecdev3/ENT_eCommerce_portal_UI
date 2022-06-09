@@ -9,7 +9,9 @@
     <headerContent>
       <core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
     </headerContent>
-    <Table id="thirdPannelTable" sticky="HeaderToolbar,ColumnHeaders" items="{path: '/tableData'}" select="rowPress" inset="false" noDataText="Nessun articolo trovato con i criteri scelti" mode="MultiSelect" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="false" class="sapUiResponsiveMargin" >
+    <Table id="thirdPannelTable" sticky="HeaderToolbar,ColumnHeaders" items="{path: '/tableData'}" select="rowPress" 
+    inset="false" noDataText="Nessun articolo trovato con i criteri scelti" mode="None" showSeparators="All" 
+    growing="true" growingThreshold="20" growingScrollToLoad="false" class="sapUiResponsiveMargin" >
       <headerToolbar>
         <OverflowToolbar class="thirdPanelToolbar">
             <content>
@@ -29,6 +31,8 @@
                 <RadioButton id="RB3-2" text="{i18n>thisSoc}" />
                 <RadioButton id="RB3-3" text="{i18n>allSoc}" />
             </RadioButtonGroup>
+            <ToolbarSpacer/>
+            <!-- <Button icon="sap-icon://cart" press="onCartPress"/> -->
             </content>
         </OverflowToolbar>
       </headerToolbar>
@@ -66,6 +70,12 @@
         <Column width="8rem" hAlign="Left" vAlign="Top" mergeDuplicates="false">
           <header>
             <Text text="{i18n>qtaAllSoc}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+          </header>
+          <footer/>
+        </Column>
+        <Column width="9rem" hAlign="Left" vAlign="Middle" visible="{config>/showFeaturesInDevelopment}" mergeDuplicates="false">
+          <header>
+            <Text text="{i18n>AddToCart}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
           </header>
           <footer/>
         </Column>
@@ -129,6 +139,12 @@
                 }"
                 active="true" />
             </VBox>
+            <HBox>
+              <StepInput value="{cartQunt}" width="7rem" id="idStepInput" textAlign="Center" min="0" max="{
+                path: 'B_OnHand'
+              }" class=""/>
+              <Button icon="sap-icon://cart-4" enabled="{=${cartQunt}>0?true:false}" press="onAddToCart"  class="sapUiTinyMarginBegin"/>
+            </HBox>
           </cells>
         </ColumnListItem>
       </items>

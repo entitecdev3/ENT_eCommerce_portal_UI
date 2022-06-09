@@ -33,11 +33,12 @@
                 <OverflowToolbarLayoutData priority="NeverOverflow" />
             </layoutData>
         </Title>
-        <!-- <Button text="{op>/loggedUserName}" type="Transparent">
+        <Button id="idCartButton" icon="sap-icon://cart" text="{i18n>cart}" tooltip="{appView>/TotalCartData}" visible="{config>/showFeaturesInDevelopment}" press="onCartPress" type="Transparent">
+            <!-- <core:TooltipBase text="{appView>/TotalCartData}" /> -->
             <layoutData>
                 <OverflowToolbarLayoutData priority="NeverOverflow" />
             </layoutData>
-        </Button> -->
+        </Button>
         <!-- <Button icon="sap-icon://visits" press="onUserPress"></Button> -->
         <Link text="{appView>/User}"  press="onUserPress">
             <!-- <layoutData>

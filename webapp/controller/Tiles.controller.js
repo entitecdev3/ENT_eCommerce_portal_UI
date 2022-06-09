@@ -1,7 +1,9 @@
 sap.ui.define([
 	"./BaseController",
+	"sap/ui/model/json/JSONModel",
 ], function(
-	BaseController
+	BaseController,
+	JSONModel
 ) {
 	"use strict";
 
@@ -11,6 +13,16 @@ sap.ui.define([
 			this.getRouter()
             .getRoute("tiles")
             .attachPatternMatched(this._matchedHandler, this);
+		},
+		onAfterRendering:function(){
+			this.getView().byId('navLeftBtn').setVisible(false);
+			this.getView().byId('navBackBtn').setVisible(false);
+			let oTitle=this.getView().getModel('i18n').getProperty('appTitle');
+			const toolbarTitle =oTitle;
+			const headerTitle = new JSONModel({ toolbarTitle });
+			this.getView().byId('toolbarTitle').setModel(headerTitle);
+			this.getView().byId('selectedItemHeader').updateBindings();
+			// this.callValueHelps();
 		},
 		_matchedHandler:function(){
 			this.getModel("appView").setProperty("/layout", "OneColumn");
@@ -29,6 +41,9 @@ sap.ui.define([
 			}
 			if(id==="idClientList"){
 				this._oRouter.navTo("ClientList");
+			}
+			if(id==="idCart"){
+				this._oRouter.navTo("ShoppingCart");
 			}
 		},
 		visibleFunc:function(value){

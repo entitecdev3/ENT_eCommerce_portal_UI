@@ -1,0 +1,142 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" 	xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+ controllerName="ent.ui.ecommerce.controller.ShoppingCart" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page>
+		<headerContent>
+			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
+		</headerContent>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm id="SimpleFormToolbar"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false"
+					ariaLabelledBy="Title1" >
+					<!-- <f:toolbar>
+						<Toolbar id="TB1">
+							<Title id="Title1" text="Address"/>
+							<ToolbarSpacer />
+							<Button icon="sap-icon://settings"/>
+							<Button icon="sap-icon://drop-down-list" />
+						</Toolbar>
+					</f:toolbar> -->
+					<f:content>
+						<!-- <Toolbar ariaLabelledBy="Title2">
+							<Title id="Title2" text="Office"/>
+							<ToolbarSpacer />
+							<Button icon="sap-icon://settings"/>
+						</Toolbar> -->
+						<RadioButtonGroup id="rbg2" columns="2" selectedIndex="0" select="onRadioButtonSelect" class="sapUiMediumMarginBottom">
+							<RadioButton id="RB2-2" text="{i18n>SalesQuotation}"/>
+							<RadioButton id="RB2-1" text="{i18n>SalesOrder}" />
+							<!-- <RadioButton id="RB2-3" text="Option 3" /> -->
+						</RadioButtonGroup>
+						<Label text="{i18n>Client}" required="true" />
+						<ComboBox id="idCartCustomers" showSecondaryValues="true" filterSecondaryValues= "true"  items="{
+							path: 'appView>/ClientList',
+							sorter: { path: 'CardCode'}
+							}" 	showClearIcon="true"
+							selectedKey="{appView>/CardCode}">
+							<!-- sorter: { path: 'CardName',
+							group: true },
+						length: 500 -->
+							<!-- <core:Item text="{appView>CardName}"  key="{appView>CardCode}" /> -->
+							<core:ListItem key="{appView>CardCode}" text="{appView>CardName}" additionalText = "{appView>CardCode}"/>
+						</ComboBox>
+						<Label text="{i18n>dueDate}" required="true" />
+							<DatePicker
+							displayFormat="dd/MM/yyyy"
+							width="auto" dateValue="{appView>/DocDueDate}"/>
+						
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<Table id="idCartViewTable" autoPopinMode="true" contextualWidth="Auto" items="{path: 'appView>/CartData'}">
+			<!-- <headerToolbar>
+				<OverflowToolbar>
+					<Title text="Products" level="H2" />
+					<ToolbarSpacer />
+				</OverflowToolbar>
+			</headerToolbar> -->
+			<columns>
+				<Column width="40%"  importance="High">
+					<Text text="{i18n>ItemCode}" width="auto" wrapping="true" />
+				</Column>
+				<!-- <Column width="auto" importance="High" demandPopin="true">
+					<Text text="{i18n>ItemName}" />
+				</Column> -->
+				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
+					<Text text="{i18n>Qunatity}" />
+				</Column>
+				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
+					<Text text="{i18n>ListPrice}" />
+				</Column>
+				<Column width="20%" importance="High" hAlign="Center" demandPopin="true">
+					<Text text="{i18n>discount}" />
+				</Column>
+				<Column width="20%"  hAlign="Center" importance="High" demandPopin="true">
+					<Text text="{i18n>FinalPrice}" />
+				</Column>
+				<Column  width="10%" hAlign="Right" importance="High" demandPopin="true">
+					<Text text="{i18n>LineTotal}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" class="sapUiSmallMargin">
+					<cells>
+						<ObjectIdentifier title="{appView>ItemName}" text="{appView>ItemCode}" titleActive="true" titlePress="rowItemPress"  />
+						<!-- <Text text="{appView>ItemName}"  /> -->
+						<!-- <Text text="{appView>cartQunt}" /> -->
+						<StepInput id="idStepInput" value="{appView>cartQunt}" textAlign="Center" change="onQuantiyChange"></StepInput>
+						<Text text="{path:'appView>Prz',formatter:'.formatter.currencyValue'}" />
+						<Input value="{appView>discount}" type="Number" textAlign="Center" change="calculateFinalPrice"></Input>
+						<Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input>
+						<ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" />
+						<!-- <Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<Toolbar height="7rem"  class="sapUiSmallMargin">
+			<HBox>
+			<Title  text="{i18n>comments}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+			<TextArea width="18rem"  height="100%" value="{appView>/comment}"></TextArea>
+			</HBox>	
+			<ToolbarSpacer />
+			<VBox >
+				<HBox>
+					<Title  text="{i18n>DocTotal}" class="sapUiSmallMarginEnd"/>
+					<Text text="{path:'appView>/TotalDoc',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
+				</HBox>
+				<HBox>
+					<Title  text="{i18n>discount}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+					<Input value="{appView>/TotalDiscount}" change="overAllDicount"/>
+				</HBox>
+				<HBox>
+					<Title  text="{i18n>FinalDocTotal}" class="sapUiSmallMarginEnd"/>
+					<Text text="{path:'appView>/FinalTotal',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
+				</HBox>
+			</VBox>
+		</Toolbar>
+		</content>
+		<footer>
+			<OverflowToolbar>
+			  <!-- <HBox id="p2footer" width="100%" justifyContent="End"> </HBox> -->
+			  <ToolbarSpacer/>
+			  <Button id="idSalesCreate" class="p2btn1 p2btnFirst"  icon="sap-icon://create" press="onCartSubmit"/>
+			</OverflowToolbar>
+		  </footer>
+	</Page>
+</mvc:View>

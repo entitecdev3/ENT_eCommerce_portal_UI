@@ -216,14 +216,21 @@
     width: 15rem !important;
   }
   
+
   .p2btn {
     width: 8.5rem;
   }
+  /* .p2btn1 {
+    width: 8.5rem;
+  }
+   */
   
   .p2btn span span bdi {
     font-size: 1.5rem !important;
   }
-  
+  .p2btn1 span span bdi {
+    font-size: 1.5rem !important;
+  }
   .p2btnFirst {
     margin-right: 1rem;
   }
@@ -245,6 +252,6 @@
     }
   }
 
-  .inputBackColor, .sapMInputBaseInner {
+  .inputBackColor, .sapMInputBaseInner{
     background-color: rgba(199, 201, 199, 0.515);
   }
