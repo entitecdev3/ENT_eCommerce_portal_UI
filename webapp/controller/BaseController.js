@@ -540,7 +540,8 @@ sap.ui.define([
 		},
 		getClientList:function(){
 			var that=this;
-			if(!that.getModel("appView").getProperty("/ClientList")){
+			// if(!that.getModel("appView").getProperty("/ClientList"))
+			{
 				this.middleWare.callMiddleWare("/ClientList", "GET", {})
 				.then(function (data, status, xhr) {
 					that.getModel("appView").setProperty("/ClientListLength",data.length);
