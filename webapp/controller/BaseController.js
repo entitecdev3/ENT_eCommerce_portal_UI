@@ -615,9 +615,12 @@ sap.ui.define([
 					if(data.U_CartContent){
 						var oCart=atob(data.U_CartContent);
 						oCart=JSON.parse(oCart);
-						that.getModel("appView").setProperty("/CartData",oCart);
-						that.getModel("appView").setProperty("/TotalCartData",oCart.length.toString());
-						that.tableData = oCart;
+						that.getModel("appView").setProperty("/DocDueDate",oCart.Date);
+						that.getModel("appView").setProperty("/CardCode",oCart.Customer);
+						that.getModel("appView").setProperty("/CartSalesQuat",oCart.SalesQuat);
+						that.getModel("appView").setProperty("/CartData",oCart.CartData);
+						that.getModel("appView").setProperty("/TotalCartData",oCart.CartData.length.toString());
+						that.tableData = oCart.CartData;
 					}
 					// that.getModel("appView").setProperty("/ClientList",data);
 				})
@@ -626,11 +629,23 @@ sap.ui.define([
 				});
 			}
 		},
-		updateShopCartData:function(){
+		updateShopCartData:function(date,customer,salesQuatation,oComment){
 			var that=this;
 			if(that.getModel("appView").getProperty("/CartData")){
 				var oCartData=that.getModel("appView").getProperty("/CartData");
-				var oCartString=JSON.stringify(oCartData);
+				date=date?date:that.getModel("appView").getProperty("/DocDueDate");
+				customer=customer?customer:that.getModel("appView").getProperty("/CardCode");
+				salesQuatation=salesQuatation?salesQuatation:that.getModel("appView").getProperty("/CartSalesQuat");
+				oComment=oComment?oComment:that.getModel("appView").getProperty("/comment");
+				var aPaylaod={
+					"Date":date,
+					"Customer":customer,
+					"SalesQuat":salesQuatation,
+					"Comment":oComment,
+					"CartData":oCartData
+				};
+				var oCartString=JSON.stringify(aPaylaod);
+
 				var oPaylaod= {
 					"cartData": btoa(oCartString)
 				};
