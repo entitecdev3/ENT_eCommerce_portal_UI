@@ -14,7 +14,7 @@
 			<VBox class="sapUiSmallMargin">
 				<f:SimpleForm id="SimpleFormToolbar"
 					editable="true"
-					layout="ResponsiveGridLayout"
+					layout="ColumnLayout"
 					labelSpanXL="4"
 					labelSpanL="3"
 					labelSpanM="4"
@@ -25,8 +25,8 @@
 					emptySpanM="0"
 					emptySpanS="0"
 					columnsXL="2"
-					columnsL="1"
-					columnsM="1"
+					columnsL="2"
+					columnsM="2"
 					singleContainerFullSize="false"
 					ariaLabelledBy="Title1" >
 					<!-- <f:toolbar>
