@@ -167,7 +167,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         
       
         var oFormat = sap.ui.core.format.DateFormat.getDateInstance({
-          pattern: "MM/dd/yyyy",
+          pattern: "dd/MM/yyyy",
         });
         // var dateFormat=sap.ui.core.format.DateFormat()
         // var dateFormatted = dateFormat.format(oDate);

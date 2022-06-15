@@ -1,0 +1,59 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		id="viewSettingsDialog"
+		sortDescending="true"
+		confirm="onConfirmViewSettingsDialog">
+		<!-- <sortItems>
+			<ViewSettingsItem
+				text="{i18n>masterSort1}"
+				key="DocDate "
+				selected="true"/>
+		</sortItems> -->
+		<filterItems>
+			<ViewSettingsFilterItem
+				id="filterItems1"
+				text="{i18n>Date}"
+				multiSelect="false">
+				<items>
+					<ViewSettingsItem
+						id="viewFilter11"
+						text="{i18n>last1month}"
+						key="1month"/>
+					<ViewSettingsItem
+						id="viewFilter21"
+						text="{i18n>last3month}"
+						key="3month" selected="true"/>
+						<ViewSettingsItem
+						id="viewFilter31"
+						text="{i18n>last6month}"
+						key="6month"/>
+						<ViewSettingsItem
+						id="viewFilter311"
+						text="{i18n>last12month}"
+						key="12month"/>
+					</items>
+				</ViewSettingsFilterItem>
+			<!-- <ViewSettingsFilterItem
+				id="filterItems"
+				text="{i18n>masterFilterName2}"
+				multiSelect="false">
+				<items>
+					<ViewSettingsItem
+						id="viewFilter1"
+						text="{i18n>masterFilter1}"
+						key="open"/>
+					<ViewSettingsItem
+						id="viewFilter2"
+						text="{i18n>masterFilter2}"
+						key="close"/>
+						<ViewSettingsItem
+						id="viewFilter3"
+						text="{i18n>masterFilter3}"
+						key="cancel"/>
+				</items>
+			</ViewSettingsFilterItem> -->
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

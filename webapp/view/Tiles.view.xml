@@ -31,12 +31,12 @@
 					<ImageContent src="sap-icon://cart"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>SalesQuotation}" id="idSalesQuotation" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>TileSalesQuotation}" id="idSalesQuotation" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
 				<TileContent>
 					<ImageContent src="sap-icon://sales-quote"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>SalesOrder}" id="idSalesOrder" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>TileSalesOrder}" id="idSalesOrder" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
 				<TileContent>
 					<ImageContent src="sap-icon://sales-order"/>
 				</TileContent>

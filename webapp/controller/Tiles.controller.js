@@ -45,6 +45,12 @@ sap.ui.define([
 			if(id==="idCart"){
 				this._oRouter.navTo("ShoppingCart");
 			}
+			if(id==="idSalesQuotation"){
+				this._oRouter.navTo("SalesQuotation");
+			}
+			if(id==="idSalesOrder"){
+				this._oRouter.navTo("SalesOrder");
+			}
 		},
 		visibleFunc:function(value){
 			

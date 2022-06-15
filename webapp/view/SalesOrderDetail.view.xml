@@ -1,0 +1,90 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m" controllerName="ent.ui.ecommerce.controller.SalesOrderDetail"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page>
+		<headerContent>
+			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
+		</headerContent>
+		<content>
+			<ObjectHeader titleLevel="Auto"  title="{i18n>Businessname} : {appView>/SalesOrderDetail/CardName}" backgroundDesign="Transparent"
+				intro="{i18n>Clientcode} : {appView>/SalesOrderDetail/CardCode}" fullScreenOptimized="true"
+				 condensed="false" number="{path:'appView>/SalesOrderDetail/DocTotal',formatter:'.formatter.conHourFormatter'}" 
+				 numberUnit="{i18n>DocTotal}" 	class="sapUiResponsivePadding--header">
+				 <!-- number="{path:'appView>/ClientDetails/AdditionalID'}" numberUnit="{i18n>TaxIDcode}" -->  
+				<!-- <ObjectIdentifier/> -->
+				<attributes>
+					<!-- <ObjectAttribute title="Richidente" text="{RequesterName}" /> -->
+					<!-- <ObjectAttribute  title="{i18n>accountbalance}" text="{appView>/ClientDetails/CurrentAccountBalance}" /> -->
+					<ObjectAttribute title="{i18n>comments}"  text="{path:'appView>/SalesOrderDetail/Comments'}"  />
+					<!-- <ObjectAttribute title="{i18n>TaxIDcode}" text="{path:'appView>/SalesOrderDetail/AdditionalID'}" /> -->
+				</attributes>
+				<statuses>
+					<!-- <firstStatus> -->
+						<!-- <ObjectStatus title="{i18n>accountbalance}" state="None" text="{path:'appView>/ClientDetails/CurrentAccountBalance',formatter:'.formatter.conHourFormatter'}" /> -->
+						<ObjectStatus title="{i18n>dueDate}" state="None" text="{path:'appView>/SalesOrderDetail/DocDueDate',formatter:'.formatter.conDateFormatter'}" />
+						<ObjectStatus title="{i18n>docDiscount}" state="None" text="{path:'appView>/SalesOrderDetail/TotalDiscount',formatter:'.formatter.conHourFormatter'}" />
+						<!-- <ObjectStatus title="{i18n>TaxIDcode}" state="None" text="{path:'appView>/ClientDetails/AdditionalID'}" /> -->
+						
+					<!-- </firstStatus> -->
+					</statuses>
+			</ObjectHeader>
+			<Table id="idSalesQuotationTable" autoPopinMode="true" contextualWidth="Auto" items="{path: 'appView>/SalesOrderDetail/DocumentLines'}"
+				updateFinished="onCartTableUpdate">
+			<!-- <headerToolbar>
+				<OverflowToolbar>
+					<Title text="Products" level="H2" />
+					<ToolbarSpacer />
+				</OverflowToolbar>
+			</headerToolbar> -->
+			<columns>
+				<Column width="40%"  importance="High">
+					<Text text="{i18n>ItemCode}" width="auto" wrapping="true" />
+				</Column>
+				<!-- <Column width="auto" importance="High" demandPopin="true">
+					<Text text="{i18n>ItemName}" />
+				</Column> -->
+				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
+					<Text text="{i18n>Qunatity}" />
+				</Column>
+				<Column width="20%" importance="High" hAlign="Center" demandPopin="true">
+					<Text text="{i18n>discount}" />
+				</Column>
+				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
+					<Text text="{i18n>FinalPrice}" />
+				</Column>
+				
+				<!-- <Column width="20%"  hAlign="Center" importance="High" demandPopin="true">
+					<Text text="{i18n>FinalPrice}" />
+				</Column> -->
+				<!-- <Column  width="10%" hAlign="Right" importance="High" demandPopin="true">
+					<Text text="{i18n>LineTotal}" />
+				</Column> -->
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" class="sapUiSmallMargin">
+					<cells>
+						<ObjectIdentifier title="{appView>ItemDescription}" text="{appView>ItemCode}" titleActive="false" titlePress="rowItemPress"  />
+						<!-- <Text text="{appView>ItemName}"  /> -->
+						<!-- <Text text="{appView>cartQunt}" /> -->
+						<Text text="{appView>Quantity}" textAlign="Center" ></Text>
+						<Text text="{appView>DiscountPercent}" textAlign="Center"></Text>
+						<Text text="{path:'appView>Price',formatter:'.formatter.currencyValue'}" />
+						
+						<!-- <Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input> -->
+						<!-- <ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" /> -->
+						<!-- <Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		</content>
+		<footer>
+			<!-- <OverflowToolbar>
+			  <HBox id="p2footer" width="100%" justifyContent="End">
+				<Button text="{i18n>Edit}" class="p2btn p2btnFirst" visible="{=${appView>/EditMode}?false:true}" type="Emphasized" press="onEditModePress" />
+				<Button text="{i18n>Update}" class="p2btn p2btnSecond" type="Accept" visible="{appView>/EditMode}" press="onUpdatePress" />
+				<Button text="{i18n>cancel}" class="p2btn p2btnSecond" type="Ghost" visible="{appView>/EditMode}" press="onEditModeCancel" />
+			  </HBox>
+			</OverflowToolbar> -->
+		  </footer>
+	</Page>
+</mvc:View>

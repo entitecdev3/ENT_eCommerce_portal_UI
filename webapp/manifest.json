@@ -152,6 +152,26 @@
 					"pattern": "ShoppingCart",
 					"name": "ShoppingCart",
 					"target": ["ShoppingCart"]
+				},
+				{
+					"pattern": "SalesQuotation",
+					"name": "SalesQuotation",
+					"target": ["SalesQuotation"]
+				},
+				{
+					"pattern": "SalesOrder",
+					"name": "SalesOrder",
+					"target": ["SalesOrder"]
+				},
+				{
+					"pattern": "SalesQuotation/{objectId}",
+					"name": "SalesQuotationDetail",
+					"target": ["SalesQuotation","SalesQuotationDetail"]
+				},
+				{
+					"pattern": "SalesOrder/{objectId}",
+					"name": "SalesOrderDetail",
+					"target": ["SalesOrder","SalesOrderDetail"]
 				}
 			],
 			"targets": {
@@ -195,6 +215,28 @@
 					"viewName": "ShoppingCart",
 					"viewLevel": 1,
 					"viewId": "ShoppingCart"
+				},
+				"SalesQuotation": {
+					"viewName": "SalesQuotation",
+					"viewLevel": 1,
+					"viewId": "SalesQuotation"
+				},
+				"SalesOrder": {
+					"viewName": "SalesOrder",
+					"viewLevel": 1,
+					"viewId": "SalesOrder"
+				},
+				"SalesQuotationDetail": {
+					"viewName": "SalesQuotationDetail",
+					"viewLevel": 1,
+					"viewId": "SalesQuotationDetail",
+					"controlAggregation": "midColumnPages"
+				},
+				"SalesOrderDetail": {
+					"viewName": "SalesOrderDetail",
+					"viewLevel": 1,
+					"viewId": "SalesOrderDetail",
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}

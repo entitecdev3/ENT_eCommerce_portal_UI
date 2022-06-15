@@ -6,6 +6,11 @@
 			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
 		</headerContent>
 		<content>
+			<RadioButtonGroup id="rbg2" columns="2" selectedIndex="0" select="onRadioButtonSelect" class="">
+				<RadioButton id="RB2-2" text="{i18n>SalesQuotation}"/>
+				<RadioButton id="RB2-1" text="{i18n>SalesOrder}" />
+				<!-- <RadioButton id="RB2-3" text="Option 3" /> -->
+			</RadioButtonGroup>
 			<VBox class="sapUiSmallMargin">
 				<f:SimpleForm id="SimpleFormToolbar"
 					editable="true"
@@ -38,11 +43,8 @@
 							<ToolbarSpacer />
 							<Button icon="sap-icon://settings"/>
 						</Toolbar> -->
-						<RadioButtonGroup id="rbg2" columns="2" selectedIndex="0" select="onRadioButtonSelect" class="sapUiMediumMarginBottom">
-							<RadioButton id="RB2-2" text="{i18n>SalesQuotation}"/>
-							<RadioButton id="RB2-1" text="{i18n>SalesOrder}" />
-							<!-- <RadioButton id="RB2-3" text="Option 3" /> -->
-						</RadioButtonGroup>
+						
+						<!-- <core:Title text="" /> -->
 						<Label text="{i18n>Client}" required="true" />
 						<ComboBox id="idCartCustomers" showSecondaryValues="true" filterSecondaryValues= "true"  items="{
 							path: 'appView>/ClientList',
@@ -55,6 +57,7 @@
 							<!-- <core:Item text="{appView>CardName}"  key="{appView>CardCode}" /> -->
 							<core:ListItem key="{appView>CardCode}" text="{appView>CardName}" additionalText = "{appView>CardCode}"/>
 						</ComboBox>
+						<!-- <core:Title text="" /> -->
 						<Label text="{i18n>dueDate}" required="true" />
 							<DatePicker
 							displayFormat="dd/MM/yyyy"
