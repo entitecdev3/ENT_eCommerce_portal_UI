@@ -26,7 +26,7 @@
 					<ImageContent src="sap-icon://customer"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>cart}" id="idCart" subheader="" visible="{config>/showFeaturesInDevelopment}" press="press">
+			<GenericTile class="sapUiSmallMarginBegin sapUiSmallMarginBottom tileLayout" header="{i18n>cart}" id="idCart" subheader="" visible="false" press="press">
 				<TileContent>
 					<ImageContent src="sap-icon://cart"/>
 				</TileContent>

@@ -213,7 +213,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         data = parseFloat(data);
         var oFormatOptions = {
           minIntegerDigits: 1,
-          maxIntegerDigits: 5,
+          maxIntegerDigits: 15,
           minFractionDigits: 2,
           maxFractionDigits: 4
         };

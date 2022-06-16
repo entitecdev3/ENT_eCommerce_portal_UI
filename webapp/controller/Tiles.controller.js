@@ -13,6 +13,7 @@ sap.ui.define([
 			this.getRouter()
             .getRoute("tiles")
             .attachPatternMatched(this._matchedHandler, this);
+			// this.getRouter().switched(function(oEvent){debugger;},this)
 		},
 		onAfterRendering:function(){
 			this.getView().byId('navLeftBtn').setVisible(false);

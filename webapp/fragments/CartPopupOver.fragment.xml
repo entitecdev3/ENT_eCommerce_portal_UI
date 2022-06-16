@@ -12,7 +12,7 @@
 				 	growing="true" growingScrollToLoad="true">
 				<items>
 					<ObjectListItem 
-						 title="{i18n>ItemName}: {path:'appView>ItemName'}"
+						 title="{path:'appView>ItemName'}"
 							intro="{i18n>ItemCode}: {path:'appView>ItemCode'}" >
 						 <!-- highlightText="title" highlight="Indication02" -->
 						<firstStatus>

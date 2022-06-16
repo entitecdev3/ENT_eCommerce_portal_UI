@@ -6,7 +6,7 @@
 			<core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
 		</headerContent>
 		<content>
-			<RadioButtonGroup id="rbg2" columns="2" selectedIndex="0" select="onRadioButtonSelect" class="">
+			<RadioButtonGroup id="rbg2" columns="2" selectedIndex="{=${appView>/CartSalesQuat}?${appView>/CartSalesQuat}:1}" select="onRadioButtonSelect" class="">
 				<RadioButton id="RB2-2" text="{i18n>SalesQuotation}"/>
 				<RadioButton id="RB2-1" text="{i18n>SalesOrder}" />
 				<!-- <RadioButton id="RB2-3" text="Option 3" /> -->
@@ -50,7 +50,8 @@
 							path: 'appView>/ClientList',
 							sorter: { path: 'CardCode'}
 							}" 	showClearIcon="true"
-							selectedKey="{appView>/CardCode}">
+							selectedKey="{appView>/CardCode}"
+							change="cartUpdate">
 							<!-- sorter: { path: 'CardName',
 							group: true },
 						length: 500 -->
@@ -60,8 +61,10 @@
 						<!-- <core:Title text="" /> -->
 						<Label text="{i18n>dueDate}" required="true" />
 							<DatePicker
+							id="idCartDueDate"
 							displayFormat="dd/MM/yyyy"
-							width="auto" dateValue="{appView>/DocDueDate}"/>
+							width="auto" dateValue="{path:'appView>/DocDueDate',formatter:'.foramtDatePicker'}"
+							change="cartUpdate"/>
 						
 					</f:content>
 				</f:SimpleForm>
@@ -81,7 +84,7 @@
 				<!-- <Column width="auto" importance="High" demandPopin="true">
 					<Text text="{i18n>ItemName}" />
 				</Column> -->
-				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
+				<Column width="22%"  minScreenWidth="3.5rem"  importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>Qunatity}" />
 				</Column>
 				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
@@ -90,7 +93,7 @@
 				<Column width="20%" importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>discount}" />
 				</Column>
-				<Column width="20%"  hAlign="Center" importance="High" demandPopin="true">
+				<Column width="10%"  hAlign="Center" importance="High" demandPopin="true">
 					<Text text="{i18n>FinalPrice}" />
 				</Column>
 				<Column  width="10%" hAlign="Right" importance="High" demandPopin="true">
@@ -113,7 +116,95 @@
 				</ColumnListItem>
 			</items>
 		</Table>
-		<Toolbar height="7rem"  class="sapUiSmallMargin">
+		<!-- <Panel>
+		<FlexBox
+			height="100px"
+			alignItems="Center"
+			justifyContent="Start" 
+			width="100%">
+			<Title  text="{i18n>comments}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+			<TextArea width="80%"  height="100%" value="{appView>/comment}"></TextArea>
+		</FlexBox>
+		<FlexBox
+			height="100px"
+			alignItems="End"
+			width="100%"
+			justifyContent="End">
+			<VBox >
+				<HBox>
+					<Title  text="{i18n>DocTotal}" class="sapUiSmallMarginEnd"/>
+					<Text text="{path:'appView>/TotalDoc',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
+				</HBox>
+				<HBox>
+					<Title  text="{i18n>discount}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+					<Input value="{appView>/TotalDiscount}" change="overAllDicount"/>
+				</HBox>
+				<HBox>
+					<Title  text="{i18n>FinalDocTotal}" class="sapUiSmallMarginEnd"/>
+					<Text text="{path:'appView>/FinalTotal',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
+				</HBox>
+			</VBox>
+		</FlexBox>
+		</Panel> -->
+		<VBox class="sapUiSmallMargin">
+			<f:Form id="FormDisplay480_12120Dual"
+				editable="true">
+				<!-- <f:title>
+					<core:Title text="Address" />
+				</f:title> -->
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="3"
+						labelSpanL="2"
+						labelSpanM="2"
+						labelSpanS="12"
+						adjustLabelSpan="true"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="2"
+						singleContainerFullSize="true" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title="">
+						<f:formElements>
+							<f:FormElement label="{i18n>comments}">
+								<f:fields  >
+								<!-- <HBox width="100%"> -->
+									<!-- <Title   text="{i18n>comments}" class="sapUiSmallMarginTop"/> -->
+									<TextArea  value="{appView>/comment}" ></TextArea>
+								<!-- </HBox> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer title="">
+						<f:formElements>
+							<f:FormElement label="{i18n>DocTotal}">
+								<f:fields>
+										<!-- <Title  text="{i18n>comments}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/> -->
+									<Text text="{path:'appView>/TotalDoc',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>discount}">
+								<f:fields>
+									<Input value="{appView>/TotalDiscount}" change="overAllDicount"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>FinalDocTotal}">
+								<f:fields>
+									<Text text="{path:'appView>/FinalTotal',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<!-- <Toolbar height="7rem"  class="sapUiSmallMargin">
 			<HBox>
 			<Title  text="{i18n>comments}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
 			<TextArea width="36rem"  height="100%" value="{appView>/comment}"></TextArea>
@@ -133,13 +224,14 @@
 					<Text text="{path:'appView>/FinalTotal',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
 				</HBox>
 			</VBox>
-		</Toolbar>
+		</Toolbar> -->
 		</content>
 		<footer>
 			<OverflowToolbar>
 			  <!-- <HBox id="p2footer" width="100%" justifyContent="End"> </HBox> -->
 			  <ToolbarSpacer/>
 			  <Button id="idSalesCreate" class="p2btn1 p2btnFirst"  icon="sap-icon://create" press="onCartSubmit"/>
+			  <Button id="idSalesDraft" class="p2btn1 p2btnFirst"  icon="sap-icon://vds-file" press="onCartDraft" text="{i18n>Darft}"/>
 			</OverflowToolbar>
 		  </footer>
 	</Page>

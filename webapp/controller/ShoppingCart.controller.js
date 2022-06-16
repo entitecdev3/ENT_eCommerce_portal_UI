@@ -45,6 +45,13 @@ sap.ui.define([
 				// A case-insensitive 'string contains' filter
 				return oItem.getText().match(new RegExp(sTerm, "i")) || oItem.getKey().match(new RegExp(sTerm, "i"));
 			});
+			var oRadioIndex=this.getView().getModel("appView").getProperty("/CartSalesQuat");
+			var oMsg=this.getModel("i18n").getProperty("CreateQuotation");
+			this.getView().byId("idSalesCreate").setText(oMsg);
+			if(parseInt(oRadioIndex)===1){
+				var oMsg=this.getModel("i18n").getProperty("CreateOrder");
+				this.getView().byId("idSalesCreate").setText(oMsg);
+			}
 			// that.tableData =this.getModel("appView").getProperty("/CartData");
 			// this.cardCode=oEvent.getParameter("arguments").objectId;	
 			// this.getClientDetails();	
@@ -55,9 +62,20 @@ sap.ui.define([
 		},
 		calculateFinalPrice:function(oEvent){
 			debugger;
+			// this.cartUpdate();
 			var oPath=oEvent.getSource().getParent().getBindingContext("appView").getPath();
 			var oData=this.getView().getModel("appView").getProperty(oPath);
 			if(oData.discount){
+				if(parseFloat(oData.discount) <= 100 && parseFloat(oData.discount) >= -100){
+					oEvent.getSource().getParent().getCells()[3].setValueState('None');
+				}
+				else{
+					oEvent.getSource().getParent().getCells()[3].setValueState('Error');
+					var oMsg=this.getView().getModel("i18n").getProperty("DisError");
+					oEvent.getSource().getParent().getCells()[3].setValueStateText(oMsg);
+					MessageToast.show(oMsg);
+					// return;
+				}
 				oData.finalPrice=parseFloat(oData.Prz)-[parseFloat(oData.Prz)*(parseFloat(oData.discount)/100)] ;
 			}
 
@@ -67,8 +85,25 @@ sap.ui.define([
 		},
 		calculateDicount:function(oEvent){
 			debugger;
+			// this.cartUpdate();
 			var oPath=oEvent.getSource().getParent().getBindingContext("appView").getPath();
 			var oData=this.getView().getModel("appView").getProperty(oPath);
+			var oDisc=[[parseFloat(oData.Prz)-parseFloat(oEvent.getSource().getValue())]/parseFloat(oData.Prz)]*100;
+			// MessageToast.show(oDisc);
+			// if(oDisc<=100 || oDisc>=-100){
+			// 	MessageToast.show("not allowed");
+			// 	return;
+			// }
+			if(oDisc <= 100 && oDisc >= -100){
+				oEvent.getSource().getParent().getCells()[3].setValueState('None');
+			}
+			else{
+				oEvent.getSource().getParent().getCells()[3].setValueState('Error');
+				var oMsg=this.getView().getModel("i18n").getProperty("DisError");
+				oEvent.getSource().getParent().getCells()[3].setValueStateText(oMsg);
+				MessageToast.show(oMsg);
+				// return;
+			}
 			// if(parseFloat(oData.finalPrice)>parseFloat(oData.Prz)){
 			// 	oData.discount=[[parseFloat(oData.finalPrice)-parseFloat(oData.Prz)]/parseFloat(oData.finalPrice)]*100;
 			// }
@@ -83,6 +118,7 @@ sap.ui.define([
 			this.calculateLineTotal(oPath);
 		},
 		calculateLineTotal:function(oPath){
+			// this.cartUpdate();
 			var oData=this.getView().getModel("appView").getProperty(oPath);
 			oData.LineTotal=parseFloat(oData.cartQunt)*parseFloat(oData.finalPrice);
 			this.getView().getModel("appView").setProperty(oPath,oData);
@@ -90,11 +126,13 @@ sap.ui.define([
 			this.calculateFinalTotal();
 		},
 		onQuantiyChange:function(oEvent){
+			// this.cartUpdate();
 			var oPath=oEvent.getSource().getParent().getBindingContext("appView").getPath();
 			this.calculateLineTotal(oPath);
 			
 		},
 		calculateFinalTotal:function(){
+			// this.cartUpdate();
 			var oData=this.getView().getModel("appView").getProperty('/CartData');
 			var sum=0;
 			for (let index = 0; index < oData.length; index++) {
@@ -210,8 +248,18 @@ sap.ui.define([
 				this.middleWare.errorHandler(jqXhr, this);  
 			}.bind(this));
 		},
+		cartUpdate:function(){
+			var oSales=this.getView().byId("rbg2").getSelectedIndex();
+			var oKey=this.getView().byId("idCartCustomers").getSelectedKey();
+			var oDate=this.getView().byId("idCartDueDate").getDateValue();
+			var oComment=this.getView().getModel("appView").getProperty("/comment");
+			var oDocDiscount=this.getView().getModel("appView").getProperty("/TotalDiscount");
+			// var oDocTotal=this.getView().getModel("appView").getProperty("/FinalTotal").toFixed(2);
+			this.updateShopCartData(oDate,oKey,oSales,oComment,oDocDiscount);
+		},
 		onRadioButtonSelect:function(oEvent){
 			debugger;
+			// this.cartUpdate();
 			if(oEvent.getParameter("selectedIndex")===0){
 				var oMsg=this.getModel("i18n").getProperty("CreateQuotation");
 				this.getView().byId("idSalesCreate").setText(oMsg);
@@ -227,9 +275,18 @@ sap.ui.define([
 			// [0].getCells()[3].setValue(0)
 			for (let index = 0; index < oItems.length; index++) {
 				const element = oItems[index];
-				element.getCells()[3].setValue(0);
+				// element.getCells()[3].setValue(0);
 				element.getCells()[3].fireChange();	
 			}
+		},
+		foramtDatePicker:function(oDate){
+			if(oDate){
+				let aDate=new Date(oDate);
+				return aDate;
+			}
+		},
+		onCartDraft:function(){
+			this.cartUpdate();
 		},
 	});
 });

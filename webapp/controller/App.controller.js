@@ -59,7 +59,17 @@ sap.ui.define([
 			$(document).ajaxStop(function(x,y,z){
 				sap.ui.core.BusyIndicator.hide();
 			});
-		}
+			// window.addEventListener('popstate', this);
+
+			// 	const pushUrl = (href) => {
+			// 	debugger;
+			// 	history.pushState({}, '', href);
+			// 	window.dispatchEvent(new Event('popstate'));
+			// };
+		},
+		// onNavigation:function(oEvent){
+		// 	debugger;
+		// },
 
 	});
 });
