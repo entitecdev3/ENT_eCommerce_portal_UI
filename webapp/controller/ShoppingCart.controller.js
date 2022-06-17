@@ -248,14 +248,14 @@ sap.ui.define([
 				this.middleWare.errorHandler(jqXhr, this);  
 			}.bind(this));
 		},
-		cartUpdate:function(){
+		cartUpdate:function(oBusy){
 			var oSales=this.getView().byId("rbg2").getSelectedIndex();
 			var oKey=this.getView().byId("idCartCustomers").getSelectedKey();
 			var oDate=this.getView().byId("idCartDueDate").getDateValue();
 			var oComment=this.getView().getModel("appView").getProperty("/comment");
 			var oDocDiscount=this.getView().getModel("appView").getProperty("/TotalDiscount");
 			// var oDocTotal=this.getView().getModel("appView").getProperty("/FinalTotal").toFixed(2);
-			this.updateShopCartData(oDate,oKey,oSales,oComment,oDocDiscount);
+			this.updateShopCartData(oDate,oKey,oSales,oComment,oDocDiscount,oBusy);
 		},
 		onRadioButtonSelect:function(oEvent){
 			debugger;
@@ -286,7 +286,7 @@ sap.ui.define([
 			}
 		},
 		onCartDraft:function(){
-			this.cartUpdate();
+			this.cartUpdate(true);
 		},
 	});
 });

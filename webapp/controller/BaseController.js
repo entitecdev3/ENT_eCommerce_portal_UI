@@ -631,7 +631,7 @@ sap.ui.define([
 				});
 			}
 		},
-		updateShopCartData:function(date,customer,salesQuatation,oComment,oDocDiscount){
+		updateShopCartData:function(date,customer,salesQuatation,oComment,oDocDiscount,oBusy){
 			var that=this;
 			if(that.getModel("appView").getProperty("/CartData")){
 				var oCartData=that.getModel("appView").getProperty("/CartData");
@@ -657,7 +657,8 @@ sap.ui.define([
 				console.log(oPaylaod)
 				// buf.toString('base64')
 				// Buffer.from(str, 'base64')
-				this.middleWare.callMiddleWare("/updateCart", "PUT",oPaylaod,'F')
+				let abusoBusyoBusyoBusyy=oBusy?'T':'F'
+				this.middleWare.callMiddleWare("/updateCart", "PUT",oPaylaod,oBusy)
 				.then(function (data, status, xhr) {
 					that.getShopCartData(true);
 					// that.getModel("appView").setProperty("/CheckoutCart",data);
