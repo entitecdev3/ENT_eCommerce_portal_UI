@@ -38,8 +38,9 @@ sap.ui.define([
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.cardCode=oEvent.getParameter("arguments").objectId;	
 			this.getSalesQuotationDetail();	
+			this.setCustomerButtonData();
 			// this.getClientProperties();
-			// this.getClientList();
+			this.getClientList();
 			// this.getClientData();
 			this.getView().getModel("appView").setProperty("/EditMode",false);
 		},

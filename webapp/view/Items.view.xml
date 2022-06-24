@@ -4,7 +4,8 @@
 	displayBlock="true"
   xmlns:core="sap.ui.core"
   xmlns="sap.m"
-  xmlns:l="sap.ui.layout">
+  xmlns:l="sap.ui.layout"
+  xmlns:custom="ent.ui.ecommerce.controller.controls">
   <Page class="thirdPanelPage" enableScrolling="false">
     <headerContent>
       <core:Fragment fragmentName="ent.ui.ecommerce.fragments.Toolbar" type="XML" />
@@ -81,8 +82,11 @@
         </Column>
       </columns>
       <items>
-        <ColumnListItem>
-          <cells>
+        <custom:columnListItem backgroundColor="{
+          path: 'ItemCode',
+          formatter: '.formatRowColor'
+        }">
+          <custom:cells>
             <ObjectIdentifier
               title="{ItemName}"
               text="{ItemCode}"
@@ -145,8 +149,8 @@
               }" class=""/>
               <Button icon="sap-icon://cart-4" enabled="{=${cartQunt}>0?true:false}" press="onAddToCart"  class="sapUiTinyMarginBegin"/>
             </HBox>
-          </cells>
-        </ColumnListItem>
+          </custom:cells>
+        </custom:columnListItem>
       </items>
     </Table>
   </Page>

@@ -27,6 +27,10 @@ var tableDataFormatter = {
         onInit: function() {
           const itemChange = this.getRouter().getRoute("Items");
           itemChange.attachPatternMatched(this._onObjectMatched, this);
+          // 
+        },
+        onAfterRendering:function(){
+          this.getShopCartData();
  
         },
         getPanelSelectionData: function() {
@@ -109,6 +113,7 @@ var tableDataFormatter = {
             return;
           }
           this.getTableDataSource();
+          this.setCustomerButtonData();
         },
         getTableData: function(tableData, that) {
           const thirdPannelView = that.getView().byId('thirdPannelTable');
@@ -136,6 +141,21 @@ var tableDataFormatter = {
         },
         getTableDataError: function(err, that) {
           console.log(err);
+        },
+        formatRowColor:function(oQuant){
+          debugger;
+          var oCart=this.getView().getModel("appView").getProperty("/CartData");
+          if(oQuant){
+            var arr = oCart.filter(function (item) {
+              return item.ItemCode ===oQuant;
+          });
+            if(arr.length>0){
+              return 'C0C0C0';
+            }
+            else{
+              // return '00FF00';
+            }
+          }
         },
         buildKeyWordRequestUrl: function() {
           let fullUrl = `${keyWordsSearchQuery}KeyWords=`;

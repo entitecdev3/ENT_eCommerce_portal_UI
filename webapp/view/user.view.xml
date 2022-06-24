@@ -45,6 +45,9 @@
 				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 					<Text text="{i18n>email}" wrapping="true" wrappingType="Hyphenated" />
 				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>LastLogin}" wrappingType="Hyphenated" />
+				</Column>
 				<Column visible="{path:'appView>/authType',formatter:'.formatter.formatVisiblePass'}" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 					<Text text="{i18n>password}" wrappingType="Hyphenated" />
 				</Column>
@@ -69,6 +72,9 @@
 						</VBox> -->
 						<VBox>
 							<Text text="{appView>email}" />
+						</VBox>
+						<VBox>
+							<Text text="{appView>U_ENT_LastLogin}" />
 						</VBox>
 						<VBox>
 							<Button id="idMangerPasswordUpdate" text="{i18n>updatePassword}" press="onUserPasswordChange" />

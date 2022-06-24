@@ -41,6 +41,7 @@ sap.ui.define([
 			this.getClientList();
 			this.getClientData();
 			this.getView().getModel("appView").setProperty("/EditMode",false);
+			this.setCustomerButtonData();
 		},
 	
 		getClientDetails:function(){
@@ -534,5 +535,11 @@ sap.ui.define([
 				that.middleWare.errorHandler(jqXhr,that);
 			});
 		},
+		onOrderAmountPress:function(oEvent){
+			debugger;
+			MessageToast.show("ke baat hai");
+			this.getView().getModel("appView").setProperty("/oSalesClientSearch",this.getView().getModel("appView").getProperty("/ClientDetails/CardCode"));
+			this._oRouter.navTo("SalesOrder");
+		}
 	});
 });

@@ -41,19 +41,26 @@ sap.ui.define([
 			this.getModel("appView").setProperty("/layout", "OneColumn");
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.getSalesOrderList();
-			
+			this.setCustomerButtonData();
+			this.getClientList();
+			var oText=this.getModel("i18n").getProperty("last3month");
+			this.getView().getModel("appView").setProperty("/DateFilter",oText);
 			// this.getUsersData();
 			// this.getCustomData();			
 		},
 		getSalesOrderList:function(oFilter){
 			var that=this;
-			if(!oFilter){
+			if(!oFilter || oFilter.getId()){
 				var d = new Date();
 					d.setMonth(d.getMonth() - 3);
 				let aFilter={};
 				aFilter.DocDate={
 					"start":new Date(),
 					"end":d
+				}
+				if(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer")){
+					// that.getView().byId("searchField").setValue(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode"));
+					aFilter.CardCode=that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode");
 				}
 				oFilter=JSON.stringify(aFilter);
 			}
@@ -62,6 +69,37 @@ sap.ui.define([
 				.then(function (data, status, xhr) {
 					that.getModel("appView").setProperty("/SalesOrderListLength",data.length);
 					that.getModel("appView").setProperty("/SalesOrderList",data);
+					var oSearch=that.getModel("appView").getProperty("/oSalesClientSearch");
+					if(oSearch){
+						that.getView().byId("searchField").setValue(oSearch);
+						var oFilter = new Filter({
+							filters: [
+							  new Filter("CardCode", FilterOperator.Contains, oSearch),
+							  new Filter("CardName", FilterOperator.Contains, oSearch),
+							  // new Filter("MailCity", FilterOperator.Contains, sValue),
+							],
+							and: false,
+						  });
+						  var oBinding = that.getView().byId("idSalesOrderList").getBinding("items");
+						  
+						  oBinding.filter(oFilter);
+
+					}
+					// else if(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer")){
+					// 	that.getView().byId("searchField").setValue(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode"));
+					// 	var oFilter = new Filter({
+					// 		filters: [
+					// 		  new Filter("CardCode", FilterOperator.Contains, that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode")),
+					// 		//   new Filter("CardName", FilterOperator.Contains, oSearch),
+					// 		  // new Filter("MailCity", FilterOperator.Contains, sValue),
+					// 		],
+					// 		and: false,
+					// 	  });
+					// 	  var oBinding = that.getView().byId("idSalesOrderList").getBinding("items");
+						  
+					// 	  oBinding.filter(oFilter);
+					// }
+					// that.getView().byId("searchField").fireLiveChange();
 				})
 				.catch(function (jqXhr, textStatus, errorMessage) {
 				that.middleWare.errorHandler(jqXhr, that);  
@@ -72,11 +110,11 @@ sap.ui.define([
 			var sDialogTab = "filter";
 			if (oEvent.getSource() instanceof sap.m.Button) {
 			  var sButtonId = oEvent.getSource().getId();
-			  if (sButtonId.match("sort")) {
-				sDialogTab = "sort";
-			  } else if (sButtonId.match("group")) {
-				sDialogTab = "group";
-			  }
+			//   if (sButtonId.match("sort")) {
+			// 	sDialogTab = "sort";
+			//   } else if (sButtonId.match("group")) {
+			// 	sDialogTab = "group";
+			//   }
 			}
 			// load asynchronous XML fragment
 			if (!this.byId("viewSettingsDialog")) {
@@ -86,6 +124,7 @@ sap.ui.define([
 				controller: this,
 			  }).then(
 				function (oDialog) {
+					debugger;
 				  // connect dialog to the root view of this component (models, lifecycle)
 				  this.getView().addDependent(oDialog);
 				  oDialog.addStyleClass(
@@ -95,6 +134,7 @@ sap.ui.define([
 				}.bind(this)
 			  );
 			} else {
+				debugger;
 			  this.byId("viewSettingsDialog").open(sDialogTab);
 			}
 		},
@@ -188,5 +228,19 @@ sap.ui.define([
 			  );
 			this.getView().byId("idSalesQuotationList").removeSelections();
 		},
+		onSalesOrderListSearch:function(oEvent){
+			var sValue = oEvent.getParameter("newValue");
+			var oFilter = new Filter({
+			  filters: [
+				new Filter("CardCode", FilterOperator.Contains, sValue),
+				new Filter("CardName", FilterOperator.Contains, sValue),
+				// new Filter("MailCity", FilterOperator.Contains, sValue),
+			  ],
+			  and: false,
+			});
+			var oBinding = this.getView().byId("idSalesOrderList").getBinding("items");
+			
+			oBinding.filter(oFilter);
+		}
 	});
 });

@@ -14,7 +14,7 @@
 			
 			<headerToolbar>
 				<OverflowToolbar>
-					<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" liveChange="onClientListSearch" width="auto">
+					<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" liveChange="onSalesOrderListSearch" width="auto">
 						<layoutData>
 							<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow" />
 						</layoutData>
@@ -22,9 +22,19 @@
 					<ToolbarSpacer />
 					<!-- <Text text="{appView>/ClientListVisTotal} / {appView>/ClientListLength} {i18n>Client}"/> -->
 					<!-- <Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent" /> -->
+					<Button id="idgetSalesOrderList" visible="false" press="getSalesOrderList"/>
 					<Button id="filterButton" press="onOpenViewSettings" icon="sap-icon://filter" type="Transparent" />
 				</OverflowToolbar>
 			</headerToolbar>
+			<infoToolbar>
+				<OverflowToolbar
+					active="false"
+					press="handleInfobarPress" >
+					<Label text="{i18n>Filteredby}" />
+					<Label text="{appView>/DateFilter}" />
+					<Label text="{appView>/MasterSelectedCustomer/CardName}" />
+				</OverflowToolbar>
+			</infoToolbar>
 			<items>
 				<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press=".onSelectionChange"
 					 title="{path:'appView>CardName'}" >

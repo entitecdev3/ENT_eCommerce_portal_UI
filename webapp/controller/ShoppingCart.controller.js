@@ -52,6 +52,7 @@ sap.ui.define([
 				var oMsg=this.getModel("i18n").getProperty("CreateOrder");
 				this.getView().byId("idSalesCreate").setText(oMsg);
 			}
+			this.setCustomerButtonData();
 			// that.tableData =this.getModel("appView").getProperty("/CartData");
 			// this.cardCode=oEvent.getParameter("arguments").objectId;	
 			// this.getClientDetails();	
@@ -191,9 +192,10 @@ sap.ui.define([
 			
 			debugger;
 			var oDic=(parseFloat(this.getView().getModel("appView").getProperty("/TotalDoc"))*(parseFloat(this.getView().getModel("appView").getProperty("/TotalDiscount"))/100)).toFixed(2);
+			var oDocDate=this.getView().getModel("appView").getProperty("/DocDueDate")
 			var payload={
 				"CardCode":this.getView().getModel("appView").getProperty("/CardCode"),
-				"DocDueDate":this.getView().getModel("appView").getProperty("/DocDueDate"),
+				"DocDueDate":oDocDate?this.callMiddleWare.onTimeZone(oDocDate):null,
 				"DocTotal":this.getView().getModel("appView").getProperty("/FinalTotal").toFixed(2),
 				"TotalDiscount":oDic,
 				// "TotalDiscount":this.getView().getModel("appView").getProperty("/TotalDiscount"),

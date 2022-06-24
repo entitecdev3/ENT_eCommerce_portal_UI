@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified">
+	<ResponsivePopover
+			title="{i18n>clientList}"
+			placement="Bottom"
+			showHeader="true">
+			<customHeader>
+				<OverflowToolbar height="55px">
+					<Title  text="{i18n>clientList}"/>
+					<ToolbarSpacer/>
+					<SearchField  showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" liveChange="onClientListSearchPopup" width="auto">
+						<!-- <layoutData>
+							<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow" />
+						</layoutData> -->
+					</SearchField>
+					<Button icon="sap-icon://decline" press="onCustomerPopOverSelectionClear" tooltip="Clear Selection"/>
+				</OverflowToolbar>
+			</customHeader>
+			<content>
+				<List width="auto" class="sapFDynamicPageAlignContent" items="{path: 'appView>/ClientList'}"
+					noDataText="{masterView>/noDataText}" mode="None"
+				 	growing="true" growingScrollToLoad="true" id="idCustomerPoperOverList" selectionChange="onCustomerPopOverSelect">
+				<items>
+					<ObjectListItem type="Active" press="onCustomerPopOverSelect"
+						 title="{path:'appView>CardName'}"
+							intro="{path:'appView>CardCode'}" >
+						 <!-- highlightText="title" highlight="Indication02" -->
+						<!-- <firstStatus>
+							<ObjectStatus title="{i18n>Qunatity}" state="{= ${appView>cartQunt} >= 0 ? 'Success' : 'Error' }"
+								 text="{path: 'appView>cartQunt'}" />
+	
+						</firstStatus> -->
+						<attributes>
+							<!-- <ObjectAttribute id="companyName" text="{RequesterName}" /> -->
+							<!-- <ObjectAttribute title="{i18n>Clientcode}" text="{path:'appView>CardCode'}" />
+							<ObjectAttribute title="{i18n>City}" text="{path:'appView>MailCity'}" /> -->
+							<!-- <ObjectAttribute title="Iniziata" text="{= ${DocDate}
+									? ${ path: 'DocDate',
+										 type: 'sap.ui.model.type.Date',
+										 formatOptions: { style: 'medium' } }
+									: '' }" /> -->
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+			</content>
+			<!-- <beginButton>
+				<Button text="{i18n>cartConfirm}" press="onCartConfirmButton" />
+			</beginButton> -->
+			<endButton>
+				<Button text="{i18n>Close}" press="onCustPopupOverCloseButton" />
+			</endButton>
+		<!-- <PlanningCalendarLegend>
+            appointmentItems="{
+                path : '',
+                templateShareable: true
+            }"
+			<appointmentItems>
+				<u:CalendarLegendItem text="{i18n>Draft}" color="#b4bbc4" tooltip=""/>
+				<u:CalendarLegendItem text="{i18n>Confirmed}" color="#8fce00" tooltip=""/>
+				<u:CalendarLegendItem text="{i18n>Consolidated}" color="#f1c232" tooltip=""/>
+				<u:CalendarLegendItem text="default" color="#0c343d" tooltip=""/>
+			</appointmentItems>
+		</PlanningCalendarLegend> -->
+	</ResponsivePopover>
+</core:FragmentDefinition>

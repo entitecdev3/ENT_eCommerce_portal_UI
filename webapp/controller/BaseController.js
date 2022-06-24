@@ -5,8 +5,10 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageToast",
-	"../model/formatter"
-], function (Controller, History, dbapi,Fragment,JSONModel,MessageToast,formatter) {
+	"../model/formatter",
+	"sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (Controller, History, dbapi,Fragment,JSONModel,MessageToast,formatter,Filter,FilterOperator) {
 	"use strict";
 
 	return Controller.extend("ent.ui.ecommerce.controller.BaseController", {
@@ -684,6 +686,97 @@ sap.ui.define([
 				.catch(function (jqXhr, textStatus, errorMessage) {
 				that.middleWare.errorHandler(jqXhr, that);  
 				});
+			}
+		},
+		onCustomerPress:function(oEvent){
+			var oButton = oEvent.getSource(),
+					oView = this.getView();
+			if(!this.getView().getModel("appView").getProperty("/ClientList")){
+				this.getClientList();	
+			}
+			if (!this.custPopover) {
+			  this.custPopover = Fragment.load({
+				id: oView.getId(),
+				name: "ent.ui.ecommerce.fragments.CustomerPopupOver",
+				controller: this
+			  }).then(function(oPopover) {
+				oView.addDependent(oPopover);
+				// oPopover.bindElement("/ProductCollection/0");
+				return oPopover;
+			  });
+			}
+			this.custPopover.then(function(oPopover) {
+			  oPopover.openBy(oButton);
+			});
+		},
+		onClientListSearchPopup:function(oEvent){
+			var sValue = oEvent.getParameter("newValue");
+			var oFilter = new Filter({
+			  filters: [
+				new Filter("CardCode", FilterOperator.Contains, sValue),
+				new Filter("CardName", FilterOperator.Contains, sValue)
+			  ],
+			  and: false,
+			});
+			var oBinding = this.getView().byId("idCustomerPoperOverList").getBinding("items");
+			
+			oBinding.filter(oFilter);
+		},
+		onCustomerPopOverSelect:function(oEvent){
+			debugger;
+			var oViewId=this.getView().getId();
+			var oSelectedItem=oEvent.getSource().getBindingContext("appView").getObject();
+			this.getView().byId('idCustomerButton').setText(oSelectedItem.CardName);
+			this.getView().byId('idCustomerButton').setTooltip(oSelectedItem.CardName);
+			this.getView().byId('idCustomerButton').setType("Critical");
+			this.getView().byId('idCustomerButton').setIcon("sap-icon://alert");
+			this.getModel("appView").setProperty("/MasterSelectedCustomer",{"CardCode":oSelectedItem.CardCode,"CardName":oSelectedItem.CardName});
+			if(oViewId.includes("SalesQuotation")){
+				this.getView().byId("idgetSalesQuotationList").firePress();
+			}
+			if(oViewId.includes("SalesOrder")){
+				this.getView().byId("idgetSalesOrderList").firePress();
+			}
+			this.custPopover.then(function(oPopover) {
+				oPopover.close();
+			  });
+		},
+		onCustPopupOverCloseButton:function(){
+			this.custPopover.then(function(oPopover) {
+				oPopover.close();
+			  });
+		},
+		onCustomerPopOverSelectionClear:function(){
+			var oViewId=this.getView().getId();
+			var oText=this.getModel("i18n").getProperty("genericCustomer");
+			this.getView().byId('idCustomerButton').setText(oText);
+			this.getView().byId('idCustomerButton').setTooltip(oText);
+			this.getView().byId('idCustomerButton').setType("Default");
+			this.getView().byId('idCustomerButton').setIcon("sap-icon://globe");
+			this.getModel("appView").setProperty("/MasterSelectedCustomer",undefined);
+			if(oViewId.includes("SalesQuotation")){
+				this.getView().byId("idgetSalesQuotationList").firePress();
+			}
+			if(oViewId.includes("SalesOrder")){
+				this.getView().byId("idgetSalesOrderList").firePress();
+			}
+			this.custPopover.then(function(oPopover) {
+				oPopover.close();
+			  });
+		},
+		setCustomerButtonData:function(){
+			var oData=this.getModel("appView").getProperty("/MasterSelectedCustomer/CardName");
+			if(oData){
+				this.getView().byId('idCustomerButton').setText(oData);
+				this.getView().byId('idCustomerButton').setTooltip(oData);
+				this.getView().byId('idCustomerButton').setType("Critical");
+				this.getView().byId('idCustomerButton').setIcon("sap-icon://alert");
+			}else{
+				var oText=this.getModel("i18n").getProperty("genericCustomer");
+				this.getView().byId('idCustomerButton').setText(oText);
+				this.getView().byId('idCustomerButton').setTooltip(oText);
+				this.getView().byId('idCustomerButton').setType("Default");
+				this.getView().byId('idCustomerButton').setIcon("sap-icon://globe");
 			}
 		},
 	});

@@ -15,7 +15,8 @@
 			<ViewSettingsFilterItem
 				id="filterItems1"
 				text="{i18n>Date}"
-				multiSelect="false">
+				multiSelect="false"
+				>
 				<items>
 					<ViewSettingsItem
 						id="viewFilter11"
@@ -37,23 +38,29 @@
 				</ViewSettingsFilterItem>
 			<!-- <ViewSettingsFilterItem
 				id="filterItems"
-				text="{i18n>masterFilterName2}"
+				text="{i18n>BP}"
 				multiSelect="false">
-				<items>
-					<ViewSettingsItem
-						id="viewFilter1"
-						text="{i18n>masterFilter1}"
-						key="open"/>
-					<ViewSettingsItem
-						id="viewFilter2"
-						text="{i18n>masterFilter2}"
-						key="close"/>
-						<ViewSettingsItem
-						id="viewFilter3"
-						text="{i18n>masterFilter3}"
-						key="cancel"/>
+				<items> -->
+					<!-- <ObjectListItem type="Active"
+						 title="{path:'appView>CardName'}"
+							intro="{path:'appView>CardCode'}" >
+					</ObjectListItem>
 				</items>
 			</ViewSettingsFilterItem> -->
+			<ViewSettingsCustomItem id="idCustomFilterItem2" text="{i18n>BP}"  key="myCustomerFilter" enabled="{=${appView>/MasterSelectedCustomer}?false:true}">
+				<customControl>
+				<VBox>
+					<SearchField liveChange="onProjectSearch"/>
+					<List id="ProductList1" 	items="{
+						path: 'appView>/ClientList'
+					}" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onCustomerSelectionChange" growing="true" growingScrollToLoad="true">
+						<StandardListItem id="idCustomFilterItem2ListItem" title="{appView>CardName}" description="{appView>CardCode}" icon="" iconDensityAware="false" iconInset="false" />
+					</List>
+				</VBox>	
+				</customControl>
+			</ViewSettingsCustomItem>
+		<!-- </items>
+	</ViewSettingsFilterItem> -->
 		</filterItems>
 	</ViewSettingsDialog>
 </core:FragmentDefinition>

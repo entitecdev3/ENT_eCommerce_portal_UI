@@ -17,6 +17,7 @@ sap.ui.define([
 			// this.oResource = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 		_matchedHandler: function (oEvent) {
+			// location.reload();
 			this.getModel("appView").setProperty("/layout", "OneColumn");
 			var that=this;
 			var oConfig=this.getModel("config").getJSON();
@@ -171,6 +172,7 @@ sap.ui.define([
 					that.getModel("appView").setProperty("/authType", sessionStorage.authType);
 					that.getShopCartData();
 					that.getRouter().navTo("tiles");
+					location.reload();
 				})
 				.catch(function (jqXhr, textStatus, errorMessage) {
 					 

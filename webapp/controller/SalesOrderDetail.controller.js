@@ -38,6 +38,7 @@ sap.ui.define([
 			this.cardCode=oEvent.getParameter("arguments").objectId;	
 			this.getView().getModel("appView").setProperty("/EditMode",false);
 			this.getSalesOrderDetail();
+			this.setCustomerButtonData();
 		},
 	
 		getSalesOrderDetail:function(){

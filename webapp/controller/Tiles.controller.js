@@ -1,9 +1,15 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/Fragment",
+	"sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
 ], function(
 	BaseController,
-	JSONModel
+	JSONModel,
+	Fragment,
+	Filter,
+	FilterOperator
 ) {
 	"use strict";
 
@@ -18,18 +24,21 @@ sap.ui.define([
 		onAfterRendering:function(){
 			this.getView().byId('navLeftBtn').setVisible(false);
 			this.getView().byId('navBackBtn').setVisible(false);
+			this.getView().byId('idCustomerButton').setVisible(true);
 			let oTitle=this.getView().getModel('i18n').getProperty('appTitle');
 			const toolbarTitle =oTitle;
 			const headerTitle = new JSONModel({ toolbarTitle });
 			this.getView().byId('toolbarTitle').setModel(headerTitle);
 			this.getView().byId('selectedItemHeader').updateBindings();
+			this.getClientList();
 			// this.callValueHelps();
 		},
 		_matchedHandler:function(){
 			this.getModel("appView").setProperty("/layout", "OneColumn");
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.getCustomData();
-			this.getUsersData();			
+			this.getUsersData();	
+			this.setCustomerButtonData();		
 		},
 		press:function(oEvent){
 			 
@@ -62,6 +71,7 @@ sap.ui.define([
 			}
 
 			return true;
-		}
+		},
+		
 	});
 });

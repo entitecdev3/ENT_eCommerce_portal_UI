@@ -16,7 +16,8 @@ sap.ui.define([
 			this.getModel("appView").setProperty("/layout", "OneColumn");
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.getUsersData();
-			this.getCustomData();			
+			this.getCustomData();
+			// this.setCustomerButtonData();			
 		},
 		getUsersData:function(){
 			var that=this;

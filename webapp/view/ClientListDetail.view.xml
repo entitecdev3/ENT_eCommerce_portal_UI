@@ -21,7 +21,7 @@
 					<!-- <firstStatus> -->
 						<!-- <ObjectStatus title="{i18n>accountbalance}" state="None" text="{path:'appView>/ClientDetails/CurrentAccountBalance',formatter:'.formatter.conHourFormatter'}" /> -->
 						<ObjectStatus title="{i18n>Deliveries}" state="None" text="{path:'appView>/ClientDetails/OpenDeliveryNotesBalance',formatter:'.formatter.conHourFormatter'}" />
-						<ObjectStatus title="{i18n>OpenOrdersBalance}" state="None" text="{path:'appView>/ClientDetails/OpenOrdersBalance',formatter:'.formatter.conHourFormatter'}" />
+						<ObjectStatus title="{i18n>OpenOrdersBalance}" state="None" text="{path:'appView>/ClientDetails/OpenOrdersBalance',formatter:'.formatter.conHourFormatter'}" active="{path:'appView>/ClientDetails/OpenOrdersBalance',formatter:'.formatter.conActiveFormatter'}" press="onOrderAmountPress" />
 						<!-- <ObjectStatus title="{i18n>TaxIDcode}" state="None" text="{path:'appView>/ClientDetails/AdditionalID'}" /> -->
 						
 					<!-- </firstStatus> -->

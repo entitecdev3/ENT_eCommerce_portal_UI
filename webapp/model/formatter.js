@@ -222,6 +222,19 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
       }
       return 0.0
     },
+    conActiveFormatter: function (data) {
+      if (data) {
+        data = parseFloat(data);
+       if(data>0){
+        return true;
+       }
+       else{
+        return false;
+       }
+        // return oFloatFormat.format(data.toFixed(2));
+      }
+      return false;
+    },
     conHourFormatterInp: function (data) {
       if (data) {
         data = parseFloat(data);

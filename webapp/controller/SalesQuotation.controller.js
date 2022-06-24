@@ -41,13 +41,15 @@ sap.ui.define([
 			this.getModel("appView").setProperty("/layout", "OneColumn");
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.getSalesQuotationList();
-			
+			this.setCustomerButtonData();
+			var oText=this.getModel("i18n").getProperty("last3month");
+			this.getView().getModel("appView").setProperty("/DateFilter",oText);
 			// this.getUsersData();
 			// this.getCustomData();			
 		},
 		getSalesQuotationList:function(oFilter){
 			var that=this;
-			if(!oFilter){
+			if(!oFilter || oFilter.getId()){
 				var d = new Date();
 					d.setMonth(d.getMonth() - 3);
 				let aFilter={};
@@ -55,6 +57,11 @@ sap.ui.define([
 					"start":new Date(),
 					"end":d
 				}
+				if(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer")){
+					// that.getView().byId("searchField").setValue(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode"));
+					aFilter.CardCode=that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode");
+				}
+				
 				oFilter=JSON.stringify(aFilter);
 			}
 			if(!that.getModel("appView").getProperty("/SalesQuotationList") || oFilter){
@@ -62,21 +69,50 @@ sap.ui.define([
 				.then(function (data, status, xhr) {
 					that.getModel("appView").setProperty("/SalesQuotationListLength",data.length);
 					that.getModel("appView").setProperty("/SalesQuotationList",data);
+					that.getModel("appView").updateBindings();
+					// if(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer")){
+					// 	that.getView().byId("searchField").setValue(that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode"));
+					// 	var oFilter = new Filter({
+					// 		filters: [
+					// 		  new Filter("CardCode", FilterOperator.Contains, that.getView().getModel("appView").getProperty("/MasterSelectedCustomer/CardCode")),
+					// 		//   new Filter("CardName", FilterOperator.Contains, oSearch),
+					// 		  // new Filter("MailCity", FilterOperator.Contains, sValue),
+					// 		],
+					// 		and: false,
+					// 	  });
+					// 	  var oBinding = that.getView().byId("idSalesQuotationList").getBinding("items");
+						  
+					// 	  oBinding.filter(oFilter);
+					// }
 				})
 				.catch(function (jqXhr, textStatus, errorMessage) {
 				that.middleWare.errorHandler(jqXhr, that);  
 				});
 			}	
 		},
+		onSalesQuotationListSearch:function(oEvent){
+			var sValue = oEvent.getParameter("newValue");
+			var oFilter = new Filter({
+					filters: [
+						new Filter("CardCode", FilterOperator.Contains,sValue),
+					  new Filter("CardName", FilterOperator.Contains, sValue),
+						// new Filter("MailCity", FilterOperator.Contains, sValue),
+					],
+					and: false,
+					});
+			var oBinding = this.getView().byId("idSalesQuotationList").getBinding("items");
+			
+			oBinding.filter(oFilter)
+		},
 		onOpenViewSettings: function (oEvent) {
 			var sDialogTab = "filter";
 			if (oEvent.getSource() instanceof sap.m.Button) {
-			  var sButtonId = oEvent.getSource().getId();
-			  if (sButtonId.match("sort")) {
-				sDialogTab = "sort";
-			  } else if (sButtonId.match("group")) {
-				sDialogTab = "group";
-			  }
+			//   var sButtonId = oEvent.getSource().getId();
+			//   if (sButtonId.match("sort")) {
+			// 	sDialogTab = "sort";
+			//   } else if (sButtonId.match("group")) {
+			// 	sDialogTab = "group";
+			//   }
 			}
 			// load asynchronous XML fragment
 			if (!this.byId("viewSettingsDialog")) {
