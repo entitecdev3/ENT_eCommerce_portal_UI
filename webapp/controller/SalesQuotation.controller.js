@@ -49,7 +49,7 @@ sap.ui.define([
 		},
 		getSalesQuotationList:function(oFilter){
 			var that=this;
-			if(!oFilter || oFilter.getId()){
+			if(!oFilter || typeof(oFilter)!=="string"){
 				var d = new Date();
 					d.setMonth(d.getMonth() - 3);
 				let aFilter={};

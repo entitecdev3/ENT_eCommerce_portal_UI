@@ -555,6 +555,29 @@ sap.ui.define([
 			}
 			
 		},
+		getVatCode:async function(){
+			var that=this;
+			var oItem=this.getView().getModel("appView").getProperty("/CartData");
+			if(oItem)
+			{	
+				var oItemCode = oItem.map(({ ItemCode }) => "'"+ItemCode+"'");
+				console.log(oItemCode)
+				var data=await this.middleWare.callMiddleWare("/getVATRATE?ItemCode="+oItemCode, "GET", {}).then();
+				// var odec =parseInt(data).toFixed(2);
+				// return data;
+				for (let index = 0; index < oItem.length; index++) {
+					const element = oItem[index];
+					let oArr = data.filter(function (item) {
+						if (item.ItemCode == element.ItemCode) {
+							return item;
+						}
+        			});
+					element.VatCode=oArr?oArr[0].Rate:"0"
+				}
+				this.getView().getModel("appView").setProperty("/CartData",oItem);
+			}
+			
+		},
 		getEntUserParms:function(){
 			var that=this;
 			if(!that.getModel("appView").getProperty("/U_ENT_PORTAL_PARAMS")){
@@ -610,6 +633,7 @@ sap.ui.define([
 		},
 		getShopCartData:function(oForce){
 			var that=this;
+			debugger;
 			if(!that.getModel("appView").getProperty("/CheckoutCart") || oForce){
 				this.middleWare.callMiddleWare("/CheckoutCart", "GET", {},'F')
 				.then(function (data, status, xhr) {
@@ -622,8 +646,15 @@ sap.ui.define([
 						that.getModel("appView").setProperty("/CardCode",oCart.Customer);
 						that.getModel("appView").setProperty("/CartSalesQuat",oCart.SalesQuat);
 						that.getModel("appView").setProperty("/CartData",oCart.CartData); 
-						that.getModel("appView").setProperty("/TotalDiscount",oCart.DocDiscount); 
+				// 		let result = oCart.CartData.map(({ ItemCode }) => ItemCode);
+				// console.log(result)
+						// that.getModel("appView").setProperty("/TotalDiscount",oCart.DocDiscount); 
 						that.getModel("appView").setProperty("/TotalCartData",oCart.CartData.length.toString());
+						if(that.getView().getId().includes("ShoppingCart")){
+							if(that.getView().byId("idCartCustomers").getSelectedKey()){
+								that.getView().byId("idCartCustomers").fireChange();
+							}
+						}
 						that.tableData = oCart.CartData;
 					}
 					// that.getModel("appView").setProperty("/ClientList",data);
@@ -641,14 +672,14 @@ sap.ui.define([
 				customer=customer?customer:that.getModel("appView").getProperty("/CardCode");
 				salesQuatation=salesQuatation==0?salesQuatation:that.getModel("appView").getProperty("/CartSalesQuat");
 				oComment=oComment?oComment:that.getModel("appView").getProperty("/comment");
-				oDocDiscount=oDocDiscount?oDocDiscount:that.getModel("appView").getProperty("/TotalDiscount");
+				// oDocDiscount=oDocDiscount?oDocDiscount:that.getModel("appView").getProperty("/TotalDiscount");
 				var aPaylaod={
 					"Date":date,
 					"Customer":customer,
 					"SalesQuat":salesQuatation,
 					"Comment":oComment,
 					"CartData":oCartData,
-					"DocDiscount":oDocDiscount
+					// "DocDiscount":oDocDiscount
 				};
 				var oCartString=JSON.stringify(aPaylaod);
 

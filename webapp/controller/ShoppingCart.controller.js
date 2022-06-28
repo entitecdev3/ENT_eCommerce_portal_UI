@@ -53,6 +53,9 @@ sap.ui.define([
 				this.getView().byId("idSalesCreate").setText(oMsg);
 			}
 			this.setCustomerButtonData();
+			if(this.getView().byId("idCartCustomers").getSelectedKey()){
+				this.getView().byId("idCartCustomers").fireChange();
+			}
 			// that.tableData =this.getModel("appView").getProperty("/CartData");
 			// this.cardCode=oEvent.getParameter("arguments").objectId;	
 			// this.getClientDetails();	
@@ -142,25 +145,25 @@ sap.ui.define([
 					sum += parseFloat(element.LineTotal); 
 				}
 			}
-			this.getView().getModel("appView").setProperty('/TotalDoc',sum);
-			if(this.getView().getModel("appView").getProperty('/TotalDiscount')){
-				var oDis=this.getView().getModel("appView").getProperty('/TotalDiscount');
-				var FinalPrice= sum-[sum*(parseFloat(oDis)/100)];
-				this.getView().getModel("appView").setProperty('/FinalTotal',FinalPrice);
-			}
-			else{
-				this.getView().getModel("appView").setProperty('/TotalDiscount',0);
+			// this.getView().getModel("appView").setProperty('/TotalDoc',sum);
+			// if(this.getView().getModel("appView").getProperty('/TotalDiscount')){
+			// 	var oDis=this.getView().getModel("appView").getProperty('/TotalDiscount');
+			// 	var FinalPrice= sum-[sum*(parseFloat(oDis)/100)];
+			// 	this.getView().getModel("appView").setProperty('/FinalTotal',FinalPrice);
+			// }
+			// else{
+				// this.getView().getModel("appView").setProperty('/TotalDiscount',0);
 				this.getView().getModel("appView").setProperty('/FinalTotal',sum);
-			}
+			// }
 			this.getView().getModel("appView").updateBindings();
 		},
-		overAllDicount:function(){
-			var oTotalPrice=this.getView().getModel("appView").getProperty('/TotalDoc');
-			var oDiscount=this.getView().getModel("appView").getProperty('/TotalDiscount');
-			var FinalPrice= oTotalPrice-[oTotalPrice*(parseFloat(oDiscount)/100)];
-			this.getView().getModel("appView").setProperty('/FinalTotal',FinalPrice);
-			this.getView().getModel("appView").updateBindings();
-		},
+		// overAllDicount:function(){
+		// 	var oTotalPrice=this.getView().getModel("appView").getProperty('/TotalDoc');
+		// 	var oDiscount=this.getView().getModel("appView").getProperty('/TotalDiscount');
+		// 	var FinalPrice= oTotalPrice-[oTotalPrice*(parseFloat(oDiscount)/100)];
+		// 	this.getView().getModel("appView").setProperty('/FinalTotal',FinalPrice);
+		// 	this.getView().getModel("appView").updateBindings();
+		// },
 		rowItemPress: function(evt) {
 			debugger;
 			// const itemId = evt.getSource().mProperties.text;
@@ -197,7 +200,7 @@ sap.ui.define([
 				"CardCode":this.getView().getModel("appView").getProperty("/CardCode"),
 				"DocDueDate":oDocDate?this.callMiddleWare.onTimeZone(oDocDate):null,
 				"DocTotal":this.getView().getModel("appView").getProperty("/FinalTotal").toFixed(2),
-				"TotalDiscount":oDic,
+				// "TotalDiscount":oDic,
 				// "TotalDiscount":this.getView().getModel("appView").getProperty("/TotalDiscount"),
 				"Comments":this.getView().getModel("appView").getProperty("/comment"),
 				"DocumentLines":[]
@@ -280,6 +283,7 @@ sap.ui.define([
 				// element.getCells()[3].setValue(0);
 				element.getCells()[3].fireChange();	
 			}
+			this.getVatCode();
 		},
 		foramtDatePicker:function(oDate){
 			if(oDate){
@@ -289,6 +293,23 @@ sap.ui.define([
 		},
 		onCartDraft:function(){
 			this.cartUpdate(true);
+		},
+		getClientPayment:function(cardCode){
+			var that =this;
+			this.middleWare.callMiddleWare("/resource/BusinessPartners('"+cardCode+"')?$select=PeymentMethodCode,PayTermsGrpCode", "GET", {})
+			.then(function (data, status, xhr) {
+				debugger;
+				that.getModel("appView").setProperty("/ClientPayment",data);
+				// that.getView().getModel("appView").setProperty("/EditMode",false);
+				// that.getView().getModel("appView").updateBindings();
+			})
+			.catch(function (jqXhr, textStatus, errorMessage) {
+			that.middleWare.errorHandler(jqXhr, that);  
+			});
+		},
+		onCustomerSelect:function(oEvent){
+			debugger;
+			this.getClientPayment(oEvent.getSource().getSelectedKey());
 		},
 	});
 });

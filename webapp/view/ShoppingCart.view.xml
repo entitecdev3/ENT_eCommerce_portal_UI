@@ -51,7 +51,7 @@
 							sorter: { path: 'CardCode'}
 							}" 	showClearIcon="true"
 							selectedKey="{appView>/CardCode}"
-							change="cartUpdate">
+							change="onCustomerSelect">
 							<!-- sorter: { path: 'CardName',
 							group: true },
 						length: 500 -->
@@ -65,6 +65,8 @@
 							displayFormat="dd/MM/yyyy"
 							width="auto" dateValue="{path:'appView>/DocDueDate',formatter:'.foramtDatePicker'}"
 							change="cartUpdate"/>
+							<Label text="{i18n>paymentCondition}" />
+							<Text text="{parts:[{path:'appView>/ClientPayment/PeymentMethodCode'},{path:'appView>/ClientPayment/PayTermsGrpCode'}],formatter:'.formatPayTerm'}"/>
 						
 					</f:content>
 				</f:SimpleForm>
@@ -94,6 +96,9 @@
 					<Text text="{i18n>discount}" />
 				</Column>
 				<Column width="10%"  hAlign="Center" importance="High" demandPopin="true">
+					<Text text="{i18n>VAT}" />
+				</Column>
+				<Column width="10%"  hAlign="Center" importance="High" demandPopin="true">
 					<Text text="{i18n>FinalPrice}" />
 				</Column>
 				<Column  width="10%" hAlign="Right" importance="High" demandPopin="true">
@@ -108,7 +113,9 @@
 						<!-- <Text text="{appView>cartQunt}" /> -->
 						<StepInput id="idStepInput" value="{appView>cartQunt}" textAlign="Center" change="onQuantiyChange"></StepInput>
 						<Text text="{path:'appView>Prz',formatter:'.formatter.currencyValue'}" />
+						
 						<Input value="{appView>discount}" type="Number" textAlign="Center" change="calculateFinalPrice"></Input>
+						<Text text="{path:'appView>VatCode',formatter:'.formatter.currencyValue'}" />
 						<Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input>
 						<ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" />
 						<!-- <Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
@@ -171,7 +178,7 @@
 				<f:formContainers>
 					<f:FormContainer title="">
 						<f:formElements>
-							<f:FormElement label="{i18n>comments}">
+							<f:FormElement label="{i18n>InternalNotes}">
 								<f:fields  >
 								<!-- <HBox width="100%"> -->
 									<!-- <Title   text="{i18n>comments}" class="sapUiSmallMarginTop"/> -->
@@ -189,11 +196,11 @@
 									<Text text="{path:'appView>/TotalDoc',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
 								</f:fields>
 							</f:FormElement>
-							<f:FormElement label="{i18n>discount}">
+							<!-- <f:FormElement label="{i18n>discount}">
 								<f:fields>
 									<Input value="{appView>/TotalDiscount}" change="overAllDicount"/>
 								</f:fields>
-							</f:FormElement>
+							</f:FormElement> -->
 							<f:FormElement label="{i18n>FinalDocTotal}">
 								<f:fields>
 									<Text text="{path:'appView>/FinalTotal',formatter:'.formatter.currencyValue'}" textAlign="End"></Text>
