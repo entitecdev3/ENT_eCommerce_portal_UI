@@ -1,0 +1,108 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <VBox >
+        <!-- <Text text="Country: {/clientDetails/Country}" class="itemDialogProp" />
+        <Text text="City: {/clientDetails/City}" class="itemDialogProp" />
+        <Text text="Address: {path: '/clientDetails/Address'}" class="itemDialogProp" />
+        <Text text="ZipCode: {/clientDetails/ZipCode}" class="itemDialogProp" /> -->
+
+
+        <Table  class="tableItemDetails" items="{path: 'appView>/ClientListPricelist'}" inset="false" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" >
+          <headerToolbar>
+          <OverflowToolbar>
+            <content>
+              <SearchField
+                id="clientPriceListSearchField"
+                class="tableSearchFilter"
+                width="95%"
+                placeholder="{i18n>search}"
+                liveChange="onClientPriceListFilterPress">
+                <layoutData>
+                  <OverflowToolbarLayoutData
+                    priority="NeverOverflow"/>
+                </layoutData>
+              </SearchField>
+            </content>
+          </OverflowToolbar>
+        </headerToolbar>
+          <columns>
+            <!-- "Lvl_30_Price_StandardList",
+            "Lvl_20_Price_ItemGroupBP",
+            "Lvl_20_ItemGroupBP_Discount1",
+            "Lvl_20_ItemGroupBP_Discount2",
+            "Lvl_20_ItemGroupBP_Discount3",
+            "Lvl_20_ItemGroupBP_Discount4",
+            "Lvl_20_ItemGroupBP_DiscountFinal",
+            "Lvl_10_ItemBP_Price",
+            "Lvl_10_ItemBP_DiscountFinal",
+            "SpecialPrice",
+            "PriceOrigin"  -->
+            <Column  hAlign="Center" vAlign="Middle"  mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>Item}" width="auto" maxLines="1"  wrapping="true" wrappingType="Hyphenated" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" 
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>Price_StandardList}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle"
+            demandPopin="true" mergeDuplicates="false">
+              <header >
+                <Text text="{i18n>Price_ItemGroupBP}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" wrapping="true" vAlign="Middle" minScreenWidth="Tablet"
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>ItemGroupBP_DiscountFinal}" width="auto" maxLines="2" wrapping="true" wrappingType="Normal" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>ItemBP_Price}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+            <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
+            demandPopin="true" mergeDuplicates="false">
+              <header>
+                <Text text="{i18n>SpecialPrice}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+              </header>
+              <footer/>
+            </Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <!-- <Text
+                  text="{appView>U_nomegrart}" /> -->
+                  <ObjectIdentifier
+                  title="{appView>ItemName}"
+                  text="{appView>ItemCode}"/>
+                <Text
+                  text="{appView>Lvl_30_Price_StandardList}" />
+                <Text
+                  text="{
+                    path: 'appView>Lvl_20_Price_ItemGroupBP'}" />
+                <Text
+                  text="{
+                    path: 'appView>Lvl_20_ItemGroupBP_DiscountFinal'}" />
+                <Text
+                  text="{
+                    path: 'appView>Lvl_10_ItemBP_Price'}"/>
+                <Text
+                  text="{
+                    path: 'appView>SpecialPrice'}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </VBox>
+</core:FragmentDefinition>

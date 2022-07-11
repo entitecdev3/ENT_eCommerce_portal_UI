@@ -32,6 +32,7 @@ sap.ui.define([
 			this.callClientValueHelps();
 			this.getModel("appView").setProperty("/ClientListVisTotal",0);
 			this.getModel("appView").setProperty("/ClientListLength",0);
+			this.setCustomerButtonData();
 			// this.getClientList();
 		},
 		_matchedHandler:function(){

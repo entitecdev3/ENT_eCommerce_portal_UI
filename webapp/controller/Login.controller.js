@@ -165,11 +165,12 @@ sap.ui.define([
 					sessionStorage.authType = data.authType;
 					sessionStorage.userName =data.customAttributes.U_Code+" - "+data.customAttributes.U_Name;
 					sessionStorage.userNameIn =data.userName;
-					sessionStorage.database = payload.database;
+					sessionStorage.database = data.database;
 					sessionStorage.selectedlanguage=selectedlanguage;
 					that.getModel("appView").setProperty("/customData", data.customAttributes);
 					that.getModel("appView").setProperty("/User", sessionStorage.userName);
 					that.getModel("appView").setProperty("/authType", sessionStorage.authType);
+					that.getModel("appView").setProperty("/loginDatabase", sessionStorage.database);
 					that.getShopCartData();
 					that.getRouter().navTo("tiles");
 					location.reload();

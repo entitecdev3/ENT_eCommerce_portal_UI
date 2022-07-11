@@ -42,6 +42,7 @@ sap.ui.define([
 			this.getClientData();
 			this.getView().getModel("appView").setProperty("/EditMode",false);
 			this.setCustomerButtonData();
+			this.getClientPriceList();
 		},
 	
 		getClientDetails:function(){
@@ -137,6 +138,18 @@ sap.ui.define([
 				that.middleWare.errorHandler(jqXhr, that);  
 			});
 		},
+		getClientPriceList:function(){
+			var that =this;
+			this.getClientActivities();
+			this.middleWare.callMiddleWare("/ClientListPricelist?CardCode="+this.cardCode, "GET", {})
+			.then(function (data, status, xhr) {
+				that.getModel("appView").setProperty("/ClientListPricelist",data);
+				that.getView().getModel("appView").updateBindings();
+			})
+			.catch(function (jqXhr, textStatus, errorMessage) {
+				that.middleWare.errorHandler(jqXhr, that);  
+			});
+		},
 		formatNumberValue: function(value, uom, id, lineid) {
 			const decimals = 2;// parseInt(this.appParams.MES_UOM_NONPZ_DECIMALI);
 			if (uom !== 'NR') {
@@ -164,6 +177,19 @@ sap.ui.define([
 			 var oFilter = new Filter({
 				filters: [
 				  new Filter("U_nomegrart", FilterOperator.Contains, oQuery),
+				],
+				and: false,
+			  });
+			var oBinding=oTable.getBinding("items");
+			oBinding.filter(oFilter);
+		},
+		onClientPriceListFilterPress:function(oEvent){
+			 var oQuery=oEvent.getParameter("newValue");
+			 var oTable=oEvent.getSource().getParent().getParent();
+			 var oFilter = new Filter({
+				filters: [
+				  new Filter("ItemCode", FilterOperator.Contains, oQuery),
+				  new Filter("ItemName", FilterOperator.Contains, oQuery),
 				],
 				and: false,
 			  });

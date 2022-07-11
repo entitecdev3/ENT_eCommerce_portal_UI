@@ -41,7 +41,11 @@ var tableDataFormatter = {
           this.p1InputData = this.getView().getModel("p1InputData").getData();
           this.p2InputData = this.getView().getModel("p2InputData").getData();
   
-          const requestUrl = this.buildPanelRequestUrl();
+          var requestUrl = this.buildPanelRequestUrl();
+          var oData=this.getModel("appView").getProperty("/MasterSelectedCustomer/CardCode");
+		    	if(oData){
+            requestUrl+=`&CardCode=${oData}`;
+          }
         //   this.callFunctionServiceLayer("GET", this.getTableData, requestUrl, this, null, null, this.getTableDataError);
         this.middleWare.callMiddleWare(requestUrl, "GET", {})
         .then(function(data){
@@ -66,6 +70,7 @@ var tableDataFormatter = {
           return title;
         },
         getKeyWordsData: function() {
+          debugger;
           const keyWordSearch = this.getView().getModel("searchKeyWords").getData()
           .splitKeyWords;
           this.keyWordSearch = keyWordSearch;
@@ -143,7 +148,7 @@ var tableDataFormatter = {
           console.log(err);
         },
         formatRowColor:function(oQuant){
-          debugger;
+          // debugger;
           var oCart=this.getView().getModel("appView").getProperty("/CartData");
           if(oQuant){
             var arr = oCart.filter(function (item) {
