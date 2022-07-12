@@ -32,6 +32,7 @@ sap.ui.define([
 			this.getView().byId('selectedItemHeader').setModel(headerTitle);
 			this.getView().byId('selectedItemHeader').updateBindings();
 			this.getSalesOrderList();
+			this.setCustomerButtonData();
 			// this.callClientValueHelps();
 			// this.getModel("appView").setProperty("/ClientListVisTotal",0);
 			// this.getModel("appView").setProperty("/ClientListLength",0);

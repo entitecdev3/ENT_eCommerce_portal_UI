@@ -35,7 +35,7 @@
 					</firstStatus>
 					<attributes>
 						<!-- <ObjectAttribute id="companyName" text="{RequesterName}" /> -->
-						<ObjectAttribute title="{i18n>Clientcode}" text="{path:'appView>CardCode'}" />
+						<ObjectAttribute  text="{path:'appView>CardCode'}" />
 						<ObjectAttribute title="{i18n>City}" text="{path:'appView>MailCity'}" />
 						<!-- <ObjectAttribute title="Iniziata" text="{= ${DocDate}
 								? ${ path: 'DocDate',

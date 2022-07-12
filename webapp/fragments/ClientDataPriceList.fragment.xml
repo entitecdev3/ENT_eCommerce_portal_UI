@@ -45,28 +45,28 @@
             <Column width="auto" hAlign="Center" vAlign="Middle" 
             demandPopin="true" mergeDuplicates="false">
               <header>
-                <Text text="{i18n>Price_StandardList}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>StandardList}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
             <Column width="auto" hAlign="Center" vAlign="Middle"
             demandPopin="true" mergeDuplicates="false">
               <header >
-                <Text text="{i18n>Price_ItemGroupBP}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>ItemGroup}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
-            <Column width="auto" hAlign="Center" wrapping="true" vAlign="Middle" minScreenWidth="Tablet"
+            <!-- <Column width="auto" hAlign="Center" wrapping="true" vAlign="Middle" minScreenWidth="Tablet"
             demandPopin="true" mergeDuplicates="false">
               <header>
                 <Text text="{i18n>ItemGroupBP_DiscountFinal}" width="auto" maxLines="2" wrapping="true" wrappingType="Normal" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
-            </Column>
+            </Column> -->
             <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet"
             demandPopin="true" mergeDuplicates="false">
               <header>
-                <Text text="{i18n>ItemBP_Price}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                <Text text="{i18n>SpecialBP}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
               </header>
               <footer/>
             </Column>
@@ -86,20 +86,40 @@
                   <ObjectIdentifier
                   title="{appView>ItemName}"
                   text="{appView>ItemCode}"/>
+                  <VBox>
                 <Text
-                  text="{appView>Lvl_30_Price_StandardList}" />
+                  text="{path:'appView>Lvl_30_Price_StandardList',formatter:'.formatter.conHourFormatter'}" />
+                </VBox>
+              <VBox>
+                <ObjectAttribute title="{i18n>Price}" text="{path:'appView>Lvl_20_Price_ItemGroupBP',formatter:'.formatter.conHourFormatter'}"/>
+                <!-- <ObjectAttribute title="{i18n>Discount1}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount1',formatter:'.formatter.conHourFormatter'}"/>
+                <ObjectAttribute title="{i18n>Discount2}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount2',formatter:'.formatter.conHourFormatter'}"/>
+                <ObjectAttribute title="{i18n>Discount3}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount3',formatter:'.formatter.conHourFormatter'}"/>
+                <ObjectAttribute title="{i18n>Discount4}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount4',formatter:'.formatter.conHourFormatter'}"/> -->
+                <ObjectAttribute title="{i18n>DiscountFinal}" text="{path:'appView>Lvl_20_ItemGroupBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}"
+                  active="true" press="onItemGroupDiscountPress"/>
+                <!-- <Text text="{path: 'appView>Lvl_20_Price_ItemGroupBP'}" />
+                
+                <Text text="{path: 'appView>Lvl_20_ItemGroupBP_Discount1'}" />
+                <Text text="{path: 'appView>Lvl_20_ItemGroupBP_Discount2'}" />
+                <Text text="{path: 'appView>Lvl_20_ItemGroupBP_Discount3'}" />
+                <Text text="{path: 'appView>Lvl_20_ItemGroupBP_Discount4'}" />
+                <Text text="{path: 'appView>Lvl_20_ItemGroupBP_DiscountFinal'}" /> -->
+                </VBox>
+                <!-- <Text
+                  text="{
+                    path: 'appView>Lvl_20_ItemGroupBP_DiscountFinal'}" /> -->
+                  <VBox>
+                    <ObjectAttribute title="{i18n>Price}" text="{path:'appView>Lvl_10_ItemBP_Price',formatter:'.formatter.conHourFormatter'}"/>
+                      <ObjectAttribute title="{i18n>DiscountFinal}" text="{path:'appView>Lvl_10_ItemBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}"/>
+                <!-- <Text text="{path: 'appView>Lvl_10_ItemBP_Price'}"/>
+                <Text text="{path: 'appView>Lvl_10_ItemBP_DiscountFinal'}"/> -->
+                  </VBox>
+                <VBox>
                 <Text
                   text="{
-                    path: 'appView>Lvl_20_Price_ItemGroupBP'}" />
-                <Text
-                  text="{
-                    path: 'appView>Lvl_20_ItemGroupBP_DiscountFinal'}" />
-                <Text
-                  text="{
-                    path: 'appView>Lvl_10_ItemBP_Price'}"/>
-                <Text
-                  text="{
-                    path: 'appView>SpecialPrice'}"/>
+                    path: 'appView>SpecialPrice',formatter:'.formatter.conHourFormatter'}"/>
+                  </VBox>
               </cells>
             </ColumnListItem>
           </items>

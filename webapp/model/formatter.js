@@ -222,6 +222,21 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
       }
       return 0.0
     },
+    conHourFormatterPC: function (data) {
+
+      if (data) {
+
+        data = parseFloat(data);
+
+        // data=data.toFixed(2);
+
+        return data.toPrecision(10).replace(/\.?0+$/,"");
+
+      }
+
+      return 0;
+
+    },
     conActiveFormatter: function (data) {
       if (data) {
         data = parseFloat(data);

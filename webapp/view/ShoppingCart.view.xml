@@ -96,10 +96,10 @@
 					<Text text="{i18n>discount}" />
 				</Column>
 				<Column width="10%"  hAlign="Center" importance="High" demandPopin="true">
-					<Text text="{i18n>VAT}" />
+					<Text text="{i18n>FinalPrice}" />
 				</Column>
 				<Column width="10%"  hAlign="Center" importance="High" demandPopin="true">
-					<Text text="{i18n>FinalPrice}" />
+					<Text text="{i18n>VAT}" />
 				</Column>
 				<Column  width="10%" hAlign="Right" importance="High" demandPopin="true">
 					<Text text="{i18n>LineTotal}" />
@@ -115,8 +115,9 @@
 						<Text text="{path:'appView>Prz',formatter:'.formatter.currencyValue'}" />
 						
 						<Input value="{appView>discount}" type="Number" textAlign="Center" change="calculateFinalPrice"></Input>
-						<Text text="{path:'appView>VatCode',formatter:'.formatter.currencyValue'}" />
+						
 						<Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input>
+						<Text text="{path:'appView>VatCode',formatter:'.formatter.currencyValue'}" />
 						<ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" />
 						<!-- <Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
 					</cells>

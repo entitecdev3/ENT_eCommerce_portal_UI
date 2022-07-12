@@ -566,6 +566,36 @@ sap.ui.define([
 			MessageToast.show("ke baat hai");
 			this.getView().getModel("appView").setProperty("/oSalesClientSearch",this.getView().getModel("appView").getProperty("/ClientDetails/CardCode"));
 			this._oRouter.navTo("SalesOrder");
-		}
+		},
+		onItemGroupDiscountPress:function(oEvent){
+			debugger;
+			var oObject=oEvent.getSource().getParent().getParent().getBindingContext("appView").getObject();
+			var oDiscounts={
+				"Lvl_20_ItemGroupBP_Discount1":oObject.Lvl_20_ItemGroupBP_Discount1,
+				"Lvl_20_ItemGroupBP_Discount2":oObject.Lvl_20_ItemGroupBP_Discount2,
+				"Lvl_20_ItemGroupBP_Discount3":oObject.Lvl_20_ItemGroupBP_Discount3,
+				"Lvl_20_ItemGroupBP_Discount4":oObject.Lvl_20_ItemGroupBP_Discount4
+			};
+			this.getView().getModel("appView").setProperty("/Lvl_20_ItemGroupBP_Discount",oDiscounts);
+			var oButton = oEvent.getSource(),
+            oView = this.getView();
+			if (!this.disPopOver) {
+				this.disPopOver = Fragment.load({
+				name: "ent.ui.ecommerce.fragments.DiscountPopupOver",
+				controller: this,
+				}).then(function (oPopover) {
+				oView.addDependent(oPopover);
+				return oPopover;
+				});
+			}
+			this.disPopOver.then(function (oPopover) {
+				oPopover.openBy(oButton);
+			}.bind(this));
+		},
+		onDiscountPopOverCloseButton:function(){
+			this.disPopOver.then(function (oPopover) {
+				oPopover.close();
+			}.bind(this));
+		},
 	});
 });
