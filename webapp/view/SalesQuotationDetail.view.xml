@@ -38,25 +38,25 @@
 				</OverflowToolbar>
 			</headerToolbar> -->
 			<columns>
-				<Column width="40%"  importance="High">
+				<Column width="35%"  importance="High">
 					<Text text="{i18n>ItemCode}" width="auto" wrapping="true" />
 				</Column>
 				<!-- <Column width="auto" importance="High" demandPopin="true">
 					<Text text="{i18n>ItemName}" />
 				</Column> -->
-				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
+				<Column width="11%"  importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>Qunatity}" />
 				</Column>
-				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
+				<Column width="11%"  importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>Price}" />
 				</Column>
-				<Column width="20%" importance="High" hAlign="Center" demandPopin="true">
+				<Column width="11%" importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>discount}" />
 				</Column>
-				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
+				<Column width="11%" importance="High" hAlign="Right" demandPopin="true">
 					<Text text="{i18n>FinalPrice}" />
 				</Column>
-				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
+				<Column width="11%" importance="High" hAlign="Right" demandPopin="true">
 					<Text text="{i18n>VAT}" />
 				</Column>
 				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
