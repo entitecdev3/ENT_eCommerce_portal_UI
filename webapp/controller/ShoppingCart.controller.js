@@ -202,7 +202,7 @@ sap.ui.define([
 				"DocTotal":this.getView().getModel("appView").getProperty("/FinalTotal").toFixed(2),
 				// "TotalDiscount":oDic,
 				// "TotalDiscount":this.getView().getModel("appView").getProperty("/TotalDiscount"),
-				"Comments":this.getView().getModel("appView").getProperty("/comment"),
+				"U_note_interne":this.getView().getModel("appView").getProperty("/comment"),
 				"DocumentLines":[]
 			};
 			var oDocProTo={

@@ -230,7 +230,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 
         // data=data.toFixed(2);
 
-        return data.toPrecision(10).replace(/\.?0+$/,"");
+        return data.toPrecision(4).replace(/\.?0+$/,"");
 
       }
 

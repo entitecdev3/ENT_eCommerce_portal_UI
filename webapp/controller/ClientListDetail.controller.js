@@ -138,10 +138,16 @@ sap.ui.define([
 				that.middleWare.errorHandler(jqXhr, that);  
 			});
 		},
-		getClientPriceList:function(){
+		getClientPriceList:function(oQuery){
+			var oUrl=``;
+			if(oQuery){
+				oUrl += `/ClientListPricelist?CardCode=${this.cardCode}&Query=${oQuery}`;
+			}else{
+				oUrl += "/ClientListPricelist?CardCode="+this.cardCode;
+			}
 			var that =this;
 			this.getClientActivities();
-			this.middleWare.callMiddleWare("/ClientListPricelist?CardCode="+this.cardCode, "GET", {})
+			this.middleWare.callMiddleWare(oUrl, "GET", {})
 			.then(function (data, status, xhr) {
 				that.getModel("appView").setProperty("/ClientListPricelist",data);
 				that.getView().getModel("appView").updateBindings();
@@ -184,17 +190,18 @@ sap.ui.define([
 			oBinding.filter(oFilter);
 		},
 		onClientPriceListFilterPress:function(oEvent){
-			 var oQuery=oEvent.getParameter("newValue");
-			 var oTable=oEvent.getSource().getParent().getParent();
-			 var oFilter = new Filter({
-				filters: [
-				  new Filter("ItemCode", FilterOperator.Contains, oQuery),
-				  new Filter("ItemName", FilterOperator.Contains, oQuery),
-				],
-				and: false,
-			  });
-			var oBinding=oTable.getBinding("items");
-			oBinding.filter(oFilter);
+			 var oQuery=oEvent.getParameter("value");
+			 this.getClientPriceList(oQuery);
+			//  var oTable=oEvent.getSource().getParent().getParent();
+			//  var oFilter = new Filter({
+			// 	filters: [
+			// 	  new Filter("ItemCode", FilterOperator.Contains, oQuery),
+			// 	  new Filter("ItemName", FilterOperator.Contains, oQuery),
+			// 	],
+			// 	and: false,
+			//   });
+			// var oBinding=oTable.getBinding("items");
+			// oBinding.filter(oFilter);
 		},
 		onIconTabSelect:function(oEvent){
 			var oKey=oEvent.getParameter("selectedKey");

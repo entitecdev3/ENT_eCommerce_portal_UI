@@ -15,7 +15,7 @@
                 class="tableSearchFilter"
                 width="95%"
                 placeholder="{i18n>search}"
-                liveChange="onClientPriceListFilterPress">
+                change="onClientPriceListFilterPress">
                 <layoutData>
                   <OverflowToolbarLayoutData
                     priority="NeverOverflow"/>

@@ -14,8 +14,10 @@
 				<attributes>
 					<!-- <ObjectAttribute title="Richidente" text="{RequesterName}" /> -->
 					<!-- <ObjectAttribute  title="{i18n>accountbalance}" text="{appView>/ClientDetails/CurrentAccountBalance}" /> -->
-					<ObjectAttribute title="{i18n>comments}"  text="{path:'appView>/SalesQuotationDetail/Comments'}"  />
-					<ObjectAttribute title="{i18n>TaxIDcode}" text="{path:'appView>/SalesQuotationDetail/'}" />
+					<ObjectAttribute title="{i18n>comments}"  text="{path:'appView>/SalesQuotationDetail/U_note_interne'}"  />
+					<!-- <ObjectAttribute title="{i18n>TaxIDcode}" text="{path:'appView>/SalesQuotationDetail/FederalTaxID'}" /> -->
+					<ObjectAttribute title="{i18n>holder}" text="{path:'appView>/SalesQuotationDetail/DocumentsOwner',formatter:'.formatOwnerCode'}" />
+					<ObjectAttribute title="{i18n>salesperson}" text="{path:'appView>/SalesQuotationDetail/SalesPersonCode',formatter:'.formatSalesPerson'}" />
 				</attributes>
 				<statuses>
 					<!-- <firstStatus> -->
@@ -45,13 +47,21 @@
 				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>Qunatity}" />
 				</Column>
+				<Column width="20%"  importance="High" hAlign="Center" demandPopin="true">
+					<Text text="{i18n>Price}" />
+				</Column>
 				<Column width="20%" importance="High" hAlign="Center" demandPopin="true">
 					<Text text="{i18n>discount}" />
 				</Column>
 				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
 					<Text text="{i18n>FinalPrice}" />
 				</Column>
-				
+				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
+					<Text text="{i18n>VAT}" />
+				</Column>
+				<Column width="10%" importance="High" hAlign="Right" demandPopin="true">
+					<Text text="{i18n>LineTotal}" />
+				</Column>
 				<!-- <Column width="20%"  hAlign="Center" importance="High" demandPopin="true">
 					<Text text="{i18n>FinalPrice}" />
 				</Column> -->
@@ -66,9 +76,13 @@
 						<!-- <Text text="{appView>ItemName}"  /> -->
 						<!-- <Text text="{appView>cartQunt}" /> -->
 						<Text text="{appView>Quantity}" textAlign="Center" ></Text>
-						<Text text="{appView>DiscountPercent}" textAlign="Center"></Text>
+						<Text text="{appView>UnitPrice}" textAlign="Center" ></Text>
+						<ObjectAttribute title="" text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}"
+							active="true" press="onItemGroupDiscountPress"/>
+						<!-- <Text text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}" textAlign="Center"></Text> -->
 						<Text text="{path:'appView>Price',formatter:'.formatter.currencyValue'}" />
-						
+						<Text text="{path:'appView>TaxPercentagePerRow',formatter:'.formatter.conHourFormatterPC'}" />
+						<Text text="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" />
 						<!-- <Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input> -->
 						<!-- <ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" /> -->
 						<!-- <Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
