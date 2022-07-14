@@ -239,7 +239,7 @@
 			  <!-- <HBox id="p2footer" width="100%" justifyContent="End"> </HBox> -->
 			  <ToolbarSpacer/>
 			  <Button id="idSalesCreate" class="p2btn1 p2btnFirst"  icon="sap-icon://create" press="onCartSubmit"/>
-			  <Button id="idSalesDraft" class="p2btn1 p2btnFirst"  icon="sap-icon://vds-file" press="onCartDraft" text="{i18n>Darft}"/>
+			  <Button id="idSalesDraft" class="p2btn1 p2btnFirst"  icon="sap-icon://vds-file" press="onCartDraft" text="{i18n>Draft}"/>
 			</OverflowToolbar>
 		  </footer>
 	</Page>

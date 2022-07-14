@@ -768,6 +768,9 @@ sap.ui.define([
 			if(oViewId.includes("SalesOrder")){
 				this.getView().byId("idgetSalesOrderList").firePress();
 			}
+			if(oViewId.includes("Items")){
+				this.getView().byId("idGetItemData").firePress();
+			}
 			this.custPopover.then(function(oPopover) {
 				oPopover.close();
 			  });

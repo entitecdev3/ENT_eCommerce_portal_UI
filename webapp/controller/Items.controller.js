@@ -273,7 +273,31 @@ var tableDataFormatter = {
           this.getView().getModel("appView").updateBindings();
           this.updateShopCartData();
         },
-       
+        onSpecialDiscountPress:function(oEvent){
+          debugger;
+          // var oData=oEvent.getSource().getParent().getParent().getBindingContext().getObject();
+          var oData=oEvent.getSource().getParent().getParent().getBindingContext().getObject();
+          this.getView().getModel("appView").setProperty("/Special_DiscountDetails",oData);
+          var oButton = oEvent.getSource(),
+            oView = this.getView();
+            if (!this.disPopOver) {
+              this.disPopOver = Fragment.load({
+              name: "ent.ui.ecommerce.fragments.SpecialPricePopupOver",
+              controller: this,
+              }).then(function (oPopover) {
+              oView.addDependent(oPopover);
+              return oPopover;
+              });
+            }
+            this.disPopOver.then(function (oPopover) {
+              oPopover.openBy(oButton);
+            }.bind(this));
+        },
+        onSpecialPricePopOverCloseButton:function(){
+          this.disPopOver.then(function (oPopover) {
+            oPopover.close();
+          }.bind(this));
+        }
       });
     }
   );

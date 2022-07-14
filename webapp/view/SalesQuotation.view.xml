@@ -38,7 +38,7 @@
 			</infoToolbar>
 			<items>
 				<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press=".onSelectionChange"
-					 title="{path:'appView>CardName'}" >
+					 title="{path:'appView>CardName'}" number="{path:'appView>DocDueDate',formatter:'.formatter.conDateFormatter'}">
 					 <!-- highlightText="title" highlight="Indication02" -->
 					<firstStatus>
 						<ObjectStatus title="" state="None" text="{path: 'appView>DocNum'}" />

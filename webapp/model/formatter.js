@@ -250,6 +250,16 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
       }
       return false;
     },
+    formatterListPriceLength:function(data){
+      if(data){
+        if(data.length<100){
+          return `(${data.length})`;
+        }
+        else{
+          return `(100+)`;
+        }
+      }
+    },
     conHourFormatterInp: function (data) {
       if (data) {
         data = parseFloat(data);

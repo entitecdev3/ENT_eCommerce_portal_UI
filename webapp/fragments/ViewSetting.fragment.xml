@@ -5,12 +5,24 @@
 		id="viewSettingsDialog"
 		sortDescending="true"
 		confirm="onConfirmViewSettingsDialog">
-		<!-- <sortItems>
+		<sortItems>
 			<ViewSettingsItem
-				text="{i18n>masterSort1}"
-				key="DocDate "
-				selected="true"/>
-		</sortItems> -->
+				text="{i18n>BP}"
+				key="CardCode"
+				selected="false"/>
+		</sortItems>
+		<sortItems>
+			<ViewSettingsItem
+				text="{i18n>Date}"
+				key="DocDate"
+				selected="false"/>
+		</sortItems>
+		<sortItems>
+			<ViewSettingsItem
+				text="{i18n>DocNum}"
+				key="DocNum"
+				selected="false"/>
+		</sortItems>
 		<filterItems>
 			<ViewSettingsFilterItem
 				id="filterItems1"
@@ -57,6 +69,32 @@
 						<StandardListItem id="idCustomFilterItem2ListItem" title="{appView>CardName}" description="{appView>CardCode}" icon="" iconDensityAware="false" iconInset="false" />
 					</List>
 				</VBox>	
+				</customControl>
+			</ViewSettingsCustomItem>
+			<!-- <ViewSettingsCustomItem id="idCustomFilterItem3" text="{i18n>Status}"  key="myCustomerFilter" enabled="{=${appView>/MasterSelectedCustomer}?false:true}">
+				<customControl>
+					<Input width="90%" class="sapUiTinyMargin" ></Input>
+				</customControl>
+			</ViewSettingsCustomItem> -->
+			<ViewSettingsFilterItem
+				id="filterItems3"
+				text="{i18n>Status}"
+				multiSelect="false"
+				>
+				<items>
+					<ViewSettingsItem
+						id="viewFilter111"
+						text="{i18n>Open}"
+						key="Open"/>
+					<ViewSettingsItem
+						id="viewFilter212"
+						text="{i18n>Close}"
+						key="Close" />
+					</items>
+				</ViewSettingsFilterItem>
+			<ViewSettingsCustomItem id="idCustomFilterItem4" text="{i18n>DocNum}"  key="myCustomerFilter" enabled="{=${appView>/MasterSelectedCustomer}?false:true}">
+				<customControl>
+					<Input width="90%" class="sapUiTinyMargin"></Input>
 				</customControl>
 			</ViewSettingsCustomItem>
 		<!-- </items>

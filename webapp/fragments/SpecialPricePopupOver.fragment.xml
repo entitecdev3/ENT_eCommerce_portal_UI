@@ -1,0 +1,88 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:f="sap.ui.layout.form">
+	<ResponsivePopover
+			placement="Bottom"
+			showHeader="false">
+			<content>
+				<!-- <VBox class="sapUiSmallMargin"> -->
+					<f:SimpleForm id="SimpleFormDisplay480_12120"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="1"
+						singleContainerFullSize="false" >
+						<f:content>
+							<core:Title text="{i18n>StandardList}" />
+								<Label text="{i18n>Price}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_30_Price_StandardList',formatter:'.formatter.conHourFormatter'}" />
+							<core:Title text="{i18n>SpecialBP}" />
+								<Label text="{i18n>Price}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_10_ItemBP_Price',formatter:'.formatter.conHourFormatter'}" />
+								<Label text="{i18n>DiscountFinal}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_10_ItemBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}" />
+							<core:Title text="{i18n>ItemGroup}" />
+								<Label text="{i18n>Price}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_Price_ItemGroupBP',formatter:'.formatter.conHourFormatter'}" />
+								<Label text="{i18n>dis1}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_Discount1',formatter:'.formatter.conHourFormatterPC'}" />
+								<Label text="{i18n>dis2}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_Discount2',formatter:'.formatter.conHourFormatterPC'}" />
+								<Label text="{i18n>dis3}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_Discount3',formatter:'.formatter.conHourFormatterPC'}" />
+								<Label text="{i18n>dis4}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_Discount4',formatter:'.formatter.conHourFormatterPC'}" />
+								<Label text="{i18n>DiscountFinal}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}" />
+							<!-- <core:Title text="" /> -->
+							<!-- <core:Title text="{i18n>StandardList}" /> -->
+							<!-- <core:Title text="{i18n>StandardList}" /> -->
+							<!-- <Label text="Name" />
+							<Text text="{SupplierName}" /> -->
+						</f:content>
+					</f:SimpleForm>
+					<!-- <f:SimpleForm id="SimpleFormDisplay480_12120-2"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						title="More"
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="1"
+						singleContainerFullSize="false">
+						<f:content>
+							<core:Title text="Contact data" />
+							<Label text="Email" />
+							<Text text="{EMail}" />
+						</f:content>
+					</f:SimpleForm> -->
+				<!-- </VBox> -->
+			</content>
+			<!-- <beginButton>
+				<Button text="{i18n>cartConfirm}" press="onCartConfirmButton" />
+			</beginButton> -->
+			<endButton>
+				<Button text="{i18n>Close}" press="onSpecialPricePopOverCloseButton" />
+			</endButton>
+	</ResponsivePopover>
+</core:FragmentDefinition>

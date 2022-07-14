@@ -49,9 +49,9 @@ sap.ui.define([
 			// this.getUsersData();
 			// this.getCustomData();			
 		},
-		getSalesOrderList:function(oFilter){
+		getSalesOrderList:function(oFilter,oSortItem){
 			var that=this;
-			if(!oFilter || oFilter.getId()){
+			if(!oFilter || typeof(oFilter)!=="string"){
 				var d = new Date();
 					d.setMonth(d.getMonth() - 3);
 				let aFilter={};
@@ -65,8 +65,9 @@ sap.ui.define([
 				}
 				oFilter=JSON.stringify(aFilter);
 			}
+			
 			if(!that.getModel("appView").getProperty("/SalesOrderList") || oFilter){
-				this.middleWare.callMiddleWare("/getSalesOrder?oQuery="+oFilter, "GET", {})
+				this.middleWare.callMiddleWare("/getSalesOrder?oQuery="+oFilter+"&oSorter="+oSortItem, "GET", {})
 				.then(function (data, status, xhr) {
 					that.getModel("appView").setProperty("/SalesOrderListLength",data.length);
 					that.getModel("appView").setProperty("/SalesOrderList",data);
@@ -141,7 +142,18 @@ sap.ui.define([
 		},
 		onConfirmViewSettingsDialog:function(oEvent){
 			debugger;
+			var sorter="";
+			if(oEvent.getParameters().sortItem)
+				var oSortItem=oEvent.getParameters().sortItem.getKey();	
+			if(oSortItem){
+				sorter='"'+oSortItem+'"';
+				if(oEvent.getParameters().sortDescending){
+					sorter+= " DESC"
+				}
+			}
 			var aFilterItems = oEvent.getParameter("filterItems");
+			var oDocNum=this.getView().byId("viewSettingsDialog").getFilterItems()[3].getCustomControl().getValue();
+			var oBPCustomFIlter=this.getView().byId("viewSettingsDialog").getFilterItems()[1].getCustomControl().getItems()[1].getSelectedContexts();
 			function formatDate(date) {
 				var d = new Date(date),
 					month = '' + (d.getMonth() + 1),
@@ -207,15 +219,22 @@ sap.ui.define([
 				  default:
 					break;
 				}
-				this.applyFilter(JSON.stringify(oFilter));
+				if(oDocNum){
+					oFilter.DocNum=oDocNum;
+				}
+				if(oBPCustomFIlter && oBPCustomFIlter.length>0){
+					oFilter.CardCode=oBPCustomFIlter[0].getObject().CardCode;
+					
+				}
+				this.applyFilter(JSON.stringify(oFilter),sorter);
 				// DocumentStatus
 				// aCaptions.push(oItem.getText());
 			}.bind(this));
 		},
-		applyFilter:function(oFilter){
+		applyFilter:function(oFilter,sorter){
 			// var oSalesOrderList=this.getView().byId("idSalesOrderList");
 			// oSalesOrderList.getBinding("items").filter(oFilter);
-			this.getSalesOrderList(oFilter);
+			this.getSalesOrderList(oFilter,sorter);
 
 		},
 		onClientListSelect:function(oEvent){

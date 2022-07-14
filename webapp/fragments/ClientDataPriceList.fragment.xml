@@ -10,10 +10,11 @@
           <headerToolbar>
           <OverflowToolbar>
             <content>
+              <Text text="{i18n>ListPrices}{path:'appView>/ClientListPricelist',formatter:'.formatter.formatterListPriceLength'}" class="sapUiSmallMarginEnd"/>
               <SearchField
                 id="clientPriceListSearchField"
                 class="tableSearchFilter"
-                width="95%"
+                width="80%"
                 placeholder="{i18n>search}"
                 change="onClientPriceListFilterPress">
                 <layoutData>
