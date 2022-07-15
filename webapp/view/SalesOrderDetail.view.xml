@@ -80,9 +80,9 @@
 						<Text text="{appView>Quantity}" textAlign="Center" ></Text>
 						<Text text="{appView>UnitPrice}" textAlign="Center" ></Text>
 						<Text text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}" textAlign="Center"></Text>
-						<Text text="{path:'appView>Price',formatter:'.formatter.currencyValue'}" />
-						<Text text="{path:'appView>TaxPercentagePerRow',formatter:'.formatter.conHourFormatterPC'}" />
-						<Text text="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" />
+						<Text text="{path:'appView>Price',formatter:'.formatter.conHourFormatter'}" />
+						<Text text="{path:'appView>TaxPercentagePerRow',formatter:'.formatter.conHourFormatter'}" />
+						<Text text="{path:'appView>LineTotal',formatter:'.formatter.conHourFormatter'}" />
 						
 						<!-- <Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input> -->
 						<!-- <ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" /> -->

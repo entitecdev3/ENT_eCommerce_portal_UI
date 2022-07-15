@@ -76,13 +76,13 @@
 						<!-- <Text text="{appView>ItemName}"  /> -->
 						<!-- <Text text="{appView>cartQunt}" /> -->
 						<Text text="{appView>Quantity}" textAlign="Center" ></Text>
-						<Text text="{path:'appView>UnitPrice',formatter:'.formatter.currencyValue'}" textAlign="Center" ></Text>
+						<Text text="{path:'appView>UnitPrice',formatter:'.formatter.conHourFormatter'}" textAlign="Center" ></Text>
 						<ObjectAttribute title="" text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}"
 							active="true" press="onItemGroupDiscountPress"/>
 						<!-- <Text text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}" textAlign="Center"></Text> -->
-						<Text text="{path:'appView>Price',formatter:'.formatter.currencyValue'}" />
+						<Text text="{path:'appView>Price',formatter:'.formatter.conHourFormatter'}" />
 						<Text text="{path:'appView>TaxPercentagePerRow',formatter:'.formatter.conHourFormatter'}" />
-						<Text text="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" />
+						<Text text="{path:'appView>LineTotal',formatter:'.formatter.conHourFormatter'}" />
 						<!-- <Input value="{path:'appView>finalPrice',formatter:'.formatter.currencyValue'}" type="Number" textAlign="Center" change="calculateDicount"></Input> -->
 						<!-- <ObjectIdentifier title="{path:'appView>LineTotal',formatter:'.formatter.currencyValue'}" /> -->
 						<!-- <Text text="{Width} x {Depth} x {Height} {DimUnit}" /> -->
