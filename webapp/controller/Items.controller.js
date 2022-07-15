@@ -150,17 +150,20 @@ var tableDataFormatter = {
         formatRowColor:function(oQuant){
           // debugger;
           var oCart=this.getView().getModel("appView").getProperty("/CartData");
-          if(oQuant){
-            var arr = oCart.filter(function (item) {
-              return item.ItemCode ===oQuant;
-          });
-            if(arr.length>0){
-              return 'C0C0C0';
-            }
-            else{
-              // return '00FF00';
+          if(oCart && oCart.length>0){
+            if(oQuant){
+              var arr = oCart.filter(function (item) {
+                return item.ItemCode ===oQuant;
+            });
+              if(arr.length>0){
+                return 'C0C0C0';
+              }
+              else{
+                // return '00FF00';
+              }
             }
           }
+        
         },
         buildKeyWordRequestUrl: function() {
           let fullUrl = `${keyWordsSearchQuery}KeyWords=`;
