@@ -79,7 +79,7 @@
 						<!-- <Text text="{appView>cartQunt}" /> -->
 						<Text text="{appView>Quantity}" textAlign="Center" ></Text>
 						<Text text="{appView>UnitPrice}" textAlign="Center" ></Text>
-						<Text text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}" textAlign="Center"></Text>
+						<Text text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatter'}" textAlign="Center"></Text>
 						<Text text="{path:'appView>Price',formatter:'.formatter.conHourFormatter'}" />
 						<Text text="{path:'appView>TaxPercentagePerRow',formatter:'.formatter.conHourFormatter'}" />
 						<Text text="{path:'appView>LineTotal',formatter:'.formatter.conHourFormatter'}" />

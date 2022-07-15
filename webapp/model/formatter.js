@@ -214,11 +214,11 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         var oFormatOptions = {
           minIntegerDigits: 1,
           maxIntegerDigits: 15,
-          minFractionDigits: 2,
-          maxFractionDigits: 4
+          minFractionDigits: 0,
+          maxFractionDigits: 2
         };
         var oFloatFormat = sap.ui.core.format.NumberFormat.getFloatInstance(oFormatOptions);
-        return oFloatFormat.format(data.toFixed(2));
+        return oFloatFormat.format(data);
       }
       return 0.0
     },

@@ -77,7 +77,7 @@
 						<!-- <Text text="{appView>cartQunt}" /> -->
 						<Text text="{appView>Quantity}" textAlign="Center" ></Text>
 						<Text text="{path:'appView>UnitPrice',formatter:'.formatter.conHourFormatter'}" textAlign="Center" ></Text>
-						<ObjectAttribute title="" text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}"
+						<ObjectAttribute title="" text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatter'}"
 							active="true" press="onItemGroupDiscountPress"/>
 						<!-- <Text text="{path:'appView>DiscountPercent',formatter:'.formatter.conHourFormatterPC'}" textAlign="Center"></Text> -->
 						<Text text="{path:'appView>Price',formatter:'.formatter.conHourFormatter'}" />
