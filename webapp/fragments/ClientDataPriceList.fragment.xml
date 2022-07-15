@@ -97,7 +97,7 @@
                 <ObjectAttribute title="{i18n>Discount2}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount2',formatter:'.formatter.conHourFormatter'}"/>
                 <ObjectAttribute title="{i18n>Discount3}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount3',formatter:'.formatter.conHourFormatter'}"/>
                 <ObjectAttribute title="{i18n>Discount4}" text="{path:'appView>Lvl_20_ItemGroupBP_Discount4',formatter:'.formatter.conHourFormatter'}"/> -->
-                <ObjectAttribute title="{i18n>DiscountFinal}" text="{path:'appView>Lvl_20_ItemGroupBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}"
+                <ObjectAttribute class="activeObjAttribute" title="{i18n>DiscountFinal}" text="{path:'appView>Lvl_20_ItemGroupBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}"
                   active="true" press="onItemGroupDiscountPress"/>
                 <!-- <Text text="{path: 'appView>Lvl_20_Price_ItemGroupBP'}" />
                 

@@ -22,6 +22,12 @@
 				<List width="auto" class="sapFDynamicPageAlignContent" items="{path: 'appView>/ClientList'}"
 					noDataText="{masterView>/noDataText}" mode="None"
 				 	growing="true" growingScrollToLoad="true" id="idCustomerPoperOverList" selectionChange="onCustomerPopOverSelect">
+					 <infoToolbar>
+						<OverflowToolbar
+							active="false" >
+							<Label text="{appView>/MasterSelectedCustomer/CardName}" />
+						</OverflowToolbar>
+					</infoToolbar>
 				<items>
 					<ObjectListItem type="Active" press="onCustomerPopOverSelect"
 						 title="{path:'appView>CardName'}"

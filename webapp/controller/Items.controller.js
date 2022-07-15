@@ -175,6 +175,10 @@ var tableDataFormatter = {
           });
           const { keyWordMethod } = this.getView().getModel('keyWordMethod').getData();
           fullUrl = fullUrl.concat(`&KeyWordMethod=${keyWordMethod}`);
+          var oData=this.getModel("appView").getProperty("/MasterSelectedCustomer/CardCode");
+		    	if(oData){
+            fullUrl+=`&CardCode=${oData}`;
+          }
           return fullUrl;
         },
         buildPanelRequestUrl: function() {

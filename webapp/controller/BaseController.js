@@ -103,6 +103,24 @@ sap.ui.define([
 		onThemeChangeDark: function (oEvent) {
 			sap.ui.getCore().applyTheme('sap_fiori_3_dark');
 		},
+		onDatabasePress:function(oEvent){
+			var oMessage=this.getView().getModel("appView").getProperty("/loginDatabaseName");
+			MessageToast.show(oMessage);
+			// var oButton = oEvent.getSource(),
+            // oView = this.getView();
+			// if (!this.__pPopover) {
+			// 	this.__pPopover = Fragment.load({
+			// 	name: "ent.ui.ecommerce.fragments.popoverTencet",
+			// 	controller: this,
+			// 	}).then(function (oPopover) {
+			// 	oView.addDependent(oPopover);
+			// 	return oPopover;
+			// 	});
+			// }
+			// this.__pPopover.then(function (oPopover) {
+			// 	oPopover.openBy(oButton);
+			// });
+		},
 		convertFileToUrl: function(vContent) {
 			var regex = /data:(\w.*);base64,/gm;
 			var m = regex.exec(vContent),
@@ -793,6 +811,9 @@ sap.ui.define([
 			}
 			if(oViewId.includes("SalesOrder")){
 				this.getView().byId("idgetSalesOrderList").firePress();
+			}
+			if(oViewId.includes("Items")){
+				this.getView().byId("idGetItemData").firePress();
 			}
 			this.custPopover.then(function(oPopover) {
 				oPopover.close();

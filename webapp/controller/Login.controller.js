@@ -132,6 +132,9 @@ sap.ui.define([
 			var userName = this.getView().byId("userid").getValue();
 			var password = this.getView().byId("pwd").getValue();
 			var database = this.getView().byId("idDatabase").getSelectedKey();
+			var dbName= this.getView().byId("idDatabase").getSelectedItem().getText()
+			sessionStorage.databaseName = dbName;
+			that.getModel("appView").setProperty("/loginDatabaseName", sessionStorage.databaseName);
 			var selectedlanguage = this.getView().byId("languageSelect").getSelectedKey();
 			that.getModel("appView").setProperty("/User", userName);
 			// if (userName == "") {

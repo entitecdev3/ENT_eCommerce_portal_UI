@@ -95,12 +95,12 @@
             <Text
               text="{ClusterRotazione}" />
             <VBox>
-              <ObjectAttribute title="UM Vendita " text="{SalUnitMsr}" active="true" />
+              <ObjectAttribute title="UM Vendita " text="{SalUnitMsr}" active="false" />
               <ObjectAttribute title="Prz Lordo Vend " text="{
                   path: 'Prz',
                   formatter: 'tableDataFormatter.precisionFormatter'
-                }" active="true" />
-              <ObjectAttribute title="{i18n>SpecialDiscount}" text="{SpecialPrice}" active="true" press="onSpecialDiscountPress"/>
+                }" active="false" />
+              <ObjectAttribute class="activeObjAttribute" title="{i18n>SpecialDiscount}" text="{SpecialPrice}" visible="{=${SpecialPrice}?true:false}"  active="true" press="onSpecialDiscountPress"/>
             </VBox>
             <Text
               text="{InvntryUom}" />
@@ -110,19 +110,19 @@
                   path: 'B_OnHand',
                   formatter: 'tableDataFormatter.precisionFormatter'
                 }"
-                active="true" />
+                active="false" />
               <ObjectAttribute title="Disponibile "
                 text="{
                   path: 'B_Libero',
                   formatter: 'tableDataFormatter.precisionFormatter'
                 }"
-                active="true" />
+                active="false" />
               <ObjectAttribute title="Ordinato "
                 text="{
                   path: 'B_OnOrder',
                   formatter: 'tableDataFormatter.precisionFormatter'
                 }"
-                active="true" />
+                active="false" />
             </VBox>
             <VBox>
               <ObjectAttribute title="Al Mag "
@@ -130,19 +130,19 @@
                   path: 'X_OnHand',
                   formatter: 'tableDataFormatter.precisionFormatter'
                 }"
-                active="true" />
+                active="false" />
               <ObjectAttribute title="Disponibile "
                 text="{
                   path: 'X_Libero',
                   formatter: 'tableDataFormatter.precisionFormatter'
                 }"
-                active="true" />
+                active="false" />
               <ObjectAttribute title="Ordinato "
                 text="{
                   path: 'X_OnOrder',
                   formatter: 'tableDataFormatter.precisionFormatter'
                 }"
-                active="true" />
+                active="false" />
             </VBox>
             <HBox>
               <StepInput value="{cartQunt}" width="7rem" id="idStepInput" textAlign="Center" min="0" max="{

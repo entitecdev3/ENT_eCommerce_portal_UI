@@ -50,6 +50,8 @@ sap.ui.define([
 			this.getModel("appView").setProperty("/User", sessionStorage.userName);
 			this.getModel("appView").setProperty("/authType", sessionStorage.authType);
 			this.getModel("appView").setProperty("/loginDatabase", sessionStorage.database);
+			// sessionStorage.databaseName = dbName;
+			this.getModel("appView").setProperty("/loginDatabaseName", sessionStorage.databaseName);
 			if(sessionStorage.languageCode){
 				this.getModel("appView").setProperty("/selectLang", sessionStorage.languageCode);
 				sap.ui.getCore().getConfiguration().setLanguage(sessionStorage.languageCode);

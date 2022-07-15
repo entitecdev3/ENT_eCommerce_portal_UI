@@ -255,3 +255,7 @@
   .inputBackColor, .sapMInputBaseInner{
     background-color: rgba(199, 201, 199, 0.515);
   }
+
+  .activeObjAttribute span:nth-child(3) bdi {
+    color: #0064d9;
+  }

@@ -9,7 +9,11 @@
 	<Menu  title="{appView>/User}" >
 		<items>
 			<MenuItem  text="{appView>/User}" icon="sap-icon://account" />
-			<MenuItem  text="{appView>/loginDatabase}" icon="sap-icon://database" />
+			<MenuItem  text="{appView>/loginDatabaseName}" press="onDatabasePress"  icon="sap-icon://database" >
+				<!-- <customData >
+					<core:CustomData key="ENT" value="{appView>/loginDatabaseName}" writeToDom="true"></core:CustomData>
+				</customData> -->
+			</MenuItem>
 			<MenuItem  text="{i18n>home}" icon="sap-icon://home" press="onHomePress" />
 			<MenuItem  text="{i18n>logout}" icon="sap-icon://log" press="onLogOut"/>
 			<!-- <MenuItem id="Cancel" text="{i18n>Cancel}"/> -->
