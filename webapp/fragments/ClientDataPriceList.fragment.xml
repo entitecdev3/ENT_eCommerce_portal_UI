@@ -14,14 +14,16 @@
               <SearchField
                 id="clientPriceListSearchField"
                 class="tableSearchFilter"
-                width="80%"
+                width="70%"
                 placeholder="{i18n>search}"
-                change="onClientPriceListFilterPress">
+                change="onClientPriceListFilterPress"
+                search="onClientPriceListFilterPress">
                 <layoutData>
                   <OverflowToolbarLayoutData
                     priority="NeverOverflow"/>
                 </layoutData>
               </SearchField>
+              <ToggleButton class="sapUiContentPadding" id="keyWordMethodBtn" text="AND" enabled="true" pressed="true" width="auto" press="onKeyWordMethodToggle" visible="true" />
             </content>
           </OverflowToolbar>
         </headerToolbar>

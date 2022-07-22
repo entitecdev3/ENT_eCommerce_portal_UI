@@ -288,6 +288,10 @@ sap.ui.define([
 			return new Promise(function(resolve){
 				this.middleWare.callMiddleWare("/VH_OHEM", "GET", {})
 				.then(function (data, status, xhr) {
+					var oData={
+						"empID":"","Code":"","lastName":"","firstName":""
+					}
+					data.unshift(oData);
 					this.getModel("appView").setProperty("/VH_OHEM",data);
 					resolve(data)
 				}.bind(this))

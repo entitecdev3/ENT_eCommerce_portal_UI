@@ -24,6 +24,11 @@
             demandPopin="true">
             <Text text="{i18n>comments}" />
         </Column>
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="{i18n>holder}" />
+        </Column>
        
         <!-- <Column>
             <Text text="Email" />
@@ -40,6 +45,8 @@
                     text="{path:'appView>endDate',formatter:'.formatter.conDateFormatter'} {path:'appView>ENDTime',formatter:'.formatter.conTimeFormatter'}" />
                 <Text
                     text="{appView>Notes}" />
+                <Text
+                    text="{path:'appView>AttendEmpl',formatter:'.formatOwnerCode'}" />
                
               
                

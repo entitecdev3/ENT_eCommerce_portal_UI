@@ -26,16 +26,15 @@
 						singleContainerFullSize="false" >
 						<f:content>
 							<core:Title text="{i18n>StandardList}" />
-								<Label text="{i18n>Price}" />
+								<Label text="{i18n>Pricel}" />
 								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_30_Price_StandardList',formatter:'.formatter.conHourFormatter'}" />
 							<core:Title text="{i18n>SpecialBP}" />
 								<Label text="{i18n>Price}" />
 								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_10_ItemBP_Price',formatter:'.formatter.conHourFormatter'}" />
-								<Label text="{i18n>DiscountFinal}" />
-								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_10_ItemBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}" />
+								<!-- <Label text="{i18n>DiscountFinal}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_10_ItemBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}" /> -->
 							<core:Title text="{i18n>ItemGroup}" />
-								<Label text="{i18n>Price}" />
-								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_Price_ItemGroupBP',formatter:'.formatter.conHourFormatter'}" />
+				
 								<Label text="{i18n>dis1}" />
 								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_Discount1',formatter:'.formatter.conHourFormatterPC'}" />
 								<Label text="{i18n>dis2}" />
@@ -46,6 +45,8 @@
 								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_Discount4',formatter:'.formatter.conHourFormatterPC'}" />
 								<Label text="{i18n>DiscountFinal}" />
 								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_ItemGroupBP_DiscountFinal',formatter:'.formatter.conHourFormatterPC'}" />
+								<Label text="{i18n>Price}" />
+								<Text text="{path:'appView>/Special_DiscountDetails/Lvl_20_Price_ItemGroupBP',formatter:'.formatter.conHourFormatter'}" />
 							<!-- <core:Title text="" /> -->
 							<!-- <core:Title text="{i18n>StandardList}" /> -->
 							<!-- <core:Title text="{i18n>StandardList}" /> -->

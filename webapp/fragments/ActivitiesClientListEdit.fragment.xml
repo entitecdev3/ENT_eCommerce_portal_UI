@@ -32,7 +32,11 @@
             demandPopin="true">
             <Text text="{i18n>comments}" />
         </Column>
-       
+        <Column
+            minScreenWidth="Tablet"
+            demandPopin="true">
+            <Text text="{i18n>holder}" />
+        </Column>
         <!-- <Column>
             <Text text="Email" />
         </Column> -->
@@ -87,6 +91,9 @@
                 <!-- <Text
                     text="{appView>Notes}" /> -->
                 <Input value="{appView>Notes}" change="onActivityNotesChange"></Input>
+                <Select items="{ path: 'appView>/VH_OHEM' }"  selectedKey="{appView>AttendEmpl}" change="onActivityHandlebyChange">
+                    <core:ListItem key="{appView>empID}" text="{appView>lastName}-{appView>firstName}"  />
+                </Select>
                
               
                

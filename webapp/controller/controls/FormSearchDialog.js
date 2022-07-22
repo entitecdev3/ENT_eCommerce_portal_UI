@@ -175,8 +175,11 @@ sap.ui.define([
         },
         filter: function(that, evt) {
           const filterValue = evt.getParameters().newValue;
-          const newformDialogTableData = this.formDialogTableData
-            .filter(el => el.Name.toLowerCase().includes(filterValue.toLowerCase()));
+          var newformDialogTableData = this.formDialogTableData
+            .filter(el => el.Name!==null           );
+           newformDialogTableData = newformDialogTableData
+            .filter(el => el.Name.toLowerCase().includes(filterValue.toLowerCase())
+            );
           const formTableModel = new sap.ui.model.json.JSONModel({ formDialogTableData: newformDialogTableData });
           that.formTable.setModel(formTableModel);
           that.formTable.updateBindings();

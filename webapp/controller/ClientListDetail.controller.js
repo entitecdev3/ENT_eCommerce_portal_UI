@@ -145,6 +145,7 @@ sap.ui.define([
 			}else{
 				oUrl += "/ClientListPricelist?CardCode="+this.cardCode;
 			}
+			oUrl += `&KeyWordMethod=`+this.getView().byId("keyWordMethodBtn").getText();
 			var that =this;
 			this.getClientActivities();
 			this.middleWare.callMiddleWare(oUrl, "GET", {})
@@ -190,7 +191,8 @@ sap.ui.define([
 			oBinding.filter(oFilter);
 		},
 		onClientPriceListFilterPress:function(oEvent){
-			 var oQuery=oEvent.getParameter("value");
+			//  var oQuery=oEvent.getParameter("value");
+			 var oQuery=this.getView().byId('clientPriceListSearchField').getValue();
 			 this.getClientPriceList(oQuery);
 			//  var oTable=oEvent.getSource().getParent().getParent();
 			//  var oFilter = new Filter({
@@ -376,7 +378,8 @@ sap.ui.define([
 				"ENDTime":0,
 				"Notes":"",
 				"CardCode":this.cardCode,
-				"status":"N"
+				"status":"N",
+				"AttendEmpl":null
 			};
 			var oData=this.getView().getModel("appView").getProperty("/ClientListActivites");
 			oData.unshift(oAdd);
@@ -450,6 +453,15 @@ sap.ui.define([
 			oData.Notes=oEvent.getParameter("value");
 			this.getView().getModel("appView").updateBindings();
 		},
+		onActivityHandlebyChange:function(oEvent){
+			var oPath=oEvent.getSource().getBindingContext("appView").getPath();
+			var oData=this.getView().getModel("appView").getProperty(oPath);
+			oData.status=oData.status==='N'?"N":'U';
+			debugger;
+			var oKey=oEvent.getParameter("selectedItem").getKey();
+			oData.AttendEmpl=oKey?parseInt(oKey):null;
+			this.getView().getModel("appView").updateBindings();
+		},
 		onActivityActionChange:function(oEvent){
 			var oPath=oEvent.getSource().getBindingContext("appView").getPath();
 			var oData=this.getView().getModel("appView").getProperty(oPath);
@@ -471,6 +483,7 @@ sap.ui.define([
 				fData[index].Notes=element.Notes;
 				fData[index].CardCode=element.CardCode;
 				fData[index].status=element.status;
+				fData[index].HandledByEmployee=element.AttendEmpl;
 			}
 			return fData;
 		},
@@ -603,6 +616,14 @@ sap.ui.define([
 			this.disPopOver.then(function (oPopover) {
 				oPopover.close();
 			}.bind(this));
+		},
+		onKeyWordMethodToggle:function(oEvent){
+			if(oEvent.getSource().getText()==="AND"){
+				oEvent.getSource().setText("OR");	
+			}
+			else{
+				oEvent.getSource().setText("AND");
+			}
 		},
 	});
 });
